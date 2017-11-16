@@ -9,6 +9,23 @@
  * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public abstract class Usuario {
+	
+	private Integer id;
+	private String login;
+	private String senha;
+	private String nome;
+	private String cpf;
+	
+	
+	protected Usuario(Integer id, String login, String senha, String nome, String cpf) {
+		super();
+		this.id = id;
+		this.login = login;
+		this.senha = senha;
+		this.nome = nome;
+		this.cpf = cpf;
+	}
+
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
