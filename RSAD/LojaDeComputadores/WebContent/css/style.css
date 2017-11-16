@@ -1,0 +1,61 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	margin-bottom: 50px;
+}
+
+.tipo_item {
+	background-color: grey;
+	color: white;
+	padding: 10px;
+	margin: 10px;
+	font-size: 20px;
+	border-radius: 10px;
+}
+
+ul {
+	list-style-type: none;
+}
+
+.border {
+	border: 2px solid black;
+}
+
+#itens {
+	margin-top: 30px;
+}
+
+.right {
+	text-align: right;
+}
+
+#compra {
+	margin-top: 50px;
+}
+
+#precos {
+	padding-left: 50px;
+	margin-top: 30px;
+	padding-right: 100px;
+}
+
+#precos div {
+	margin-top: 5px;
+}
+
+.desconto {
+	color: red
+}
+
+#buttons {
+	margin-top: 60px;
+	margin-right: 100px;
+}
+
+.collapse ul li {
+	border-radius: 10px;
+}
+
+.collapse ul li :hover {
+	background-color: rgb(200, 229, 248);
+}
