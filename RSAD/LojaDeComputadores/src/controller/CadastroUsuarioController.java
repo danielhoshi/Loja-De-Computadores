@@ -14,7 +14,7 @@ import util.DadosTeste;
 /**
  * Servlet implementation class UsuarioController
  */
-@WebServlet("/UsuarioController")
+@WebServlet("/CadastroUsuarioController")
 public class CadastroUsuarioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
