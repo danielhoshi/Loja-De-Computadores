@@ -1,30 +1,21 @@
 package controller;
+
 import java.util.Set;
 
+import model.Cliente;
 import model.HD;
 import model.Item;
 import model.Memoria;
+import model.Pedido;
 import model.PlacaMae;
 import model.Processador;
+import model.Usuario;
+import repositories.RepositorioCliente;
+import util.DadosTeste;
 
-/**
- * 
- */
-
-/**
- * <!-- begin-UML-doc --> <!-- end-UML-doc -->
- * 
- * @author 9345297
- * @generated "UML to Java
- *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
- */
 public class ControladorDeSolicitacao {
 
 	public void solicitaNovoPedido() {
-
-	}
-
-	public void novoPedido(String cpf) {
 
 	}
 
@@ -55,4 +46,12 @@ public class ControladorDeSolicitacao {
 	public void finalizaPedido() {
 
 	}
+
+	public static Pedido novoPedido(String cpf) {
+		Cliente c = RepositorioCliente.verificaCliente(cpf);
+		Usuario u = DadosTeste.getUsuario();
+		Pedido p = new Pedido(c, u);
+		return p;
+	}
+
 }

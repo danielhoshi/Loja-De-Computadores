@@ -1,24 +1,25 @@
 package repositories;
-/**
- * 
- */
 
-/** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
- * @author 9345297
- * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
- */
+import java.util.List;
+
+import model.Cliente;
+import util.DadosTeste;
+
 public class RepositorioCliente {
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public void verificaClientecpf() {
-		// begin-user-code
-		// TODO Auto-generated method stub
 
-		// end-user-code
+	public static Cliente verificaCliente(String cpf) {
+		List<Cliente> clientes = DadosTeste.getAllClientes();
+		Integer lastId = 0;
+		for(Cliente c : clientes){
+			if(cpf.equals(c.getCPF())){
+				return c;
+			}
+			lastId = c.getId();
+		}
+		Cliente novoCliente = new Cliente(lastId + 1, cpf);
+		//adicionar novo cliente
+		
+		return novoCliente;
 	}
+
 }
