@@ -1,0 +1,18 @@
+@CHARSET "ISO-8859-1";
+
+.linhaForm{
+	margin-bottom:30px;
+}
+
+.labelForm{
+	text-align: right;
+	line-height: 34px;
+}
+
+.btnForm{
+	margin: 10px auto;
+}
+
+.listHeader a{
+	margin-top: 20px;
+}

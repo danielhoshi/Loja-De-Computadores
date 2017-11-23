@@ -3,18 +3,20 @@ package model;
  * 
  */
 
-import java.util.Set;
+public enum TipoUsuario {
 
-public class TipoUsuario {
-
+	GERENTE(1,"Gerente"),
+	VENDEDOR(2,"Vendedor");
+	
+	
 	private Integer id;
 	private String nome;
 	
-	public TipoUsuario(Integer id, String nome) {
-		super();
+	TipoUsuario(Integer id, String nome) {
 		this.id = id;
 		this.nome = nome;
 	}
+	
 	public Integer getId() {
 		return id;
 	}

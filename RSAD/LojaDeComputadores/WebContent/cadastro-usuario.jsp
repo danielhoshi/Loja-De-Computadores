@@ -20,6 +20,7 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/usuario.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -45,62 +46,65 @@
 	<div class="container">
 		<h1>Novo Usuário</h1>
 		<form action="CadastroUsuarioController" method="post">
-		<div class="row">
-			<div class="col-sm-1" class="labelForm">
-				Nome:
+			<div class="row linhaForm">
+				<div class="col-sm-1 labelForm">
+					Nome:
+				</div>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" name="nome"/>
+				</div>
+				<div class="col-sm-1 labelForm">
+					CPF:
+				</div>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" name="cpf"/>
+				</div>
+				<div class="col-sm-1 labelForm">
+					Cargo:
+				</div>
+				<div class="col-sm-3">
+					<select class="form-control" name="cargo">
+					<%
+						ArrayList<Cargo> cargos = (ArrayList<Cargo>) request.getAttribute("listaCargos");
+						for(Cargo cargo: cargos){
+					%>
+	    				<option value="<%=cargo.getId()%>"><%=cargo.getNome()%></option>
+	    			<%}%>
+	  				</select>
+				</div>
+				
 			</div>
-			<div class="col-sm-3">
-				<input type="text" class="form-control" name="nome"/>
+			<div class="row linhaForm">
+				<div class="col-sm-1 labelForm">
+					Login:
+				</div>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" name="login"/>
+				</div>
+				<div class="col-sm-1 labelForm">
+					Senha:
+				</div>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" name="senha"/>
+				</div>
+				<div class="col-sm-1 labelForm">
+					Tipo:
+				</div>
+				<div class="col-sm-3">
+					<select class="form-control" name="tipo">
+					<%
+						ArrayList<TipoUsuario> tipos = (ArrayList<TipoUsuario>) request.getAttribute("listaTipos");
+						
+						for(TipoUsuario tipo: tipos){
+					%>
+	    				<option value="<%=tipo.getId()%>"><%=tipo.getNome()%></option>
+	    			<%}%>
+	  				</select>
+				</div>
 			</div>
-			<div class="col-sm-1" class="labelForm">
-				CPF:
-			</div>
-			<div class="col-sm-3">
-				<input type="text" class="form-control" name="cpf"/>
-			</div>
-			<div class="col-sm-1" class="labelForm">
-				Cargo:
-			</div>
-			<div class="col-sm-3">
-				<select class="form-control" name="cargo">
-				<%
-					ArrayList<Cargo> cargos = (ArrayList<Cargo>) request.getAttribute("listaCargos");
-					for(Cargo cargo: cargos){
-				%>
-    				<option value="<%=cargo.getId()%>"><%=cargo.getNome()%></option>
-    			<%}%>
-  				</select>
-			</div>
-			
-		</div>
-		<div class="row">
-			<div class="col-sm-1" class="labelForm">
-				Login:
-			</div>
-			<div class="col-sm-3">
-				<input type="text" class="form-control" name="login"/>
-			</div>
-			<div class="col-sm-1" class="labelForm">
-				Senha:
-			</div>
-			<div class="col-sm-3">
-				<input type="text" class="form-control" name="senha"/>
-			</div>
-			<div class="col-sm-1" class="labelForm">
-				Tipo:
-			</div>
-			<div class="col-sm-3">
-				<select class="form-control" name="cargo">
-				<%
-					ArrayList<TipoUsuario> tipos = (ArrayList<TipoUsuario>) request.getAttribute("listaTipos");
-					
-					for(TipoUsuario tipo: tipos){
-				%>
-    				<option value="<%=tipo.getId()%>"><%=tipo.getNome()%></option>
-    			<%}%>
-  				</select>
-			</div>
-		</div>
+			<button type="submit" class="btn btn-warning btnForm">
+				<span class="glyphicon glyphicon-ok-circle"></span> Salvar
+			</button>
 		</form>
 	</div>
 

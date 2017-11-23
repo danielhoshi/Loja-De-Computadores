@@ -1,5 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Usuario"%>
+<%@page import="model.UsuarioGerente"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -19,6 +20,7 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/usuario.css">
 <title>Usuários</title>
 </head>
 <body>
@@ -42,28 +44,51 @@
 		</div>
 	</nav>
 	<div class="container">
-		<div class="row" style="height: 700px">
-		<div class="col-sm-10">
-			<h1>Usuários</h1>
+		<div class="row listHeader">
+			<div class="col-sm-10">
+				<h1>Usuários</h1>
+			</div>
+			<div class="col-sm-2">
+				<a href="CadastroUsuarioController" class="btn btn-warning">
+					<span class="glyphicon glyphicon-plus"></span> Novo Usuário
+				</a>
+			</div>	
 		</div>
-		<div class="col-sm-2">
-			<a href="CadastroUsuarioController"><span>Novo Usuário</span></a>
-		</div>	
-		
-	<%
-		ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");
-		for(Usuario usuario:usuarios){
-	%>
-		<p>ID: <%= usuario.getId() %></p>
-		<p>
-			Nome:
-			<a href="UsuarioController?id=<%= usuario.getId() %>">
-				<%= usuario.getNome() %>
-			</a>
-		</p>
-	<%} %>
-	<br>
-	<a href="index.jsp">Index</a>
+		<div class="row">
+		<div class="col-sm-12">
+			<div class="table-responsive">          
+			<table class="table">
+				<thead>
+	 				<tr>
+	 					<th>id</th>
+	 					<th>Nome</th>
+	 					<th>Cpf</th>
+	 					<th>Cargo</th>
+	 				</tr>
+ 				</thead>
+ 				<tbody>
+	 				<%
+						ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");
+						for(Usuario usuario:usuarios){
+					%>
+					<tr class="<%= (request.getParameter("novo") != null && request.getParameter("novo").equals(usuario.getId().toString())) ? "success":""%>">
+	 					<td><%= usuario.getId() %></td>
+	 					<td>
+	 						<%= usuario.getNome() %>
+	 						<%
+	 							if(usuario instanceof UsuarioGerente){
+	 						 %>
+	 						 <span class="glyphicon glyphicon-user" title="Usuário Gerente"></span>
+	 						 <%} %>
+	 					</td>
+	 					<td><%= usuario.getCpf() %></td>
+	 					<td><%= usuario.getCargo().getNome() %></td>
+	      			</tr>
+					<%} %>
+				</tbody>
+			</table>
+			</div>
+		</div>
 		</div>
 	</div>
 

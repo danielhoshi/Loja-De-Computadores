@@ -6,22 +6,26 @@ import java.util.List;
 import model.Cargo;
 import model.TipoUsuario;
 import model.Usuario;
+import model.UsuarioGerente;
 import model.UsuarioVendedor;
 
 public class DadosTeste {
 
-	public static Usuario newUsuario(int id) {
-		Usuario u = new UsuarioVendedor(id, "login", "senha", "João Usuário", "123.456.789-00");
-		return u;
+	public static Usuario newUsuario(boolean isGerente) {
+		if (isGerente) {
+			return new UsuarioGerente(1, "login", "senha", "João Usuário", "123.456.789-00", new Cargo(1, "Vendedor"));
+		}
+		return new UsuarioVendedor(1, "login", "senha", "João Usuário", "123.456.789-00", new Cargo(1, "Vendedor"));
 	}
 
 	public static List<Usuario> newUsuarios() {
 		ArrayList<Usuario> usuarios = new ArrayList<>();
-		usuarios.add(newUsuario(1));
-		usuarios.add(newUsuario(2));
+		usuarios.add(newUsuario(true));
+		usuarios.add(newUsuario(false));
+		usuarios.add(newUsuario(false));
 		return usuarios;
 	}
-	
+
 	public static Cargo newCargo(Integer id, String nome) {
 		Cargo c = new Cargo(id, nome);
 		return c;
@@ -33,16 +37,12 @@ public class DadosTeste {
 		cargos.add(newCargo(2, "Gerente "));
 		return cargos;
 	}
-	
-	public static TipoUsuario newTipo(Integer id, String nome) {
-		TipoUsuario t = new TipoUsuario(id, nome);
-		return t;
-	}
 
 	public static List<TipoUsuario> listaTipos() {
 		ArrayList<TipoUsuario> tipos = new ArrayList<>();
-		tipos.add(newTipo(1, "Vendedor"));
-		tipos.add(newTipo(2, "Gerente "));
+		for (TipoUsuario tipo : TipoUsuario.values()) {
+			tipos.add(tipo);
+		}
 		return tipos;
 	}
 }
