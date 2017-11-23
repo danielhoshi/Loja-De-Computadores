@@ -32,7 +32,7 @@ public abstract class Usuario {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void solicitaNovoPedidocpf() {
+	public void getUsuario() {
 		// begin-user-code
 		// TODO Auto-generated method stub
 
