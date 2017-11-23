@@ -5,6 +5,8 @@ package model;
 
 import java.util.Set;
 
+import repositories.RepositorioCliente;
+
 /** 
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->

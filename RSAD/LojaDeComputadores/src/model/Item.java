@@ -2,7 +2,7 @@ package model;
 
 import java.util.Set;
 
-import RepositorioItem;
+import repositories.RepositorioItem;
 
 /**
  * 
