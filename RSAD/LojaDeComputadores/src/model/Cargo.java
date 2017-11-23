@@ -17,11 +17,15 @@ public class Cargo {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
+	private Integer id;
 	private String nome;
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	private Set<Usuario> usuário;
+	
+	public Integer getId() {
+		return id;
+	}
+	public String getNome() {
+		return nome;
+	}
+	
+	
 }

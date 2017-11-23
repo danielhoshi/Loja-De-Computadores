@@ -1,5 +1,8 @@
+<%@page import="model.TipoUsuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.Cargo"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -43,12 +46,57 @@
 		<h1>Novo Usuário</h1>
 		<form action="CadastroUsuarioController" method="post">
 		<div class="row">
-			<div class="col-sm-2">
+			<div class="col-sm-2" class="labelForm">
 				Nome:
 			</div>
 			<div class="col-sm-4">
-				Nome:
-			</div>			
+				<input type="text" name="nome"/>
+			</div>
+			<div class="col-sm-2" class="labelForm">
+				CPF:
+			</div>
+			<div class="col-sm-4">
+				<input type="text" name="cpf"/>
+			</div>
+			<div class="col-sm-2" class="labelForm">
+				Login:
+			</div>
+			<div class="col-sm-4">
+				<input type="text" name="login"/>
+			</div>
+			<div class="col-sm-2" class="labelForm">
+				Senha:
+			</div>
+			<div class="col-sm-4">
+				<input type="text" name="senha"/>
+			</div>
+			<div class="col-sm-2" class="labelForm">
+				Cargo:
+			</div>
+			<div class="col-sm-4">
+				<select class="form-control" name="cargo">
+				<%
+					ArrayList<Cargo> cargos = (ArrayList<Cargo>) request.getAttribute("listaCargos");
+					for(Cargo c: cargos){
+				%>
+    				<option value="<%=c.getId()%>"><%=c.getNome()%></option>
+    			<%}%>
+  				</select>
+			</div>
+			<div class="col-sm-2" class="labelForm">
+				Tipo:
+			</div>
+			<div class="col-sm-4">
+				<select class="form-control" name="cargo">
+				<%
+					ArrayList<TipoUsuario> tipos = (ArrayList<TipoUsuario>) request.getAttribute("listaTipos");
+					
+					for(Cargo c: cargos){
+				%>
+    				<option value="<%=c.getId()%>"><%=c.getNome()%></option>
+    			<%}%>
+  				</select>
+			</div>
 		</div>
 		</form>
 	</div>
