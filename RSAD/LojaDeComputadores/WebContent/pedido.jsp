@@ -1,3 +1,9 @@
+<%@page import="model.Pedido"%>
+<%@page import="model.Cliente"%>
+<%@page import="model.Usuario"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -43,37 +49,48 @@
 			<div class="col-sm-9" id="tipos">
 				<a href="#">
 					<span class="tipoItem">
-						<img src="images/sample1.jpg" class="img-thumbnail">
+						<img src="img/computer.jpg" class="img-thumbnail">
 						<span>Computador</span>
 					</span>
 				</a>
 				<a href="#">
 				<span class="tipoItem">
-					<img src="images/sample1.jpg" class="img-thumbnail">
+					<img src="img/placa.jpg" class="img-thumbnail">
 					<span>Placa Mãe</span>
 				</span>
 				</a>
 				<a href="#">
 				<span class="tipoItem">
-					<img src="images/sample1.jpg" class="img-thumbnail">
+					<img src="img/processador.jpg" class="img-thumbnail">
 					<span>Processador</span>
 				</span>
 				</a>
 				<a href="#">
 				<span class="tipoItem">
-					<img src="images/sample1.jpg" class="img-thumbnail">
+					<img src="img/disco.jpg" class="img-thumbnail">
 					<span>Disco Rígido</span>
 				</span>
 				</a>
 				<a href="#">
 				<span class="tipoItem">
-					<img src="images/sample1.jpg" class="img-thumbnail">
+					<img src="img/memoria.jpg" class="img-thumbnail">
 					<span>Pente de Memória</span>
 				</span>
 				</a>
 			</div>
 			<div class="col-sm-3" id="status">
-				<span class="dados">
+				<% 
+					Pedido p = (Pedido) request.getAttribute("pedido");
+					Usuario u = p.getUsuario();
+					Cliente c = p.getCliente();
+				 %>
+				<div class="info">
+					<span>Vendedor: <b><%=u.getNome() %></b></span> 
+					<br>
+					<span>CPF do Cliente: <b><%=c.getCPF() %></b></span>
+					<br>
+				</div>
+				<div class="dados">
 					<span class="qtd">3 Itens Selecionados</span>
 					<span class="itens">
 						<span class="item">
@@ -82,7 +99,7 @@
 						<span class="tipo">Processador</span>
 						</span>
 					</span>
-				</span>
+				</div>
 			</div>
 		</div>
 	</div>
