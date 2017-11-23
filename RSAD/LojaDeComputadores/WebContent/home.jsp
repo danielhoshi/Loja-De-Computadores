@@ -33,7 +33,7 @@
 			<div class="collapse navbar-collapse" id="navItems">
 				<ul class="nav navbar-nav">
 					<li><a href="#" id="btnPedido">Fazer Pedido</a></li>
-					<li><a href="#">Cadastrar Usuário</a></li>
+					<li><a href="cadastro-usuario.jsp">Cadastrar Usuário</a></li>
 				</ul>
 			</div>
 		</div>

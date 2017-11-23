@@ -1,3 +1,4 @@
+package model;
 /**
  * 
  */
@@ -10,7 +11,7 @@ import java.util.Set;
  * @author aluno
  * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class Cargo {
+public class Soquete {
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
@@ -22,5 +23,11 @@ public class Cargo {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Set<Usuario> usuário;
+	private Set<Processador> processador;
+	/** 
+	 * <!-- begin-UML-doc -->
+	 * <!-- end-UML-doc -->
+	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	private Set<PlacaMae> placaMae;
 }

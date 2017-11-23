@@ -4,6 +4,8 @@
 
 import java.util.Set;
 
+import model.Pedido;
+
 /** 
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->

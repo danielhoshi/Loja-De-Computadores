@@ -1,5 +1,8 @@
+package model;
 
 import java.util.Set;
+
+import ControladordePedido;
 
 /**
  * 

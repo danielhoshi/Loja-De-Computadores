@@ -1,8 +1,12 @@
+package model;
+
+import java.util.Set;
+
+import RepositorioItem;
+
 /**
  * 
  */
-
-import java.util.Set;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -10,29 +14,24 @@ import java.util.Set;
  * @author aluno
  * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class Computador extends Item {
+public class Item {
+
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Set<Memoria> memoria;
+	private Set<ItemPedido> itemPedido;
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Set<HD> hD;
+	private Double preco;
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private PlacaMae placa;
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	private Processador processador;
+	private RepositorioItem repositorioItem;
 }

@@ -4,6 +4,8 @@
 
 import java.util.Set;
 
+import model.Item;
+
 /** 
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->
