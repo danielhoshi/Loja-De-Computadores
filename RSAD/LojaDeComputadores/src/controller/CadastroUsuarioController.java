@@ -32,11 +32,9 @@ public class CadastroUsuarioController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String disp;
 		request.setAttribute("listaCargos", DadosTeste.listaCargos());
 		request.setAttribute("listaTipos", DadosTeste.listaTipos());
-		disp = "/cadastro-usuario.jsp";
-		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(disp);
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/cadastro-usuario.jsp");
 		requestDispatcher.forward(request, response);
 	}
 

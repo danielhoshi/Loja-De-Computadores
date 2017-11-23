@@ -37,7 +37,7 @@
 			<div class="collapse navbar-collapse" id="navItems">
 				<ul class="nav navbar-nav">
 					<li><a href="#" id="btnPedido">Fazer Pedido</a></li>
-					<li><a href="cadastro-usuario.jsp">Cadastrar Usuário</a></li>
+					<li><a href="UsuarioController">Cadastrar Usuário</a></li>
 				</ul>
 			</div>
 		</div>
@@ -46,54 +46,57 @@
 		<h1>Novo Usuário</h1>
 		<form action="CadastroUsuarioController" method="post">
 		<div class="row">
-			<div class="col-sm-2" class="labelForm">
+			<div class="col-sm-1" class="labelForm">
 				Nome:
 			</div>
-			<div class="col-sm-4">
-				<input type="text" name="nome"/>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" name="nome"/>
 			</div>
-			<div class="col-sm-2" class="labelForm">
+			<div class="col-sm-1" class="labelForm">
 				CPF:
 			</div>
-			<div class="col-sm-4">
-				<input type="text" name="cpf"/>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" name="cpf"/>
 			</div>
-			<div class="col-sm-2" class="labelForm">
-				Login:
-			</div>
-			<div class="col-sm-4">
-				<input type="text" name="login"/>
-			</div>
-			<div class="col-sm-2" class="labelForm">
-				Senha:
-			</div>
-			<div class="col-sm-4">
-				<input type="text" name="senha"/>
-			</div>
-			<div class="col-sm-2" class="labelForm">
+			<div class="col-sm-1" class="labelForm">
 				Cargo:
 			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-3">
 				<select class="form-control" name="cargo">
 				<%
 					ArrayList<Cargo> cargos = (ArrayList<Cargo>) request.getAttribute("listaCargos");
-					for(Cargo c: cargos){
+					for(Cargo cargo: cargos){
 				%>
-    				<option value="<%=c.getId()%>"><%=c.getNome()%></option>
+    				<option value="<%=cargo.getId()%>"><%=cargo.getNome()%></option>
     			<%}%>
   				</select>
 			</div>
-			<div class="col-sm-2" class="labelForm">
+			
+		</div>
+		<div class="row">
+			<div class="col-sm-1" class="labelForm">
+				Login:
+			</div>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" name="login"/>
+			</div>
+			<div class="col-sm-1" class="labelForm">
+				Senha:
+			</div>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" name="senha"/>
+			</div>
+			<div class="col-sm-1" class="labelForm">
 				Tipo:
 			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-3">
 				<select class="form-control" name="cargo">
 				<%
 					ArrayList<TipoUsuario> tipos = (ArrayList<TipoUsuario>) request.getAttribute("listaTipos");
 					
-					for(Cargo c: cargos){
+					for(TipoUsuario tipo: tipos){
 				%>
-    				<option value="<%=c.getId()%>"><%=c.getNome()%></option>
+    				<option value="<%=tipo.getId()%>"><%=tipo.getNome()%></option>
     			<%}%>
   				</select>
 			</div>

@@ -32,16 +32,8 @@ public class UsuarioController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String disp;
-		if (id == null) {
-			request.setAttribute("listaUsuarios", DadosTeste.newUsuarios());
-			disp = "/lista-usuario.jsp";
-		} else {
-			request.setAttribute("usuario", DadosTeste.newUsuario(Integer.parseInt(id)));
-			disp = "/usuario.jsp";
-		}
-		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(disp);
+		request.setAttribute("listaUsuarios", DadosTeste.newUsuarios());
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/lista-usuario.jsp");
 		requestDispatcher.forward(request, response);
 	}
 
