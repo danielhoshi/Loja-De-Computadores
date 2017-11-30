@@ -47,7 +47,17 @@
 		</div>
 	</nav>
 	<div class="container">
-		<h1>Novo Usuário</h1>
+		<div class="row">
+			<div class="col-sm-10">
+				<h1>Novo Usuário</h1>
+			</div>
+			<div class="col-sm-2">
+				<button id="btnEditar" type="submit" class="btn btn-warning btnForm escondido">
+					<span class="glyphicon glyphicon-pencil"></span> Editar
+				</button>
+			</div>
+		</div>
+		
 		<form action="AtualizarUsuarioController" method="post">
 			<div class="row linhaForm">
 				<% Usuario usuario = (Usuario) request.getAttribute("usuarioSelecionado"); %>
@@ -109,11 +119,9 @@
 	  				</select>
 				</div>
 			</div>
-			<div class="escondido">
-			<button type="submit" class="btn btn-warning btnForm">
+			<button id="btnSalvar" type="submit" class="btn btn-warning btnForm escondido">
 				<span class="glyphicon glyphicon-ok-circle"></span> Salvar
 			</button>
-			</div>
 		</form>
 	</div>
 
@@ -157,6 +165,14 @@
 				modal.style.display = "none";
 			}
 		}
+		$(document).ready(function(){
+    		$('#btnEditar').click(function(){
+    			$("input").removeAttr('disabled');
+    			$("#btnSalvar").removeClass("escondido");
+    			$("#btnEditar").addClass("escondido");
+    		});
+		});
+		
 	</script>
 </body>
 </html>
