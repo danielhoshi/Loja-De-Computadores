@@ -75,7 +75,7 @@
 					<tr class="<%= (request.getParameter("novo") != null && request.getParameter("novo").equals(usuario.getId().toString())) ? "success":""%>">
 	 					<td><%= usuario.getId() %></td>
 	 					<td>
-	 						<%= usuario.getNome() %>
+	 						<a href="SelecionarUsuarioController?id=<%=usuario.getId()%>"><%= usuario.getNome() %></a>
 	 						<%
 	 							if(usuario instanceof UsuarioGerente){
 	 						 %>
