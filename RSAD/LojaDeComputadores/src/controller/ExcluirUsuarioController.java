@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,19 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import test.DadosTeste;
+import model.Usuario;
 
 /**
  * Servlet implementation class UsuarioController
  */
-@WebServlet("/UsuarioController")
-public class UsuarioController extends HttpServlet {
+@WebServlet("/ExcluirUsuarioController")
+public class ExcluirUsuarioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UsuarioController() {
+	public ExcluirUsuarioController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -32,7 +33,15 @@ public class UsuarioController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("listaUsuarios", DadosTeste.newUsuarios());
+		Integer idUsuario = Integer.parseInt(request.getParameter("id"));
+		//TODO remover do bd
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		for (Usuario u : (ArrayList<Usuario>) request.getSession().getAttribute("listaUsuarios")){
+			if(u.getId() != idUsuario){
+				usuarios.add(u);
+			}
+		}
+		request.getSession().setAttribute("listaUsuarios", usuarios);
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/lista-usuario.jsp");
 		requestDispatcher.forward(request, response);
 	}

@@ -64,17 +64,18 @@
 	 					<th>Nome</th>
 	 					<th>Cpf</th>
 	 					<th>Cargo</th>
+	 					<th>Excluir</th>
 	 				</tr>
  				</thead>
  				<tbody>
 	 				<%
-						ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");
+						ArrayList<Usuario> usuarios = (ArrayList<Usuario>) session.getAttribute("listaUsuarios");
 						for(Usuario usuario:usuarios){
 					%>
 					<tr class="<%= (request.getParameter("novo") != null && request.getParameter("novo").equals(usuario.getId().toString())) ? "success":""%>">
 	 					<td><%= usuario.getId() %></td>
 	 					<td>
-	 						<%= usuario.getNome() %>
+	 						<a href="SelecionarUsuarioController?id=<%=usuario.getId()%>"><%= usuario.getNome() %></a>
 	 						<%
 	 							if(usuario instanceof UsuarioGerente){
 	 						 %>
@@ -83,6 +84,11 @@
 	 					</td>
 	 					<td><%= usuario.getCpf() %></td>
 	 					<td><%= usuario.getCargo().getNome() %></td>
+	 					<td>
+	 						<a href="ExcluirUsuarioController?id=<%=usuario.getId() %>" class="btn btn-danger btn-sm">
+								<span class="glyphicon glyphicon-remove"></span>
+							</a>
+	 					</td>
 	      			</tr>
 					<%} %>
 				</tbody>

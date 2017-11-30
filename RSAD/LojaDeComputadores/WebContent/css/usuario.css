@@ -16,3 +16,7 @@
 .listHeader a{
 	margin-top: 20px;
 }
+
+.escondido{
+	display: none;
+}
