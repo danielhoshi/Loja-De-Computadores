@@ -7,7 +7,7 @@
 	text-align: center;
 }
 
-.itemLista: hover {
+.itemLista:hover {
 	transition: 0.2s;
 	background-color: rgb(224, 224, 224);
 }
