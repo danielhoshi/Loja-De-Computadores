@@ -14,7 +14,7 @@ import model.TipoUsuario;
 import model.Usuario;
 import model.UsuarioGerente;
 import model.UsuarioVendedor;
-import util.DadosTeste;
+import test.DadosTeste;
 
 /**
  * Servlet implementation class UsuarioController

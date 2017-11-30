@@ -1,8 +1,10 @@
 <%@page import="model.Pedido"%>
 <%@page import="model.Cliente"%>
 <%@page import="model.Usuario"%>
+<%@page import="model.HD"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 
 <!DOCTYPE html>
 <html>
@@ -47,57 +49,47 @@
 	<div class="container">
 		<div class="row" style="height: 700px">
 			<div class="col-sm-9" id="tipos">
-				<a href="#">
-					<span class="tipoItem">
-						<img src="img/computer.jpg" class="img-thumbnail">
-						<span>Computador</span>
+				<a href="HDController"> <span class="tipoItem"> <img
+						src="img/disco.jpg" class="img-thumbnail"> <span>Disco
+							Rígido</span>
+				</span>
+				</a>
+				<%
+					ArrayList<HD> listaHd = (ArrayList<HD>) request.getAttribute("lista");
+					for (HD hd : listaHd) {
+				%>
+				<div class="col-sm-3 itemHd">
+					<span class="tipoItem"> <img src="img/disco.jpg"
+						class="img-thumbnail">
 					</span>
-				</a>
-				<a href="#">
-				<span class="tipoItem">
-					<img src="img/placa.jpg" class="img-thumbnail">
-					<span>Placa Mãe</span>
-				</span>
-				</a>
-				<a href="#">
-				<span class="tipoItem">
-					<img src="img/processador.jpg" class="img-thumbnail">
-					<span>Processador</span>
-				</span>
-				</a>
-				<a href="HDController">
-				<span class="tipoItem">
-					<img src="img/disco.jpg" class="img-thumbnail">
-					<span>Disco Rígido</span>
-				</span>
-				</a>
-				<a href="#">
-				<span class="tipoItem">
-					<img src="img/memoria.jpg" class="img-thumbnail">
-					<span>Pente de Memória</span>
-				</span>
-				</a>
+					<p>
+						Fabricante: <b><%=hd.getFabricante() %></b>					
+					</p>
+					<p>
+						Modelo: <b><%=hd.getModelo() %></b>
+					</p>
+				</div>
+				<%
+					}
+				%>
 			</div>
 			<div class="col-sm-3" id="status">
-				<% 
-					Pedido p = (Pedido) request.getSession().getAttribute("pedido");
-					Usuario u = (Usuario) request.getSession().getAttribute("usuario");
+				<%
+					Pedido p = (Pedido) request.getAttribute("pedido");
+					Usuario u = p.getUsuario();
 					Cliente c = p.getCliente();
-				 %>
+				%>
 				<div class="info">
-					<span>Vendedor: <b><%=u.getNome() %></b></span> 
-					<br>
-					<span>CPF do Cliente: <b><%=c.getCPF() %></b></span>
-					<br>
+					<span>Vendedor: <b><%=u.getNome()%></b></span> <br> <span>CPF
+						do Cliente: <b><%=c.getCPF()%></b>
+					</span> <br>
 				</div>
 				<div class="dados">
-					<span class="qtd">3 Itens Selecionados</span>
-					<span class="itens">
-						<span class="item">
-						<img src="images/sample1.jpg" class="img-thumbnail">
-						<span class="nome">Intel Core 2 Duo</span>
-						<span class="tipo">Processador</span>
-						</span>
+					<span class="qtd">3 Itens Selecionados</span> <span class="itens">
+						<span class="item"> <img src="images/sample1.jpg"
+							class="img-thumbnail"> <span class="nome">Intel Core
+								2 Duo</span> <span class="tipo">Processador</span>
+					</span>
 					</span>
 				</div>
 			</div>

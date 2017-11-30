@@ -1,11 +1,14 @@
 package repositories;
 
+import java.util.List;
+
 /**
  * 
  */
 
 import java.util.Set;
 
+import model.HD;
 import model.Item;
 
 /** 
@@ -51,11 +54,8 @@ public class RepositorioItem {
 	* <!-- end-UML-doc -->
 	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	*/
-	public void getHds() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-
-		// end-user-code
+	public List<HD> getHds() {
+		return null;
 	}
 
 	/** 

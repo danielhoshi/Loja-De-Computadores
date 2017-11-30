@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Cliente;
 import model.Pedido;
+import model.Usuario;
+import repositories.RepositorioCliente;
+import test.DadosTeste;
 
 @WebServlet("/NovoPedidoController")
 public class NovoPedidoController extends HttpServlet {
@@ -27,8 +31,11 @@ public class NovoPedidoController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String cpf = request.getParameter("cpf");
-		Pedido p = (Pedido) ControladorDeSolicitacao.getInstance().novoPedido(cpf);
-		request.setAttribute("pedido", p);
+		Cliente c = RepositorioCliente.obterCliente(cpf);
+		Usuario u = DadosTeste.getUsuario();
+		Pedido p = new Pedido(c, u);
+		request.getSession().setAttribute("pedido", p);
+		request.getSession().setAttribute("usuario", u);
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/pedido.jsp");
 		requestDispatcher.forward(request, response);
 	}

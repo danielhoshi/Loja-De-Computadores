@@ -19,6 +19,9 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
+
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/usuario.css">
 <title>Insert title here</title>
@@ -114,7 +117,7 @@
 		<div class="modal-content">
 			<span class="close">&times;</span>
 			<form action="">
-				<input placeholder="Digite o CPF do cliente" type="text" name="cpf" class="txtArea"/>
+				<input placeholder="Digite o CPF do cliente" id="cpf" type="text" name="cpf" class="txtArea"/>
 				<input id="buttonCPF" class="btn btn-primary" type="submit"/>
 				<div class="limpar"></div>
 			</form>
@@ -148,6 +151,13 @@
 				modal.style.display = "none";
 			}
 		}
+		
+		//MASCARA PARA CPF
+		$(document).ready(function() {
+			$('#cpf').mask('000.000.000-00', {
+				reverse : true
+			});
+		});
 	</script>
 </body>
 </html>

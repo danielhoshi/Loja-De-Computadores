@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.HD;
+import model.Pedido;
+import repositories.RepositorioItem;
+import test.RepositorioItemTeste;
 
 @WebServlet("/HDController")
 public class HDController extends HttpServlet {
@@ -21,37 +24,26 @@ public class HDController extends HttpServlet {
 	public HDController() {
 		super();
 		// TODO Auto-generated constructor stub
-		hds = new ArrayList<HD>();
-
-		HD hdTeste1 = new HD(1, (double) 500, "Seagate", "BarraCuda", "1 TB", "Disco");
-
-		HD hdTeste2 = new HD(2, (double) 1500, "Seagate", "IronWolf", "5 TB", "Disco");
-
-		HD hdTeste3 = new HD(3, (double) 310, "Kingston", "Now V300", "120 GB", "SSD");
-
-		hds.add(hdTeste1);
-		hds.add(hdTeste2);
-		hds.add(hdTeste3);
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String id = request.getParameter("id");
+		Pedido pedido = (Pedido) request.getAttribute("pedido");
+		request.setAttribute("pedido", pedido);
 		if (id != null) {
-			int parsedId = Integer.parseInt(id);
-			HD hd = null;
-			for (HD item : hds) {
-				if (item.getId() == parsedId) {
-					hd = item;
-				}
-			}
-			if (hd != null) {
-				request.setAttribute("hd", hd);
-				RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/hd.jsp");
-				requestDispatcher.forward(request, response);
-			} else
-				System.out.println("HD não encontrado");
+//			int parsedId = Integer.parseInt(id);
+//			HD hd = (HD) ControladorDeSolicitacao.getInstance().getItem(parsedId);
+//			if (hd != null) {
+//				request.setAttribute("hd", hd);
+//				RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/hd.jsp");
+//				requestDispatcher.forward(request, response);
+//			} else
+//				System.out.println("HD não encontrado");
 		} else {
+			ArrayList<HD> hds = new ArrayList<HD>();
+			RepositorioItem rep = new RepositorioItemTeste();
+			hds = (ArrayList<HD>) rep.getHds();
 			request.setAttribute("lista", hds);
 			RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/lista-hd.jsp");
 			requestDispatcher.forward(request, response);
