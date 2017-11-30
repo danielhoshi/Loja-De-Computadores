@@ -14,6 +14,18 @@ import repositories.RepositorioCliente;
 import util.DadosTeste;
 
 public class ControladorDeSolicitacao {
+	
+	private static ControladorDeSolicitacao instance = null;
+	
+	protected ControladorDeSolicitacao(){
+	}
+	
+	public static ControladorDeSolicitacao getInstance(){
+		if(instance == null){
+			instance = new ControladorDeSolicitacao();
+		}
+		return instance;
+	}
 
 	public void solicitaNovoPedido() {
 
@@ -47,8 +59,8 @@ public class ControladorDeSolicitacao {
 
 	}
 
-	public static Pedido novoPedido(String cpf) {
-		Cliente c = RepositorioCliente.verificaCliente(cpf);
+	public Pedido novoPedido(String cpf) {
+		Cliente c = RepositorioCliente.obterCliente(cpf);
 		Usuario u = DadosTeste.getUsuario();
 		Pedido p = new Pedido(c, u);
 		return p;

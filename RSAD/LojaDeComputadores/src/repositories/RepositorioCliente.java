@@ -7,7 +7,7 @@ import util.DadosTeste;
 
 public class RepositorioCliente {
 
-	public static Cliente verificaCliente(String cpf) {
+	public static Cliente obterCliente(String cpf) {
 		List<Cliente> clientes = DadosTeste.getAllClientes();
 		Integer lastId = 0;
 		for(Cliente c : clientes){

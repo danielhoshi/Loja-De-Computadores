@@ -27,7 +27,7 @@ public class NovoPedidoController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String cpf = request.getParameter("cpf");
-		Pedido p = (Pedido) ControladorDeSolicitacao.novoPedido(cpf);
+		Pedido p = (Pedido) ControladorDeSolicitacao.getInstance().novoPedido(cpf);
 		request.setAttribute("pedido", p);
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/pedido.jsp");
 		requestDispatcher.forward(request, response);
