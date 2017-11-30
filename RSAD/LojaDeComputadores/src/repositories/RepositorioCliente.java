@@ -3,7 +3,7 @@ package repositories;
 import java.util.List;
 
 import model.Cliente;
-import util.DadosTeste;
+import test.DadosTeste;
 
 public class RepositorioCliente {
 

@@ -11,9 +11,9 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
 
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -63,7 +63,7 @@
 	<script>
 		//MODAL
 		var modal = document.getElementById('myModal');
-		var btn = document.getElementById("btnPedido");
+		var btn = document.getElementById('btnPedido');
 		var span = document.getElementsByClassName("close")[0];
 		btn.onclick = function() {
 			modal.style.display = "block";
@@ -78,16 +78,15 @@
 				modal.style.display = "none";
 			}
 		}
-	</script>
 
-	<script>
 		//MASCARA PARA CPF
 		$(document).ready(function() {
-			var $seuCampoCpf = $("#CPF");
-			$seuCampoCpf.mask('000.000.000-00', {
+			$('#CPF').mask('000.000.000-00', {
 				reverse : true
 			});
 		});
+
 	</script>
+
 </body>
 </html>
