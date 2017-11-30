@@ -1,5 +1,6 @@
 package repositories;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,6 +11,7 @@ import java.util.Set;
 
 import model.HD;
 import model.Item;
+import model.Memoria;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -28,13 +30,11 @@ public class RepositorioItem {
 	/** 
 	* <!-- begin-UML-doc -->
 	* <!-- end-UML-doc -->
+	 * @return 
 	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	*/
-	public void getMemorias() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-
-		// end-user-code
+	public List<Memoria> getMemorias() {
+		return null;
 	}
 
 	/** 

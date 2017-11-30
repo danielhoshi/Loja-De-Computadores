@@ -50,7 +50,7 @@
 	<div class="container">
 		<div class="row" style="height: 700px">
 			<div class="col-sm-9" id="tipos">
-				<h1>Memória]</h1>
+				<h1>Memória</h1>
 				<%
 					ArrayList<Memoria> listaMemoria = (ArrayList<Memoria>) request.getAttribute("lista");
 					for (Memoria mem : listaMemoria) {
@@ -60,7 +60,7 @@
 					<span> Fabricante: <b><%=mem.getFabricante()%></b>
 					</span> <br> <span> Modelo: <b><%=mem.getModelo()%></b>
 					</span> <br> <span> Capacidade: <b><%=mem.getCapacidade()%></b>
-					</span> <br> <span> Tipo de memória: <b><%=mem.getTipoMemoria()%></b>
+					</span> <br> <span> Tipo de memória: <b><%=mem.getTipoMemoria().getNome()%></b>
 					</span> <br> <span> Preço: <b>R$<%=mem.getPreco()%></b>
 					</span>
 				</span>
