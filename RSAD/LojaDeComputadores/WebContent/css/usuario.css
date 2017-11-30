@@ -20,3 +20,7 @@
 .escondido{
 	display: none;
 }
+
+#btnEditar{
+	margin-top: 20px;
+}
