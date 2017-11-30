@@ -168,6 +168,7 @@
 		$(document).ready(function(){
     		$('#btnEditar').click(function(){
     			$("input").removeAttr('disabled');
+    			$("select").removeAttr('disabled');
     			$("#btnSalvar").removeClass("escondido");
     			$("#btnEditar").addClass("escondido");
     		});
