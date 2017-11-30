@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Set;
+import java.util.List;
 
 import repositories.RepositorioItem;
 
@@ -16,9 +16,30 @@ import repositories.RepositorioItem;
  */
 public class Item {
 
-	private Set<ItemPedido> itemPedido;
+	protected Integer idItem;
+	
+	private List<ItemPedido> itemPedido;
 
 	protected Double preco;
 
-	private RepositorioItem repositorioItem;
+	public List<ItemPedido> getItemPedido() {
+		return itemPedido;
+	}
+
+	public void setItemPedido(List<ItemPedido> itemPedido) {
+		this.itemPedido = itemPedido;
+	}
+
+	public Double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(Double preco) {
+		this.preco = preco;
+	}
+
+	public Integer getIdItem() {
+		return idItem;
+	}
+
 }

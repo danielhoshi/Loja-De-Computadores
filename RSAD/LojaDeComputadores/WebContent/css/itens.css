@@ -1,0 +1,19 @@
+@CHARSET "ISO-8859-1";
+
+.itemLista {
+	margin-top: 10px;
+	padding: 10px 0 10px 0;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.itemLista: hover {
+	transition: 0.2s;
+	background-color: rgb(224, 224, 224);
+}
+
+.itemLista img {
+	width: 60%;
+	margin: 0  auto;
+}
+

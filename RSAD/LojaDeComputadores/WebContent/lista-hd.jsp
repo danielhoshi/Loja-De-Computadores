@@ -24,6 +24,7 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/itens.css">
 </head>
 
 <body>
@@ -49,34 +50,29 @@
 	<div class="container">
 		<div class="row" style="height: 700px">
 			<div class="col-sm-9" id="tipos">
-				<a href="HDController"> <span class="tipoItem"> <img
-						src="img/disco.jpg" class="img-thumbnail"> <span>Disco
-							Rígido</span>
-				</span>
-				</a>
+				<h1>Disco Rígido</h1>
 				<%
 					ArrayList<HD> listaHd = (ArrayList<HD>) request.getAttribute("lista");
 					for (HD hd : listaHd) {
 				%>
-				<div class="col-sm-3 itemHd">
-					<span class="tipoItem"> <img src="img/disco.jpg"
-						class="img-thumbnail">
+				<a href="#"> <span class="col-sm-4 itemLista"> <img
+						src="img/disco.jpg" class="img-thumbnail" /> <br>
+					<span> Fabricante: <b><%=hd.getFabricante()%></b>
+					</span> <br> <span> Modelo: <b><%=hd.getModelo()%></b>
+					</span> <br> <span> Tecnologia: <b><%=hd.getTecnologia()%></b>
+					</span> <br> <span> Capacidade: <b><%=hd.getCapacidade()%></b>
+					</span> <br> <span> Preço: <b>R$<%=hd.getPreco()%></b>
 					</span>
-					<p>
-						Fabricante: <b><%=hd.getFabricante() %></b>					
-					</p>
-					<p>
-						Modelo: <b><%=hd.getModelo() %></b>
-					</p>
-				</div>
+				</span>
+				</a>
 				<%
 					}
 				%>
 			</div>
 			<div class="col-sm-3" id="status">
 				<%
-					Pedido p = (Pedido) request.getAttribute("pedido");
-					Usuario u = p.getUsuario();
+					Pedido p = (Pedido) request.getSession().getAttribute("pedido");
+					Usuario u = (Usuario) request.getSession().getAttribute("usuario");
 					Cliente c = p.getCliente();
 				%>
 				<div class="info">
