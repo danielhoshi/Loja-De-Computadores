@@ -52,7 +52,7 @@
 				<h1>Novo Usuário</h1>
 			</div>
 			<div class="col-sm-2">
-				<button id="btnEditar" type="submit" class="btn btn-warning btnForm escondido">
+				<button id="btnEditar" class="btn btn-warning btnForm">
 					<span class="glyphicon glyphicon-pencil"></span> Editar
 				</button>
 			</div>
