@@ -1,7 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -57,17 +59,19 @@ public class CadastroUsuarioController extends HttpServlet {
 		Integer idTipo = Integer.parseInt(request.getParameter("tipo"));
 
 		Usuario novoUsuario;
-
+		Random rand = new Random();
+		Integer idRand = rand.nextInt(100);
+		
 		if (idTipo == TipoUsuario.GERENTE.getId()) {
-			novoUsuario = new UsuarioGerente(2, login, senha, nome, cpf, DadosTeste.newCargo(idCargo, "cargo"));
+			novoUsuario = new UsuarioGerente(idRand, login, senha, nome, cpf, DadosTeste.newCargo(idCargo, "cargo"));
 		} else {
-			novoUsuario = new UsuarioVendedor(2, login, senha, nome, cpf, DadosTeste.newCargo(idCargo, "cargo"));
+			novoUsuario = new UsuarioVendedor(idRand, login, senha, nome, cpf, DadosTeste.newCargo(idCargo, "cargo"));
 		}
 		// TODO salvar no bdd
 
-		List<Usuario> usuarios = DadosTeste.newUsuarios();
+		List<Usuario> usuarios = (ArrayList<Usuario>) request.getSession().getAttribute("listaUsuarios");
 		usuarios.add(novoUsuario);
-		request.setAttribute("listaUsuarios", usuarios);
+		request.getSession().setAttribute("listaUsuarios", usuarios);
 		RequestDispatcher requestDispatcher = getServletContext()
 				.getRequestDispatcher("/lista-usuario.jsp?novo=" + novoUsuario.getId());
 		requestDispatcher.forward(request, response);
