@@ -1,8 +1,8 @@
 package model;
 
+import java.text.DecimalFormat;
 import java.util.List;
-
-import repositories.RepositorioItem;
+import java.util.Locale;
 
 /**
  * 
@@ -40,6 +40,11 @@ public class Item {
 
 	public Integer getIdItem() {
 		return idItem;
+	}
+	
+	public String getPrecoFormat() {
+		DecimalFormat df = new DecimalFormat("#,##0.00");
+		return df.format(preco);
 	}
 
 }

@@ -50,7 +50,15 @@
 	<div class="container">
 		<div class="row" style="height: 700px">
 			<div class="col-sm-9" id="tipos">
-				<h1>Memória</h1>
+				<div class="row" style="margin: 50px">
+					<span class="h1" style="font-family: verdana">Memória</span>
+					<div style="float: right">
+						<button id="btnBack" type="button" class="btn btn-default btn-lg" onclick="location.href='NovoPedidoController'">
+							<span class="glyphicon glyphicon-circle-arrow-left"></span>
+							Voltar
+						</button>
+					</div>
+				</div>
 				<%
 					ArrayList<Memoria> listaMemoria = (ArrayList<Memoria>) request.getAttribute("lista");
 					for (Memoria mem : listaMemoria) {
@@ -61,7 +69,7 @@
 					</span> <br> <span> Modelo: <b><%=mem.getModelo()%></b>
 					</span> <br> <span> Capacidade: <b><%=mem.getCapacidade()%></b>
 					</span> <br> <span> Tipo de memória: <b><%=mem.getTipoMemoria().getNome()%></b>
-					</span> <br> <span> Preço: <b>R$<%=mem.getPreco()%></b>
+					</span> <br> <span> Preço: <b>R$<%=mem.getPrecoFormat()%></b>
 					</span>
 				</span>
 				</a>

@@ -22,6 +22,9 @@
 
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/itens.css">
@@ -50,7 +53,15 @@
 	<div class="container">
 		<div class="row" style="height: 700px">
 			<div class="col-sm-9" id="tipos">
-				<h1>Disco Rígido</h1>
+				<div class="row" style="margin: 50px">
+					<span class="h1" style="font-family: verdana">Disco Rígido</span>
+					<div style="float: right">
+						<button id="btnBack" type="button" class="btn btn-default btn-lg" onclick="location.href='NovoPedidoController'">
+							<span class="glyphicon glyphicon-circle-arrow-left"></span>
+							Voltar
+						</button>
+					</div>
+				</div>
 				<%
 					ArrayList<HD> listaHd = (ArrayList<HD>) request.getAttribute("lista");
 					for (HD hd : listaHd) {
@@ -61,7 +72,7 @@
 					</span> <br> <span> Modelo: <b><%=hd.getModelo()%></b>
 					</span> <br> <span> Tecnologia: <b><%=hd.getTecnologia()%></b>
 					</span> <br> <span> Capacidade: <b><%=hd.getCapacidade()%></b>
-					</span> <br> <span> Preço: <b>R$<%=hd.getPreco()%></b>
+					</span> <br> <span> Preço: <b>R$<%=hd.getPrecoFormat()%></b>
 					</span>
 				</span>
 				</a>

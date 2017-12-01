@@ -1,6 +1,5 @@
 package repositories;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,6 +11,8 @@ import java.util.Set;
 import model.HD;
 import model.Item;
 import model.Memoria;
+import model.PlacaMae;
+import model.Processador;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -63,22 +64,17 @@ public class RepositorioItem {
 	* <!-- end-UML-doc -->
 	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	*/
-	public void getPlacasMae() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-
-		// end-user-code
+	public List<PlacaMae> getPlacasMae() {
+		return null;
 	}
 
 	/** 
 	* <!-- begin-UML-doc -->
 	* <!-- end-UML-doc -->
+	 * @return 
 	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	*/
-	public void getProcessadores() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-
-		// end-user-code
+	public List<Processador> getProcessadores() {
+		return null;
 	}
 }

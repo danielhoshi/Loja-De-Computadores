@@ -25,7 +25,8 @@ public class NovoPedidoController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/pedido.jsp");
+		requestDispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
