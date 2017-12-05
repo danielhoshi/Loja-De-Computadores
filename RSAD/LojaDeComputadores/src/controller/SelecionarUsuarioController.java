@@ -1,7 +1,7 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Usuario;
-import test.DadosTeste;
+import model.TipoUsuario;
+import repositories.RepositorioCargo;
+import repositories.RepositorioUsuario;
 
 /**
  * Servlet implementation class UsuarioController
@@ -35,16 +36,14 @@ public class SelecionarUsuarioController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Integer idUsuario = Integer.parseInt(request.getParameter("id"));
-		//TODO selecionar do bd
-		Usuario usuario;
-		for (Usuario u : (ArrayList<Usuario>) request.getSession().getAttribute("listaUsuarios")){
-			if(u.getId() == idUsuario){
-				request.setAttribute("usuarioSelecionado", u);
-			}
-		}
-		request.setAttribute("listaCargos", DadosTeste.listaCargos());
-		request.setAttribute("listaTipos", DadosTeste.listaTipos());
-		
+
+		RepositorioUsuario repositorioUsuario = RepositorioUsuario.getInstance();
+		RepositorioCargo repositorioCargo = RepositorioCargo.getInstance();
+
+		request.setAttribute("usuarioSelecionado", repositorioUsuario.findByID(idUsuario));
+		request.setAttribute("listaCargos", repositorioCargo.findAll());
+		request.setAttribute("listaTipos", Arrays.asList(TipoUsuario.values()));
+
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/usuario.jsp");
 		requestDispatcher.forward(request, response);
 	}

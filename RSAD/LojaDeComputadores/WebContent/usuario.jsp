@@ -4,6 +4,7 @@
 <%@page import="model.TipoUsuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Cargo"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -41,7 +42,7 @@
 			<div class="collapse navbar-collapse" id="navItems">
 				<ul class="nav navbar-nav">
 					<li><a href="#" id="btnPedido">Fazer Pedido</a></li>
-					<li><a href="UsuarioController">Cadastrar Usuário</a></li>
+					<li><a href="UsuarioController">Usuários</a></li>
 				</ul>
 			</div>
 		</div>
@@ -72,7 +73,7 @@
 					CPF:
 				</div>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" name="cpf" value="<%= usuario.getCpf() %>" disabled/>
+					<input type="text" class="form-control" name="cpf" value="<%= usuario.getCpf() %>" disabled id="CPF"/>
 				</div>
 				<div class="col-sm-1 labelForm">
 					Cargo:
@@ -108,7 +109,7 @@
 				<div class="col-sm-3">
 					<select class="form-control" name="tipo" disabled>
 					<%
-						ArrayList<TipoUsuario> tipos = (ArrayList<TipoUsuario>) request.getAttribute("listaTipos");
+						List<TipoUsuario> tipos = (List<TipoUsuario>) request.getAttribute("listaTipos");
 						
 						for(TipoUsuario tipo: tipos){
 					%>
@@ -172,6 +173,10 @@
     			$("#btnSalvar").removeClass("escondido");
     			$("#btnEditar").addClass("escondido");
     		});
+    		
+    		$('#CPF').mask('000.000.000-00', {
+				reverse : true
+			});
 		});
 		
 	</script>

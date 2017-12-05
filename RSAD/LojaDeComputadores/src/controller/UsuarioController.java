@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import test.DadosTeste;
+import repositories.RepositorioUsuario;
 
 /**
  * Servlet implementation class UsuarioController
@@ -32,7 +32,8 @@ public class UsuarioController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getSession().setAttribute("listaUsuarios", DadosTeste.newUsuarios());
+		RepositorioUsuario repositorioUsuario = RepositorioUsuario.getInstance();
+		request.setAttribute("listaUsuarios", repositorioUsuario.findAll());
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/lista-usuario.jsp");
 		requestDispatcher.forward(request, response);
 	}

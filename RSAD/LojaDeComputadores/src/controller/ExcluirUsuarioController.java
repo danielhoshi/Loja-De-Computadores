@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Usuario;
+import repositories.RepositorioUsuario;
 
 /**
  * Servlet implementation class UsuarioController
@@ -34,14 +33,11 @@ public class ExcluirUsuarioController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Integer idUsuario = Integer.parseInt(request.getParameter("id"));
-		//TODO remover do bd
-		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-		for (Usuario u : (ArrayList<Usuario>) request.getSession().getAttribute("listaUsuarios")){
-			if(u.getId() != idUsuario){
-				usuarios.add(u);
-			}
-		}
-		request.getSession().setAttribute("listaUsuarios", usuarios);
+
+		RepositorioUsuario repositorioUsuario = RepositorioUsuario.getInstance();
+
+		repositorioUsuario.remover(idUsuario);
+		request.setAttribute("listaUsuarios", repositorioUsuario.findAll());
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/lista-usuario.jsp");
 		requestDispatcher.forward(request, response);
 	}

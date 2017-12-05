@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +13,8 @@ import model.TipoUsuario;
 import model.Usuario;
 import model.UsuarioGerente;
 import model.UsuarioVendedor;
-import test.DadosTeste;
+import repositories.RepositorioCargo;
+import repositories.RepositorioUsuario;
 
 /**
  * Servlet implementation class UsuarioController
@@ -54,25 +53,23 @@ public class AtualizarUsuarioController extends HttpServlet {
 		Integer idTipo = Integer.parseInt(request.getParameter("tipo"));
 		Integer idUsuario = Integer.parseInt(request.getParameter("id"));
 
-		Usuario novoUsuario;
-		// TODO pegar cargo BD
-		if (idTipo == TipoUsuario.GERENTE.getId()) {
-			novoUsuario = new UsuarioGerente(idUsuario, login, senha, nome, cpf, DadosTeste.newCargo(idCargo, "cargo"));
-		} else {
-			novoUsuario = new UsuarioVendedor(idUsuario, login, senha, nome, cpf,
-					DadosTeste.newCargo(idCargo, "cargo"));
-		}
-		// TODO salvar no bdd
+		RepositorioUsuario repositorioUsuario = RepositorioUsuario.getInstance();
+		RepositorioCargo repositorioCargo = RepositorioCargo.getInstance();
 
-		List<Usuario> usuarios = (ArrayList<Usuario>) request.getSession().getAttribute("listaUsuarios");
-		for (int i = 0; i < usuarios.size(); i++) {
-			if (usuarios.get(i).getId() == idUsuario) {
-				usuarios.set(i, novoUsuario);
-			}
+		Usuario usuarioAtualizado;
+		if (idTipo == TipoUsuario.GERENTE.getId()) {
+			usuarioAtualizado = new UsuarioGerente(idUsuario, login, senha, nome, cpf,
+					repositorioCargo.findyById(idCargo));
+		} else {
+			usuarioAtualizado = new UsuarioVendedor(idUsuario, login, senha, nome, cpf,
+					repositorioCargo.findyById(idCargo));
 		}
-		request.getSession().setAttribute("listaUsuarios", usuarios);
+
+		repositorioUsuario.atualizar(usuarioAtualizado);
+
+		request.setAttribute("listaUsuarios", repositorioUsuario.findAll());
 		RequestDispatcher requestDispatcher = getServletContext()
-				.getRequestDispatcher("/lista-usuario.jsp?novo=" + novoUsuario.getId());
+				.getRequestDispatcher("/lista-usuario.jsp?novo=" + usuarioAtualizado.getId());
 		requestDispatcher.forward(request, response);
 	}
 

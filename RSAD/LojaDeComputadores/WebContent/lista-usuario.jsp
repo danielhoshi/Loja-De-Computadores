@@ -69,7 +69,7 @@
  				</thead>
  				<tbody>
 	 				<%
-						ArrayList<Usuario> usuarios = (ArrayList<Usuario>) session.getAttribute("listaUsuarios");
+						ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");
 						for(Usuario usuario:usuarios){
 					%>
 					<tr class="<%= (request.getParameter("novo") != null && request.getParameter("novo").equals(usuario.getId().toString())) ? "success":""%>">

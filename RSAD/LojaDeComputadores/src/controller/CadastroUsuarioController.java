@@ -1,9 +1,7 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.Arrays;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,11 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Cargo;
 import model.TipoUsuario;
 import model.Usuario;
 import model.UsuarioGerente;
 import model.UsuarioVendedor;
-import test.DadosTeste;
+import repositories.RepositorioCargo;
+import repositories.RepositorioUsuario;
 
 /**
  * Servlet implementation class UsuarioController
@@ -39,8 +39,9 @@ public class CadastroUsuarioController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("listaCargos", DadosTeste.listaCargos());
-		request.setAttribute("listaTipos", DadosTeste.listaTipos());
+		RepositorioCargo repositorioCargo = RepositorioCargo.getInstance();
+		request.setAttribute("listaCargos", repositorioCargo.findAll());
+		request.setAttribute("listaTipos", Arrays.asList(TipoUsuario.values()));
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/cadastro-usuario.jsp");
 		requestDispatcher.forward(request, response);
 	}
@@ -59,23 +60,21 @@ public class CadastroUsuarioController extends HttpServlet {
 		Integer idTipo = Integer.parseInt(request.getParameter("tipo"));
 
 		Usuario novoUsuario;
-		Random rand = new Random();
-		Integer idRand = rand.nextInt(100);
-		
-		if (idTipo == TipoUsuario.GERENTE.getId()) {
-			novoUsuario = new UsuarioGerente(idRand, login, senha, nome, cpf, DadosTeste.newCargo(idCargo, "cargo"));
-		} else {
-			novoUsuario = new UsuarioVendedor(idRand, login, senha, nome, cpf, DadosTeste.newCargo(idCargo, "cargo"));
-		}
-		// TODO salvar no bdd
 
-		List<Usuario> usuarios = (ArrayList<Usuario>) request.getSession().getAttribute("listaUsuarios");
-		usuarios.add(novoUsuario);
-		request.getSession().setAttribute("listaUsuarios", usuarios);
+		if (idTipo == TipoUsuario.GERENTE.getId()) {
+			novoUsuario = new UsuarioGerente(null, login, senha, nome, cpf, new Cargo(idCargo, "cargo"));
+		} else {
+			novoUsuario = new UsuarioVendedor(null, login, senha, nome, cpf, new Cargo(idCargo, "cargo"));
+		}
+
+		RepositorioUsuario repositorioUsuario = RepositorioUsuario.getInstance();
+
+		Integer novoId = repositorioUsuario.inserir(novoUsuario);
+
+		request.setAttribute("listaUsuarios", repositorioUsuario.findAll());
 		RequestDispatcher requestDispatcher = getServletContext()
-				.getRequestDispatcher("/lista-usuario.jsp?novo=" + novoUsuario.getId());
+				.getRequestDispatcher("/lista-usuario.jsp?novo=" + novoId);
 		requestDispatcher.forward(request, response);
 	}
 
 }
-
