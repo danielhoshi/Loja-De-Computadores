@@ -1,3 +1,8 @@
+<%@page import="model.Componente"%>
+<%@page import="model.Memoria"%>
+<%@page import="model.Processador"%>
+<%@page import="model.Item"%>
+<%@page import="model.ItemPedido"%>
 <%@page import="model.Pedido"%>
 <%@page import="model.Cliente"%>
 <%@page import="model.Usuario"%>
@@ -49,13 +54,13 @@
 			<div class="col-sm-9" id="tipos">
 				<a href="ComputadorController">
 					<span class="tipoItem">
-						<img src="img/computer.jpg" class="img-thumbnail">
+						<img src="img/computador.jpg" class="img-thumbnail">
 						<span>Computador</span>
 					</span>
 				</a>
 				<a href="PlacaController">
 				<span class="tipoItem">
-					<img src="img/placa.jpg" class="img-thumbnail">
+					<img src="img/placamae.jpg" class="img-thumbnail">
 					<span>Placa Mãe</span>
 				</span>
 				</a>
@@ -67,7 +72,7 @@
 				</a>
 				<a href="HDController">
 				<span class="tipoItem">
-					<img src="img/disco.jpg" class="img-thumbnail">
+					<img src="img/hd.jpg" class="img-thumbnail">
 					<span>Disco Rígido</span>
 				</span>
 				</a>
@@ -85,20 +90,47 @@
 					Cliente c = p.getCliente();
 				 %>
 				<div class="info">
+					<img src="img/fotinho.jpg" class="fotoVendedor img-circle img-thumbnail"/>
 					<span>Vendedor: <b><%=u.getNome() %></b></span> 
 					<br>
 					<span>CPF do Cliente: <b><%=c.getCPF() %></b></span>
 					<br>
 				</div>
 				<div class="dados">
-					<span class="qtd">3 Itens Selecionados</span>
-					<span class="itens">
-						<span class="item">
-						<img src="images/sample1.jpg" class="img-thumbnail">
-						<span class="nome">Intel Core 2 Duo</span>
-						<span class="tipo">Processador</span>
-						</span>
-					</span>
+					<%if(p.getItemPedido().isEmpty()){%>
+					<span class="qtd">Nenhum item selecionado</span>
+					<%
+					} else{
+						int size = p.getItemPedido().size();
+					%>
+					<span class="qtd"><%=size > 1 ? size +" itens selecionados" : "1 item selecionado"%></span>
+					<%} %>
+					<div class="itens">
+						<%
+						for(ItemPedido ip : p.getItemPedido()){
+							Item item = ip.getItem();
+							String label;
+							String tipo;
+							if(item instanceof Componente){
+								label = ((Componente)item).getFabricante() + " - "+ ((Componente)item).getModelo();
+								if(label.length()>20){
+									label = label.substring(0,18)+"...";
+								}
+							}else{
+								label = "Computador";
+							}
+						%>
+						<div class="item">
+							<img src="img/<%= item.getClass().getSimpleName().toLowerCase() %>.jpg" class="img-thumbnail">
+							<span class="labelItem">
+								<span class="descricaoItem"><%=label%></span>
+								<span class="qtdItem">(x<%=ip.getQtd()%>)</span>
+							</span>
+							<div class="limpar"></div>
+						</div>
+						<%} %>
+					</div>
+					
 				</div>
 			</div>
 		</div>

@@ -14,6 +14,7 @@ import model.Pedido;
 import model.Usuario;
 import repositories.RepositorioCliente;
 import test.DadosTeste;
+import test.RepositorioItemTeste;
 
 @WebServlet("/NovoPedidoController")
 public class NovoPedidoController extends HttpServlet {
@@ -35,6 +36,7 @@ public class NovoPedidoController extends HttpServlet {
 		Cliente c = RepositorioCliente.obterCliente(cpf);
 		Usuario u = DadosTeste.getUsuario();
 		Pedido p = new Pedido(c, u);
+		p.adicionaItemPedido(new RepositorioItemTeste().getItensPedidos());
 		request.getSession().setAttribute("pedido", p);
 		request.getSession().setAttribute("usuario", u);
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/pedido.jsp");

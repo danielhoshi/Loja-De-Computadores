@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.HD;
+import model.ItemPedido;
 import model.Memoria;
 import model.PlacaMae;
 import model.Processador;
@@ -12,8 +13,8 @@ import model.TipoMemoria;
 import repositories.RepositorioItem;
 
 public class RepositorioItemTeste extends RepositorioItem {
-	
-	public List<HD> getHds(){
+
+	public List<HD> getHds() {
 		ArrayList<HD> hds = new ArrayList<HD>();
 		HD hdTeste1 = new HD(1, 500.0, "Seagate", "BarraCuda", "1 TB", "Disco");
 		HD hdTeste2 = new HD(2, 1500.0, "Seagate", "IronWolf", "5 TB", "Disco");
@@ -24,13 +25,16 @@ public class RepositorioItemTeste extends RepositorioItem {
 		hds.add(hdTeste3);
 		return hds;
 	}
-	
-	public List<Memoria> getMemorias(){
+
+	public List<Memoria> getMemorias() {
 		ArrayList<Memoria> memorias = new ArrayList<Memoria>();
 		Memoria mTeste1 = new Memoria(1, (double) 500, "Kingston", "Fury 2133MHz", "4 GB", new TipoMemoria(1, "DDR3"));
-		Memoria mTeste2 = new Memoria(2, (double) 300,"Corsair", "Vengeance 1333MHz", "2 GB", new TipoMemoria(1, "DDR3"));
-		Memoria mTeste3 = new Memoria(3, (double) 800,"Crucial", "CT4G4DFS8213 2133MHz", "4 GB",  new TipoMemoria(2, "DDR4"));
-		Memoria mTeste4 = new Memoria(3, (double) 800,"Crucial", "CT4G4DFS8213 2133MHz", "4 GB",  new TipoMemoria(2, "DDR4"));
+		Memoria mTeste2 = new Memoria(2, (double) 300, "Corsair", "Vengeance 1333MHz", "2 GB",
+				new TipoMemoria(1, "DDR3"));
+		Memoria mTeste3 = new Memoria(3, (double) 800, "Crucial", "CT4G4DFS8213 2133MHz", "4 GB",
+				new TipoMemoria(2, "DDR4"));
+		Memoria mTeste4 = new Memoria(3, (double) 800, "Crucial", "CT4G4DFS8213 2133MHz", "4 GB",
+				new TipoMemoria(2, "DDR4"));
 
 		memorias.add(mTeste1);
 		memorias.add(mTeste2);
@@ -39,9 +43,10 @@ public class RepositorioItemTeste extends RepositorioItem {
 		return memorias;
 	}
 
-	public List<Processador> getProcessadores(){
+	public List<Processador> getProcessadores() {
 		ArrayList<Processador> processadores = new ArrayList<Processador>();
-		Processador mTeste1 = new Processador(1, (double) 300, "Intel", "Dual Core", "2.4GHz", new Soquete(1, "LGA 775"));
+		Processador mTeste1 = new Processador(1, (double) 300, "Intel", "Dual Core", "2.4GHz",
+				new Soquete(1, "LGA 775"));
 		Processador mTeste2 = new Processador(2, (double) 600, "Intel", "i3", "2.4GHz", new Soquete(2, "LGA 1151"));
 		Processador mTeste3 = new Processador(3, (double) 800, "Intel", "i5", "2.4GHz", new Soquete(3, "AM3+"));
 		Processador mTeste4 = new Processador(4, (double) 800, "AMD", "Ryzen 5", "3.4GHz", new Soquete(4, "FM2+"));
@@ -56,14 +61,28 @@ public class RepositorioItemTeste extends RepositorioItem {
 		processadores.add(mTeste4);
 		return processadores;
 	}
-	
-	public List<PlacaMae> getPlacas(){
-		//ArrayList<PlacaMae> placas = new ArrayList<PlacaMae>();
-		//PlacaMae mTeste1 = new PlacaMae(1, (double) 300, "Asus", "Z170M-PLUS", "Dual Core", "2.4GHz", new Soquete(1, "LGA 775"));
 
-		//placas.add(mTeste1);
-		
-		//return placas;
+	public List<PlacaMae> getPlacas() {
+		// ArrayList<PlacaMae> placas = new ArrayList<PlacaMae>();
+		// PlacaMae mTeste1 = new PlacaMae(1, (double) 300, "Asus", "Z170M-PLUS", "Dual
+		// Core", "2.4GHz", new Soquete(1, "LGA 775"));
+
+		// placas.add(mTeste1);
+
+		// return placas;
 		return null;
+	}
+
+	public ItemPedido[] getItensPedidos() {
+		ItemPedido[] itens = new ItemPedido[2];
+		ItemPedido ip1 = new ItemPedido(
+				new Processador(1, (double) 300, "Intel", "Dual Core", "2.4GHz", new Soquete(1, "LGA 775")), 2);
+		ItemPedido ip2 = new ItemPedido(
+				new Memoria(3, (double) 800, "Crucial", "CT4G4DFS8213 2133MHz", "4 GB", new TipoMemoria(2, "DDR4")), 1);
+
+		itens[0] = ip1;
+		itens[1] = ip2;
+
+		return itens;
 	}
 }
