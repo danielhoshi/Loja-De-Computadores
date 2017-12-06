@@ -14,6 +14,7 @@ import model.Pedido;
 import model.Usuario;
 import repositories.RepositorioCliente;
 import test.DadosTeste;
+import test.RepositorioItemTeste;
 
 @WebServlet("/NovoPedidoController")
 public class NovoPedidoController extends HttpServlet {

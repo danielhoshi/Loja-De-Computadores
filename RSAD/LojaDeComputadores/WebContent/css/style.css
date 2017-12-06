@@ -146,6 +146,8 @@ body {
 	font-size: 24px;
 }
 
+
+/* Status */
 #status {
 	min-height: 100%;
 	height: 100%;
@@ -172,12 +174,40 @@ body {
 	font-size: 18px;
 	font-weight: bold;
 	font-size: 18px;
+	margin-bottom: 20px;
+}
+#status .dados .itens{
+	width: 100%;
+}
+#status .dados .itens .item{
+	width: 100%;
+	margin-top: 5px;
+}
+#status .dados .itens .item img{
+	height: 30px;
+	width: auto;
+	float: left;
+	margin: 0 5%;
 }
 
-#status .dados .itens {
-	width:100%;
+#status .dados .itens .item .labelItem{
+	line-height: 30px;
 	float: left;
-	width: 100%;
+}
+#status .dados .itens .item .labelItem .qtdItem{
+	font-style: italic;
+	font-size: 10px;
+}
+
+#status .fotoVendedor{
+	height: 150px;
+	width: auto;
+	margin-top: 50px;
+	margin-bottom: 20px;
+	
+}
+#status .info{
+	text-align: center;
 }
 
 /* The Modal (background) */

@@ -1,33 +1,31 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Pedido {
 
 	private Integer id;
-	
 	private List<ItemPedido> itemPedido;
-
 	private Cliente cliente;
-
 	private Double precoFinal;
-
 	private Double desconto;
-
 	private Usuario usuario;
 
 	public Pedido(Cliente cliente, Usuario usuario) {
 		super();
-		
-		//inserir id
+
+		// TODO inserir id
 		this.id = 1;
-		
+		this.itemPedido = new ArrayList<>();
 		this.cliente = cliente;
 		this.usuario = usuario;
 	}
 
-	public void adicionaItemPedido() {
-
+	public void adicionaItemPedido(ItemPedido... itens) {
+		for (ItemPedido ip : itens) {
+			itemPedido.add(ip);
+		}
 	}
 
 	public void calculaPreco() {
@@ -38,16 +36,8 @@ public class Pedido {
 		return itemPedido;
 	}
 
-	public void setItemPedido(List<ItemPedido> itemPedido) {
-		this.itemPedido = itemPedido;
-	}
-
 	public Cliente getCliente() {
 		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
 	}
 
 	public Double getPrecoFinal() {
@@ -68,10 +58,6 @@ public class Pedido {
 
 	public Usuario getUsuario() {
 		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
 	}
 
 	public Integer getId() {
