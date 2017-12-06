@@ -36,7 +36,6 @@ public class NovoPedidoController extends HttpServlet {
 		Cliente c = RepositorioCliente.obterCliente(cpf);
 		Usuario u = DadosTeste.getUsuario();
 		Pedido p = new Pedido(c, u);
-		p.adicionaItemPedido(new RepositorioItemTeste().getItensPedidos());
 		request.getSession().setAttribute("pedido", p);
 		request.getSession().setAttribute("usuario", u);
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/pedido.jsp");
