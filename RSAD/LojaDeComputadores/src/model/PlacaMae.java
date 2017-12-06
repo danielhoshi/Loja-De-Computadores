@@ -44,6 +44,5 @@ public class PlacaMae extends Componente {
 	public Soquete getSoquete() {
 		return soquete;
 	}
-	
-	
+
 }
