@@ -1,31 +1,34 @@
 package model;
-/**
- * 
- */
 
-/** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
- * @author aluno
- * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
- */
 public class ItemPedido {
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
+	private Integer id;
+	
 	private Pedido pedido;
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
+
 	private Item item;
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
+
 	private Integer qtd;
+
+	public ItemPedido(Pedido pedido, Item item, Integer qtd) {
+		super();
+		this.pedido = pedido;
+		this.item = item;
+		this.qtd = qtd;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public Item getItem() {
+		return item;
+	}
+
+	public Integer getQtd() {
+		return qtd;
+	}
 }

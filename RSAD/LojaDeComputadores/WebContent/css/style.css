@@ -204,6 +204,18 @@ body {
     min-width: 150px;
 }
 
+.modal-content-item {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%; /* Could be more or less, depending on screen size */
+    min-width: 200px;
+}
+.modal-content-item img{
+    width:100%;
+}
+
 /* The Close Button */
 .close {
     color: #aaa;
@@ -230,4 +242,10 @@ body {
 
 .limpar{
 	clear: both;
+}
+
+.center{
+width: 150px;
+  margin: 40px auto;
+  
 }

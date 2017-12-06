@@ -1,39 +1,14 @@
 package model;
-/**
- * 
- */
 
-/** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
- * @author aluno
- * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
- */
 public class Processador extends Item {
 	private Integer id;
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
+
 	private String fabricante;
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
+
 	private String modelo;
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
+
 	private String frequencia;
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
+
 	private Soquete soquete;
 	public Processador(Integer id, Double preco, String fabricante, String modelo, String frequencia, Soquete soquete) {
 		super();

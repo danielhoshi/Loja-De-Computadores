@@ -46,7 +46,6 @@
 	</div>
 
 	<div id="myModal" class="modal">
-
 		<!-- Modal content -->
 		<div class="modal-content">
 			<span class="close">&times;</span>
@@ -57,7 +56,6 @@
 				<div class="limpar"></div>
 			</form>
 		</div>
-
 	</div>
 
 	<script>

@@ -10,26 +10,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.HD;
+import model.Item;
 import model.Memoria;
 import model.Pedido;
+import model.TipoItem;
 import repositories.RepositorioItem;
 import test.RepositorioItemTeste;
 
-@WebServlet("/MemoriaController")
-public class MemoriaController extends HttpServlet {
+@WebServlet("/AdicionarItemController")
+public class AdicionarItemController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public ArrayList<HD> hds;
-
-	public MemoriaController() {
+	public AdicionarItemController() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String id = request.getParameter("id");
+		Pedido pedido = (Pedido) request.getAttribute("pedido");
+		request.setAttribute("pedido", pedido);
 		if (id != null) {
 
 		} else {
@@ -44,8 +44,20 @@ public class MemoriaController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		Integer tipoItem = Integer.parseInt(request.getParameter("tipoItem"));
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		Integer qtd = Integer.parseInt(request.getParameter("qtd"));
+		Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
+		Item item = null;
+		if(tipoItem == TipoItem.PLACA.getId()) {
+			item = RepositorioItem.getPlaca(id);
+		} else if(tipoItem == TipoItem.PROCESSADOR.getId()) {
+			
+		} else if(tipoItem == TipoItem.HD.getId()) {
+			
+		} else if(tipoItem == TipoItem.MEMORIA.getId()) {
+			
+		}
 	}
 
 }

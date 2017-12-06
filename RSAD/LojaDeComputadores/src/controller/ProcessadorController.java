@@ -30,8 +30,6 @@ public class ProcessadorController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String id = request.getParameter("id");
-		Pedido pedido = (Pedido) request.getAttribute("pedido");
-		request.setAttribute("pedido", pedido);
 		if (id != null) {
 
 		} else {

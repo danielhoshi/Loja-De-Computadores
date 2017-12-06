@@ -1,79 +1,77 @@
 package repositories;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
-/**
- * 
- */
-
-import java.util.Set;
-
+import connection.ConexaoMySQL;
+import model.Cargo;
 import model.HD;
 import model.Item;
 import model.Memoria;
 import model.PlacaMae;
 import model.Processador;
+import model.Soquete;
+import model.TipoUsuario;
+import model.Usuario;
+import model.UsuarioGerente;
+import model.UsuarioVendedor;
 
-/** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
- * @author 9345297
- * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
- */
 public class RepositorioItem {
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Set<Item> item;
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	 * @return 
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
+	private static RepositorioItem instance = null;
+	private Connection conn = null;
+
+	public static RepositorioItem getInstance() {
+		if (instance == null) {
+			instance = new RepositorioItem();
+		}
+		return instance;
+	}
+
+	private void fecharConexao() {
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public Processador getProcessador(Integer id) {
+		Connection conn = ConexaoMySQL.getConexaoMySQL();
+		Processador processador = null;
+		try {
+			String query = "SELECT * FROM Processador p,  WHERE idProcessador = ?";
+			PreparedStatement state = conn.prepareStatement(query);
+			state.setInt(1, id);
+			ResultSet result = state.executeQuery();
+			while (result.next()) {
+				Integer id, Double preco, String fabricante, String modelo, String frequencia, Soquete soquete
+					processador = new Processador(result.getInt("idProcessador"), result.getDouble(""),
+							result.getString("u.senha"), result.getString("u.nome"), result.getString("u.cpf"),
+							new Cargo(result.getInt("c.idcargo"), result.getString("c.nome")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			fecharConexao();
+		}
+		return usuario;
+	}
+
 	public List<Memoria> getMemorias() {
 		return null;
 	}
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public void getItem() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-
-		// end-user-code
-	}
-
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
 	public List<HD> getHds() {
 		return null;
 	}
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
 	public List<PlacaMae> getPlacasMae() {
 		return null;
 	}
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	 * @return 
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
 	public List<Processador> getProcessadores() {
 		return null;
 	}
