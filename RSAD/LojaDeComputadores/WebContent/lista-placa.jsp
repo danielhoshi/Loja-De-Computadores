@@ -1,7 +1,7 @@
 <%@page import="model.Pedido"%>
 <%@page import="model.Cliente"%>
 <%@page import="model.Usuario"%>
-<%@page import="model.Memoria"%>
+<%@page import="model.PlacaMae"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -60,20 +60,27 @@
 					</div>
 				</div>
 				<%
-					ArrayList<Memoria> listaMemoria = (ArrayList<Memoria>) request.getAttribute("lista");
-					for (Memoria mem : listaMemoria) {
+					ArrayList<PlacaMae> listaPlaca = (ArrayList<PlacaMae>) request.getAttribute("lista");
+					if(listaPlaca == null){
+						%>
+						<span style="font-family: verdana">Não foram encontradas placas-mãe</span>
+						<%
+					}
+					else {
+						for (PlacaMae placa : listaPlaca) {
 				%>
-				<a href="#"> <span class="col-sm-4 itemLista"> <img
-						src="img/memoria.jpg" class="img-thumbnail" /> <br>
-					<span> Fabricante: <b><%=mem.getFabricante()%></b>
-					</span> <br> <span> Modelo: <b><%=mem.getModelo()%></b>
-					</span> <br> <span> Capacidade: <b><%=mem.getCapacidade()%></b>
-					</span> <br> <span> Tipo de memória: <b><%=mem.getTipoMemoria().getNome()%></b>
-					</span> <br> <span> Preço: <b>R$<%=mem.getPrecoFormat()%></b>
+				<a href="ItemController?id=${placa.id}"> <span class="col-sm-4 itemLista"> <img
+						src="img/placa.jpg" class="img-thumbnail" /> <br>
+					<span> Fabricante: <b><%=placa.getFabricante()%></b>
+					</span> <br> <span> Modelo: <b><%=placa.getModelo()%></b>
+					</span> <br> <span> Soquete: <b><%=placa.getSoquete().getNome()%></b>
+					</span> <br> <span> Pentes de memória: <b><%=placa.getNumeroDePentes()%></b>
+					</span> <br> <span> Preço: <b>R$<%=placa.getPrecoFormat()%></b>
 					</span>
 				</span>
 				</a>
 				<%
+						}
 					}
 				%>
 			</div>
