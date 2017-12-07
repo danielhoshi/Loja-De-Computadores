@@ -56,7 +56,7 @@ public class RepositorioItem {
 		}
 		return hd;
 	}
-	
+
 	public Memoria getMemoria(Integer id) {
 		conn = ConexaoMySQL.getConexaoMySQL();
 		Memoria memoria = null;
@@ -67,8 +67,7 @@ public class RepositorioItem {
 			ResultSet result = state.executeQuery();
 			while (result.next()) {
 				memoria = new Memoria(result.getInt("m.idMemoria"), result.getDouble("i.preco"),
-						result.getString("m.fabricante"), result.getString("m.mdelo"),
-						result.getString("m.capacidade"),
+						result.getString("m.fabricante"), result.getString("m.mdelo"), result.getString("m.capacidade"),
 						new TipoMemoria(result.getInt("t.idTipoMemoria"), result.getString("t.nome")));
 			}
 		} catch (SQLException e) {
@@ -151,9 +150,9 @@ public class RepositorioItem {
 			String query = "SELECT * FROM memoria m, tipomemoria t, item i WHERE t.idTipoMemoria = m.idTipoMemoria AND m.idMemoria = i.idMemoria";
 			ResultSet result = state.executeQuery(query);
 			while (result.next()) {
-				memorias.add(new Memoria(result.getInt("m.idMemoria"), result.getDouble("i.preco"), 
-						result.getString("m.fabricante"), result.getString("m.mdelo"), 
-						result.getString("m.capacidade"), new TipoMemoria(result.getInt("t.idTipoMemoria"), result.getString("t.nome"))));
+				memorias.add(new Memoria(result.getInt("m.idMemoria"), result.getDouble("i.preco"),
+						result.getString("m.fabricante"), result.getString("m.mdelo"), result.getString("m.capacidade"),
+						new TipoMemoria(result.getInt("t.idTipoMemoria"), result.getString("t.nome"))));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -171,9 +170,9 @@ public class RepositorioItem {
 			String query = "SELECT * FROM hd h, item i WHERE h.idHD = i.idHD";
 			ResultSet result = state.executeQuery(query);
 			while (result.next()) {
-				hds.add(new HD(result.getInt("h.idHD"), result.getDouble("i.preco"), 
-						result.getString("h.fabricante"), result.getString("h.modelo"), 
-						result.getString("h.capacidade"), result.getString("h.tecnologia")));
+				hds.add(new HD(result.getInt("h.idHD"), result.getDouble("i.preco"), result.getString("h.fabricante"),
+						result.getString("h.modelo"), result.getString("h.capacidade"),
+						result.getString("h.tecnologia")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -191,7 +190,7 @@ public class RepositorioItem {
 			String query = "SELECT * FROM placamae p, soquete s, item i WHERE p.idPlacaMae = i.idPlacaMae AND s.idSoquete = p.idSoquete";
 			ResultSet result = state.executeQuery(query);
 			while (result.next()) {
-				Integer idPlaca= result.getInt("p.idPlacaMae");
+				Integer idPlaca = result.getInt("p.idPlacaMae");
 				List<TipoMemoria> tipos = getTiposMemoria(idPlaca);
 				placas.add(new PlacaMae(result.getInt("p.idPlacaMae"), result.getDouble("i.preco"), tipos,
 						result.getString("p.fabricante"), result.getString("p.modelo"),
@@ -225,5 +224,50 @@ public class RepositorioItem {
 			fecharConexao();
 		}
 		return processadores;
+	}
+
+	public List<Processador> getProcessadoresCompativeis(Integer idPlaca) {
+		conn = ConexaoMySQL.getConexaoMySQL();
+		ArrayList<Processador> processadores = new ArrayList<Processador>();
+		try {
+			String query = "SELECT * FROM processador p, item i, soquete s, placamae pm WHERE i.idProcessador = p.idProcessador AND s.idSoquete = p.idSoquete  AND pm.idSoquete = p.idSoquete  AND pm.idPlacaMae = ?";
+			PreparedStatement state = conn.prepareStatement(query);
+			state.setInt(1, idPlaca);
+			ResultSet result = state.executeQuery();
+			while (result.next()) {
+				processadores.add(new Processador(result.getInt("p.idProcessador"), result.getDouble("i.preco"),
+						result.getString("p.fabricante"), result.getString("p.modelo"),
+						result.getString("p.frequencia"),
+						new Soquete(result.getInt("s.idSoquete"), result.getString("s.nome"))));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			fecharConexao();
+		}
+		return processadores;
+	}
+
+	public List<Memoria> getMemoriasCompativeis(Integer idPlaca) {
+		conn = ConexaoMySQL.getConexaoMySQL();
+		ArrayList<Memoria> memorias = new ArrayList<Memoria>();
+		try {
+			String query = "SELECT *"
+					+ " FROM memoria m, tipomemoria t, item i, placamae_aceita_tipomemoria pat"
+					+ " WHERE t.idTipoMemoria = m.idTipoMemoria AND m.idMemoria = i.idMemoria AND pat.idPlacaMae = ? AND pat.idTipoMemoria = m.idTipoMemoria";
+			PreparedStatement state = conn.prepareStatement(query);
+			state.setInt(1, idPlaca);
+			ResultSet result = state.executeQuery();
+			while (result.next()) {
+				memorias.add(new Memoria(result.getInt("m.idMemoria"), result.getDouble("i.preco"),
+						result.getString("m.fabricante"), result.getString("m.mdelo"), result.getString("m.capacidade"),
+						new TipoMemoria(result.getInt("t.idTipoMemoria"), result.getString("t.nome"))));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			fecharConexao();
+		}
+		return memorias;
 	}
 }
