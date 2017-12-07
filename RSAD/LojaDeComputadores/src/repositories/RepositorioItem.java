@@ -252,8 +252,7 @@ public class RepositorioItem {
 		conn = ConexaoMySQL.getConexaoMySQL();
 		ArrayList<Memoria> memorias = new ArrayList<Memoria>();
 		try {
-			String query = "SELECT *"
-					+ " FROM Memoria m, TipoMemoria t, Item i, PlacaMae_aceita_TipoMemoria pat"
+			String query = "SELECT * FROM Memoria m, TipoMemoria t, Item i, PlacaMae_aceita_TipoMemoria pat"
 					+ " WHERE t.idTipoMemoria = m.idTipoMemoria AND m.idMemoria = i.idMemoria AND pat.idPlacaMae = ? AND pat.idTipoMemoria = m.idTipoMemoria";
 			PreparedStatement state = conn.prepareStatement(query);
 			state.setInt(1, idPlaca);
