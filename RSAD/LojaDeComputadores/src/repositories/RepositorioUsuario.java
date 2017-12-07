@@ -148,4 +148,29 @@ public class RepositorioUsuario {
 			fecharConexao();
 		}
 	}
+
+	public Usuario pegarPrimeiro() {
+		conn = ConexaoMySQL.getConexaoMySQL();
+		try {
+			String query = "SELECT * FROM Usuario u, Cargo c";
+			PreparedStatement state = conn.prepareStatement(query);
+			ResultSet result = state.executeQuery();
+			while (result.next()) {
+				if (result.getInt("idTipoUsuario") == TipoUsuario.GERENTE.getId()) {
+					return new UsuarioGerente(result.getInt("u.idUsuario"), result.getString("u.login"),
+							result.getString("u.senha"), result.getString("u.nome"), result.getString("u.cpf"),
+							new Cargo(result.getInt("c.idcargo"), result.getString("c.nome")));
+				} else {
+					return new UsuarioVendedor(result.getInt("u.idUsuario"), result.getString("u.login"),
+							result.getString("u.senha"), result.getString("u.nome"), result.getString("u.cpf"),
+							new Cargo(result.getInt("c.idcargo"), result.getString("c.nome")));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			fecharConexao();
+		}
+		return null;
+	}
 }

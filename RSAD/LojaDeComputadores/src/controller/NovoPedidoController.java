@@ -34,7 +34,7 @@ public class NovoPedidoController extends HttpServlet {
 			throws ServletException, IOException {
 		String cpf = request.getParameter("cpf");
 		Cliente c = RepositorioCliente.getInstance().getCliente(cpf);
-		Usuario u = RepositorioUsuario.getInstance().findByID(1);
+		Usuario u = RepositorioUsuario.getInstance().pegarPrimeiro();
 		Pedido p = new Pedido(c, u);
 		request.getSession().setAttribute("pedido", p);
 		request.getSession().setAttribute("usuario", u);

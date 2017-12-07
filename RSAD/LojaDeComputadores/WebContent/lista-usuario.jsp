@@ -60,8 +60,8 @@
 		<center><p>Nenhum Usuário Cadastrado</p></center>
 		<%}else{ %>
 		<div class="col-sm-12">
-			<div class="table-responsive table-striped">          
-			<table class="table">
+			<div class="table-responsive">          
+			<table class="table table-striped">
 				<thead>
 	 				<tr>
 	 					<th>id</th>
