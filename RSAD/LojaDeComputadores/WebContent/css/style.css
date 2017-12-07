@@ -159,7 +159,7 @@ body {
 
 /* Status */
 #status {
-	min-height: 100%;
+	min-height: 700px;
 	height: 100%;
 	background-color: rgb(224, 224, 224);
 	height: 100%;
@@ -169,12 +169,13 @@ body {
 
 #status .info {
 	text-align: left;
+
 }
 
 #status .dados {
 	width: 100%;
 	text-align: center;
-	margin-top: 50px;
+	margin-top: 20px;
 }
 
 #status .dados .qtd {
@@ -212,7 +213,6 @@ body {
 #status .fotoVendedor{
 	height: 150px;
 	width: auto;
-	margin-top: 50px;
 	margin-bottom: 20px;
 	
 }
@@ -308,4 +308,26 @@ width: 150px;
 #invalidUserCpf{
 	position: absolute;
 	top: -20px;
+}
+
+.precoTotal{
+	font-weight: bold;
+	font-size: 20px;
+}
+.precoTxt{
+	font-size: 13px;
+}
+
+.precoTotalFinal{
+	font-weight: bold;
+	font-size: 25px;
+}
+.precoTxtFinal{
+	font-size: 18px;
+}
+#finalizar{
+	margin-left:30px;
+}
+.buttons{
+	margin: 15px 0 25px;
 }

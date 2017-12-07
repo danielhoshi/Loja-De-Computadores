@@ -28,19 +28,6 @@ public class AdicionarItemController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String id = request.getParameter("id");
-		Pedido pedido = (Pedido) request.getAttribute("pedido");
-		request.setAttribute("pedido", pedido);
-		if (id != null) {
-
-		} else {
-			ArrayList<Memoria> memorias = new ArrayList<Memoria>();
-			RepositorioItem rep = new RepositorioItemTeste();
-			memorias = (ArrayList<Memoria>) rep.getMemorias();
-			request.setAttribute("lista", memorias);
-			RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/lista-memoria.jsp");
-			requestDispatcher.forward(request, response);
-		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -52,7 +52,7 @@
 		</div>
 	</nav>
 	<div class="container">
-		<div class="row" style="height: 700px">
+		<div class="row" style="min-height: 700px">
 			<div class="col-sm-9" id="tipos">
 				<a href="ComputadorController">
 					<span class="tipoItem">
@@ -99,6 +99,31 @@
 					<br>
 				</div>
 				<div class="dados">
+					<div class="row">
+						<span class="precoTxt">Preço Total:</span>
+						<span class="precoTotal">
+							R$ 
+							<span id="preco"><%=p.getPrecoTotalFormat()%></span>
+						</span>
+					</div>
+					<div class="row">
+						<span class="precoTxt text-danger">Desconto:</span>
+						<span class="precoTotal text-danger">
+							-R$ 
+							<span id="preco"><%=p.getDescontoFormat()%></span>
+						</span>
+					</div>
+					<div class="row">
+						<span class="precoTxtFinal">Preço Final:</span>
+						<span class="precoTotalFinal">
+							R$ 
+							<span id="preco"><%=p.getPrecoFinalFormat()%></span>
+						</span>
+					</div>
+					<div class="row buttons">
+						<button id="cancelar" class="btn btn-danger">Cancelar</button>
+						<button id="finalizar" class="btn btn-success">Finalizar</button>
+					</div>
 					<%if(p.getItemPedido().isEmpty()){%>
 					<span class="qtd">Nenhum item selecionado</span>
 					<%
@@ -131,6 +156,7 @@
 							<div class="limpar"></div>
 						</div>
 						<%} %>
+						<div class="limpar"></div>
 					</div>
 				</div>
 			</div>
