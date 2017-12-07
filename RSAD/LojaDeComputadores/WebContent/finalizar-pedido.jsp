@@ -50,38 +50,44 @@ pageEncoding="ISO-8859-1"%>
 		</div>
 	</nav>
 	<div class="container">
-			<% 
-			Pedido p = (Pedido) request.getSession().getAttribute("pedido");
-			%>
-			<div class="dadosFinalizar">
-			<div class="col-sm-3">
+		<% 
+		Pedido p = (Pedido) request.getSession().getAttribute("pedido");
+		%>
+			<div class="detalhesCompra">
 				<div class="row">
-					<span class="precoTxt">Preço Total:</span>
-					<span class="precoTotal">
-						R$ 
-						<span id="preco"><%=p.getPrecoTotalFormat()%></span>
-					</span>
+					<h1>Detalhes da Compra</h1>
 				</div>
-				<div class="row">
-					<span class="precoTxt text-danger">Desconto:</span>
-					<span class="precoTotal text-danger">
-						-R$ 
-						<span id="preco"><%=p.getDescontoFormat()%></span>
-					</span>
+				<div class="row dadosFinalizar">
+					<div class="col-sm-3">
+						<div class="row">
+							<span class="precoTxt">Preço Total:</span>
+							<span class="precoTotal">
+								R$ 
+								<span id="preco"><%=p.getPrecoTotalFormat()%></span>
+							</span>
+						</div>
+						<div class="row">
+							<span class="precoTxt text-danger">Desconto:</span>
+							<span class="precoTotal text-danger">
+								-R$ 
+								<span id="preco"><%=p.getDescontoFormat()%></span>
+							</span>
+						</div>
+						<hr>
+						<div class="row">
+							<span class="precoTxtFinal">Preço Final:</span>
+							<span class="precoTotalFinal">
+								R$ 
+								<span id="preco"><%=p.getPrecoFinalFormat()%></span>
+							</span>
+						</div>
+					</div>
+					<div class="col-sm-5 buttonsfinalizar">
+						<button id="finalizar" class="btn btn-success">Finalizar Compra</button>
+						<button id="cancelar" class="btn btn-danger">Cancelar</button>
+						<button id="voltar" class="btn btn-primary">Voltar</button>
+					</div>
 				</div>
-				<div class="row">
-					<span class="precoTxtFinal">Preço Final:</span>
-					<span class="precoTotalFinal">
-						R$ 
-						<span id="preco"><%=p.getPrecoFinalFormat()%></span>
-					</span>
-				</div>
-			</div>
-			<div class="col-sm-5 buttonsfinalizar">
-				<button id="finalizar" class="btn btn-success">Finalizar Compra</button>
-				<button id="cancelar" class="btn btn-danger">Cancelar</button>
-				<button id="voltar" class="btn btn-primary">Voltar</button>
-			</div>
 			</div>
 		
 	</div>
