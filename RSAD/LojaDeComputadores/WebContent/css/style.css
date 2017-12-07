@@ -261,6 +261,21 @@ body {
     cursor: pointer;
 }
 
+/* The Close Button */
+.closeCPF {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.closeCPF:hover,
+.closeCPF:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .txtArea{
 	width: 80%;
 }
