@@ -304,3 +304,8 @@ width: 150px;
   margin: 40px auto;
   
 }
+
+#invalidUserCpf{
+	position: absolute;
+	top: -20px;
+}

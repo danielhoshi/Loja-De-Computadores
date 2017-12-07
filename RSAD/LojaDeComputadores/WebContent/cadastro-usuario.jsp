@@ -22,6 +22,9 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/usuario.css">
 <title>Cadastro de Usuário</title>
@@ -48,19 +51,24 @@
 	</nav>
 	<div class="container">
 		<h1>Novo Usuário</h1>
-		<form action="CadastroUsuarioController" method="post">
+		<form data-toggle="validator" role="form" action="CadastroUsuarioController" method="post">
 			<div class="row linhaForm">
-				<div class="col-sm-1 labelForm">
+  				<div class="form-group" style="margin-bottom: 0">
+					<div class="col-sm-1 labelForm">
 					Nome:
+					</div>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" name="nome" required/>
+					</div>
 				</div>
-				<div class="col-sm-3">
-					<input type="text" class="form-control" name="nome"/>
-				</div>
-				<div class="col-sm-1 labelForm">
+				<div class="form-group" style="margin-bottom: 0">
+					<div class="col-sm-1 labelForm">
 					CPF:
-				</div>
-				<div class="col-sm-3">
-					<input type="text" class="form-control cpf" name="cpf" id="CPF"/>
+					</div>
+					<div class="col-sm-3">
+						<input type="text" class="form-control cpf" name="cpf" id="CPF" required/>
+						<p id="invalidUserCpf" class="font-weight-light text-danger text-center">CPF inválido</p>
+					</div>
 				</div>
 				<div class="col-sm-1 labelForm">
 					Cargo:
@@ -78,17 +86,21 @@
 				
 			</div>
 			<div class="row linhaForm">
-				<div class="col-sm-1 labelForm">
-					Login:
+				<div class="form-group" style="margin-bottom: 0">
+					<div class="col-sm-1 labelForm">
+						Login:
+					</div>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" name="login" required/>
+					</div>
 				</div>
-				<div class="col-sm-3">
-					<input type="text" class="form-control" name="login"/>
-				</div>
-				<div class="col-sm-1 labelForm">
-					Senha:
-				</div>
-				<div class="col-sm-3">
-					<input type="text" class="form-control" name="senha"/>
+				<div class="form-group" style="margin-bottom: 0">
+					<div class="col-sm-1 labelForm">
+						Senha:
+					</div>
+					<div class="col-sm-3">
+						<input type="password" class="form-control" name="senha" data-minlength="1" required/>
+					</div>
 				</div>
 				<div class="col-sm-1 labelForm">
 					Tipo:
@@ -105,7 +117,7 @@
 	  				</select>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-warning btnForm">
+			<button type="submit" class="btn btn-warning btnForm" id="btnCadastrar">
 				<span class="glyphicon glyphicon-ok-circle"></span> Salvar
 			</button>
 		</form>
@@ -128,6 +140,19 @@
 			</form>
 		</div>
 	</div>
+	<script>
+	$(document).ready(function() {
+		$('.cpf').keyup(function() {
+			if (validarCPF($(this).val())) {
+				$('#btnCadastrar').prop('disabled', false);
+				$('#invalidUserCpf').hide();
+			} else {
+				$('#btnCadastrar').prop('disabled', true);
+				$('#invalidUserCpf').show();
+			}
+		});
+	});
+	</script>
 	<script src="js/modalCPF.js"></script>
 	<script src="js/validateCPF.js"></script>
 </body>
