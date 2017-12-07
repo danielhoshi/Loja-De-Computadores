@@ -87,7 +87,7 @@
 	 						 <span class="glyphicon glyphicon-user" title="Usuário Gerente"></span>
 	 						 <%} %>
 	 					</td>
-	 					<td><%= usuario.getCpf() %></td>
+	 					<td class="cpf"><%= usuario.getCpf() %></td>
 	 					<td><%= usuario.getCargo().getNome() %></td>
 	 					<td>
 	 						<a href="ExcluirUsuarioController?id=<%=usuario.getId() %>" class="btn btn-danger btn-sm">

@@ -60,7 +60,7 @@
 					CPF:
 				</div>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" name="cpf" id="CPF"/>
+					<input type="text" class="form-control cpf" name="cpf" id="CPF"/>
 				</div>
 				<div class="col-sm-1 labelForm">
 					Cargo:

@@ -40,7 +40,7 @@ public class RepositorioItem {
 		conn = ConexaoMySQL.getConexaoMySQL();
 		HD hd = null;
 		try {
-			String query = "SELECT * FROM hd h, item i WHERE i.idHD = h.idHD AND h.idHD = ?";
+			String query = "SELECT * FROM HD h, Item i WHERE i.idHD = h.idHD AND h.idHD = ?";
 			PreparedStatement state = conn.prepareStatement(query);
 			state.setInt(1, id);
 			ResultSet result = state.executeQuery();
@@ -61,7 +61,7 @@ public class RepositorioItem {
 		conn = ConexaoMySQL.getConexaoMySQL();
 		Memoria memoria = null;
 		try {
-			String query = "SELECT * FROM memoria m, item i, tipomemoria t WHERE i.idMemoria = m.idMemoria AND t.idTipoMemoria = m.idTipoMemoria AND m.idMemoria = ?";
+			String query = "SELECT * FROM Memoria m, Item i, TipoMemoria t WHERE i.idMemoria = m.idMemoria AND t.idTipoMemoria = m.idTipoMemoria AND m.idMemoria = ?";
 			PreparedStatement state = conn.prepareStatement(query);
 			state.setInt(1, id);
 			ResultSet result = state.executeQuery();
@@ -82,7 +82,7 @@ public class RepositorioItem {
 		conn = ConexaoMySQL.getConexaoMySQL();
 		Processador processador = null;
 		try {
-			String query = "SELECT * FROM processador p, item i, soquete s WHERE i.idProcessador = p.idProcessador AND s.idSoquete = p.idSoquete AND p.idProcessador = ?";
+			String query = "SELECT * FROM Processador p, Item i, Soquete s WHERE i.idProcessador = p.idProcessador AND s.idSoquete = p.idSoquete AND p.idProcessador = ?";
 			PreparedStatement state = conn.prepareStatement(query);
 			state.setInt(1, id);
 			ResultSet result = state.executeQuery();
@@ -105,7 +105,7 @@ public class RepositorioItem {
 		conn = ConexaoMySQL.getConexaoMySQL();
 		PlacaMae placa = null;
 		try {
-			String query = "SELECT * FROM placamae p, soquete s, item i WHERE p.idPlacaMae = ? AND p.idPlacaMae = i.idPlacaMae AND s.idSoquete = p.idSoquete";
+			String query = "SELECT * FROM PlacaMae p, Soquete s, Item i WHERE p.idPlacaMae = ? AND p.idPlacaMae = i.idPlacaMae AND s.idSoquete = p.idSoquete";
 			PreparedStatement state = conn.prepareStatement(query);
 			state.setInt(1, id);
 			ResultSet result = state.executeQuery();
@@ -127,7 +127,7 @@ public class RepositorioItem {
 		conn = ConexaoMySQL.getConexaoMySQL();
 		ArrayList<TipoMemoria> lista = new ArrayList<TipoMemoria>();
 		try {
-			String query = "SELECT * FROM placamae_aceita_tipomemoria pat, tipomemoria tm WHERE pat.idPlacaMae = ? AND tm.idTipoMemoria = pat.idTipoMemoria";
+			String query = "SELECT * FROM PlacaMae_aceita_TipoMemoria pat, TipoMemoria tm WHERE pat.idPlacaMae = ? AND tm.idTipoMemoria = pat.idTipoMemoria";
 			PreparedStatement state = conn.prepareStatement(query);
 			state.setInt(1, idPlaca);
 			ResultSet result = state.executeQuery();
@@ -147,7 +147,7 @@ public class RepositorioItem {
 		ArrayList<Memoria> memorias = new ArrayList<Memoria>();
 		try {
 			Statement state = conn.createStatement();
-			String query = "SELECT * FROM memoria m, tipomemoria t, item i WHERE t.idTipoMemoria = m.idTipoMemoria AND m.idMemoria = i.idMemoria";
+			String query = "SELECT * FROM Memoria m, TipoMemoria t, Item i WHERE t.idTipoMemoria = m.idTipoMemoria AND m.idMemoria = i.idMemoria";
 			ResultSet result = state.executeQuery(query);
 			while (result.next()) {
 				memorias.add(new Memoria(result.getInt("m.idMemoria"), result.getDouble("i.preco"),
@@ -167,7 +167,7 @@ public class RepositorioItem {
 		ArrayList<HD> hds = new ArrayList<HD>();
 		try {
 			Statement state = conn.createStatement();
-			String query = "SELECT * FROM hd h, item i WHERE h.idHD = i.idHD";
+			String query = "SELECT * FROM HD h, Item i WHERE h.idHD = i.idHD";
 			ResultSet result = state.executeQuery(query);
 			while (result.next()) {
 				hds.add(new HD(result.getInt("h.idHD"), result.getDouble("i.preco"), result.getString("h.fabricante"),
@@ -187,7 +187,7 @@ public class RepositorioItem {
 		ArrayList<PlacaMae> placas = new ArrayList<PlacaMae>();
 		try {
 			Statement state = conn.createStatement();
-			String query = "SELECT * FROM placamae p, soquete s, item i WHERE p.idPlacaMae = i.idPlacaMae AND s.idSoquete = p.idSoquete";
+			String query = "SELECT * FROM PlacaMae p, Soquete s, Item i WHERE p.idPlacaMae = i.idPlacaMae AND s.idSoquete = p.idSoquete";
 			ResultSet result = state.executeQuery(query);
 			while (result.next()) {
 				Integer idPlaca = result.getInt("p.idPlacaMae");
@@ -210,7 +210,7 @@ public class RepositorioItem {
 		ArrayList<Processador> processadores = new ArrayList<Processador>();
 		try {
 			Statement state = conn.createStatement();
-			String query = "SELECT * FROM processador p, item i, soquete s WHERE i.idProcessador = p.idProcessador AND s.idSoquete = p.idSoquete";
+			String query = "SELECT * FROM Processador p, Item i, Soquete s WHERE i.idProcessador = p.idProcessador AND s.idSoquete = p.idSoquete";
 			ResultSet result = state.executeQuery(query);
 			while (result.next()) {
 				processadores.add(new Processador(result.getInt("p.idProcessador"), result.getDouble("i.preco"),
@@ -230,7 +230,7 @@ public class RepositorioItem {
 		conn = ConexaoMySQL.getConexaoMySQL();
 		ArrayList<Processador> processadores = new ArrayList<Processador>();
 		try {
-			String query = "SELECT * FROM processador p, item i, soquete s, placamae pm WHERE i.idProcessador = p.idProcessador AND s.idSoquete = p.idSoquete  AND pm.idSoquete = p.idSoquete  AND pm.idPlacaMae = ?";
+			String query = "SELECT * FROM Processador p, Item i, Soquete s, PlacaMae pm WHERE i.idProcessador = p.idProcessador AND s.idSoquete = p.idSoquete  AND pm.idSoquete = p.idSoquete  AND pm.idPlacaMae = ?";
 			PreparedStatement state = conn.prepareStatement(query);
 			state.setInt(1, idPlaca);
 			ResultSet result = state.executeQuery();
@@ -253,7 +253,7 @@ public class RepositorioItem {
 		ArrayList<Memoria> memorias = new ArrayList<Memoria>();
 		try {
 			String query = "SELECT *"
-					+ " FROM memoria m, tipomemoria t, item i, placamae_aceita_tipomemoria pat"
+					+ " FROM Memoria m, TipoMemoria t, Item i, PlacaMae_aceita_TipoMemoria pat"
 					+ " WHERE t.idTipoMemoria = m.idTipoMemoria AND m.idMemoria = i.idMemoria AND pat.idPlacaMae = ? AND pat.idTipoMemoria = m.idTipoMemoria";
 			PreparedStatement state = conn.prepareStatement(query);
 			state.setInt(1, idPlaca);

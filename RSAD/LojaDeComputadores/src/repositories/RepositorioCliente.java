@@ -33,7 +33,7 @@ public class RepositorioCliente {
 		conn = ConexaoMySQL.getConexaoMySQL();
 		Cliente cliente = null;
 		try {
-			String query = "SELECT * FROM cliente c WHERE c.cpf = ?";
+			String query = "SELECT * FROM Cliente c WHERE c.cpf = ?";
 			PreparedStatement state = conn.prepareStatement(query);
 			state.setString(1, cpf);
 			ResultSet result = state.executeQuery();
@@ -56,7 +56,7 @@ public class RepositorioCliente {
 		conn = ConexaoMySQL.getConexaoMySQL();
 		Integer novoId = null;
 		try {
-			String query = "INSERT INTO cliente(cpf) VALUES(?)";
+			String query = "INSERT INTO Cliente(cpf) VALUES(?)";
 			PreparedStatement state = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			state.setString(1, cpf);
 			state.executeUpdate();
