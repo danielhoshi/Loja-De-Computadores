@@ -118,6 +118,16 @@ body {
 	background-color: rgb(205, 102, 0);
 }
 
+#navItems a:visited {
+	color: #efefed;
+	background-color: rgb(238, 118, 0);
+}
+
+#navItems a:focus {
+	color: #efefed;
+	background-color: rgb(238, 118, 0);
+}
+
 .tipoItem {
 	margin-top: 30px;
 	float: left;
