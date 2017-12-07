@@ -122,7 +122,7 @@
 					</div>
 					<div class="row buttons">
 						<button id="cancelar" class="btn btn-danger">Cancelar</button>
-						<button id="finalizar" class="btn btn-success">Finalizar</button>
+						<button onclick="location.href='finalizar-pedido.jsp';" id="finalizar" class="btn btn-success">Finalizar</button>
 					</div>
 					<%if(p.getItemPedido().isEmpty()){%>
 					<span class="qtd">Nenhum item selecionado</span>
