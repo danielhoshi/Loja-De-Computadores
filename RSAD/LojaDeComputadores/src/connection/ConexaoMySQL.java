@@ -15,10 +15,11 @@ public class ConexaoMySQL {
 
 			Class.forName(driverName);
 
-			//String username = "t1g2";
-			//String password = "$wS!hMY%";
 
-			//connection = DriverManager.getConnection("jdbc:mysql://143.107.102.5:3306/t1g2", username, password);
+//			String username = "t1g2";
+//			String password = "$wS!hMY%";
+//
+//			connection = DriverManager.getConnection("jdbc:mysql://143.107.102.5:3306/t1g2", username, password);
 			
 			String username = "root";
 			String password = "admin";
