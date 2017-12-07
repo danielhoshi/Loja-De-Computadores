@@ -38,7 +38,7 @@
 					data-target="#navItems">
 					<span class="glyphicon glyphicon-menu-hamburger"></span>
 				</button>
-				<a class="navbar-brand" href="#">
+				<a class="navbar-brand" href="/LojaDeComputadores/">
 					<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 				</a>
 			</div>
@@ -150,7 +150,7 @@
 			<span class="close">&times;</span>
 			<form action="AdicionarItemController" method="post">
 				<input type="hidden" name="id" id="modalId">
-				<input type="hidden" name="tipoItem" id="modalId" value=3>
+				<input type="hidden" name="tipoItem" value=3>
 				<div class="col-sm-4" style="margin-top:20px">
 					<img src="img/hd.jpg" class="img-thumbnail" /> 
 					<div class="input-group" style="margin-top: 5px">
@@ -209,10 +209,16 @@
 		<div class="modal-content">
 			<span class="closecpf">&times;</span>
 			<form action="NovoPedidoController" method="post">
-				<input placeholder="Digite o CPF" type="text" name="cpf" id="CPF"
-					class="txtArea" /> <input id="buttonCPF" class="btn btn-primary"
-					type="submit" value="Enviar" />
-				<div class="limpar"></div>
+				<input placeholder="Digite o CPF" type="text" name="cpf" id="modalTxt" class="txtArea cpf" /> 
+				<div class="row">
+					<div class="col-sm-4">
+						<input id="buttonCPF" class="btn btn-primary" type="submit" value="Enviar" />
+					</div>
+					<div class="col-sm-8">
+						<p style="margin-top: 10px" id="invalidCpf" class="font-weight-light text-danger text-center">CPF inválido</p>
+					</div>
+					<div class="limpar"></div>
+				</div>
 			</form>
 		</div>
 	</div>
@@ -230,6 +236,7 @@
 	}
 	</script>
 	<script src="js/modalCPF.js"></script>
+	<script src="js/validateCPF.js"></script>
 	<script src="js/plus-minus-button.js"></script>
 </body>
 </html>
