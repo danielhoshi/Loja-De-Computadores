@@ -59,4 +59,11 @@ public class Computador extends Item {
 		return processador;
 	}
 
+	public void setIdComputador(Integer idComputador) {
+		this.idComputador = idComputador;
+	}
+
+	public void setIdItem(Integer idItem) {
+		this.idItem = idItem;
+	}
 }

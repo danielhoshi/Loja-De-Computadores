@@ -61,7 +61,7 @@ public class ComputadorHDController extends HttpServlet {
 			}
 			for (ComponenteQuantidade hdQtd : hdsComputador) {
 				for (int cont = 0; cont < hdQtd.getQuantidade(); cont++) {
-					computador.adicionarMemoria(rep.getMemoria(hdQtd.getIdComponente()));
+					computador.adicionarHD(rep.getHd(hdQtd.getIdComponente()));
 				}
 			}
 			Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
