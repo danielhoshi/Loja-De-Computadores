@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.HD;
-import model.Pedido;
 import repositories.RepositorioItem;
-import test.RepositorioItemTeste;
 
 @WebServlet("/HDController")
 public class HDController extends HttpServlet {
@@ -40,8 +38,7 @@ public class HDController extends HttpServlet {
 //				System.out.println("HD não encontrado");
 		} else {
 			ArrayList<HD> hds = new ArrayList<HD>();
-			RepositorioItem rep = new RepositorioItemTeste();
-			hds = (ArrayList<HD>) rep.getHds();
+			hds = (ArrayList<HD>) RepositorioItem.getInstance().getHds();
 			request.setAttribute("lista", hds);
 			RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/lista-hd.jsp");
 			requestDispatcher.forward(request, response);

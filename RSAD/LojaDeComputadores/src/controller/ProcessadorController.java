@@ -12,9 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.HD;
 import model.Processador;
-import model.Pedido;
 import repositories.RepositorioItem;
-import test.RepositorioItemTeste;
 
 @WebServlet("/ProcessadorController")
 public class ProcessadorController extends HttpServlet {
@@ -34,8 +32,7 @@ public class ProcessadorController extends HttpServlet {
 
 		} else {
 			ArrayList<Processador> processadores = new ArrayList<Processador>();
-			RepositorioItem rep = new RepositorioItemTeste();
-			processadores = (ArrayList<Processador>) rep.getProcessadores();
+			processadores = (ArrayList<Processador>) RepositorioItem.getInstance().getProcessadores();
 			request.setAttribute("lista", processadores);
 			RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/lista-processador.jsp");
 			requestDispatcher.forward(request, response);

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Item;
+import model.ItemPedido;
 import model.Memoria;
 import model.Pedido;
 import model.TipoItem;
@@ -46,18 +47,23 @@ public class AdicionarItemController extends HttpServlet {
 			throws ServletException, IOException {
 		Integer tipoItem = Integer.parseInt(request.getParameter("tipoItem"));
 		Integer id = Integer.parseInt(request.getParameter("id"));
-		Integer qtd = Integer.parseInt(request.getParameter("qtd"));
+		Integer qtd = Integer.parseInt(request.getParameter("quantidade"));
 		Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
 		Item item = null;
 		if(tipoItem == TipoItem.PLACA.getId()) {
-			item = RepositorioItem.getPlaca(id);
+			item = RepositorioItem.getInstance().getPlaca(id);
 		} else if(tipoItem == TipoItem.PROCESSADOR.getId()) {
-			
+			item = RepositorioItem.getInstance().getProcessador(id);
 		} else if(tipoItem == TipoItem.HD.getId()) {
-			
+			item = RepositorioItem.getInstance().getHd(id);
 		} else if(tipoItem == TipoItem.MEMORIA.getId()) {
-			
+			item = RepositorioItem.getInstance().getMemoria(id);
 		}
+		ItemPedido itemPedido = new ItemPedido(item, qtd);
+		pedido.adicionaItemPedido(itemPedido);
+		request.getSession().setAttribute("pedido", pedido);
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/pedido.jsp");
+		requestDispatcher.forward(request, response);
 	}
 
 }

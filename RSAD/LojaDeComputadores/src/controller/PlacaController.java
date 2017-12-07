@@ -12,9 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.HD;
 import model.PlacaMae;
-import model.Pedido;
 import repositories.RepositorioItem;
-import test.RepositorioItemTeste;
 
 @WebServlet("/PlacaController")
 public class PlacaController extends HttpServlet {
@@ -34,8 +32,7 @@ public class PlacaController extends HttpServlet {
 
 		} else {
 			ArrayList<PlacaMae> placas = new ArrayList<PlacaMae>();
-			RepositorioItem rep = new RepositorioItemTeste();
-			placas = (ArrayList<PlacaMae>) rep.getPlacasMae();
+			placas = (ArrayList<PlacaMae>) RepositorioItem.getInstance().getPlacasMae();
 			request.setAttribute("lista", placas);
 			RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/lista-placa.jsp");
 			requestDispatcher.forward(request, response);

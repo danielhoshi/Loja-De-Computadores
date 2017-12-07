@@ -12,9 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.HD;
 import model.Memoria;
-import model.Pedido;
 import repositories.RepositorioItem;
-import test.RepositorioItemTeste;
 
 @WebServlet("/MemoriaController")
 public class MemoriaController extends HttpServlet {
@@ -34,8 +32,7 @@ public class MemoriaController extends HttpServlet {
 
 		} else {
 			ArrayList<Memoria> memorias = new ArrayList<Memoria>();
-			RepositorioItem rep = new RepositorioItemTeste();
-			memorias = (ArrayList<Memoria>) rep.getMemorias();
+			memorias = (ArrayList<Memoria>) RepositorioItem.getInstance().getMemorias();
 			request.setAttribute("lista", memorias);
 			RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/lista-memoria.jsp");
 			requestDispatcher.forward(request, response);
