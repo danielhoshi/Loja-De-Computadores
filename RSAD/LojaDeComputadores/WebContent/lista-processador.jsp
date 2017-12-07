@@ -38,7 +38,7 @@
 					data-target="#navItems">
 					<span class="glyphicon glyphicon-menu-hamburger"></span>
 				</button>
-				<a class="navbar-brand" href="#">
+				<a class="navbar-brand" href="/LojaDeComputadores/">
 					<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 				</a>
 			</div>
