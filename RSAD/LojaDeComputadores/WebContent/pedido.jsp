@@ -130,10 +130,48 @@
 						</div>
 						<%} %>
 					</div>
-					
 				</div>
 			</div>
 		</div>
 	</div>
+	<div id="myModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<form action="NovoPedidoController" method="post">
+				<input placeholder="Digite o CPF" type="text" name="cpf" id="CPF"
+					class="txtArea" /> <input id="buttonCPF" class="btn btn-primary"
+					type="submit" value="Enviar" />
+				<div class="limpar"></div>
+			</form>
+		</div>
+	</div>
+	<script>
+		//MODAL
+		var modal = document.getElementById('myModal');
+		var btn = document.getElementById('btnPedido');
+		var span = document.getElementsByClassName("close")[0];
+		btn.onclick = function() {
+			modal.style.display = "block";
+		}
+
+		span.onclick = function() {
+			modal.style.display = "none";
+		}
+
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+
+		//MASCARA PARA CPF
+		$(document).ready(function() {
+			$('#CPF').mask('000.000.000-00', {
+				reverse : true
+			});
+		});
+
+	</script>
 </body>
 </html>

@@ -1,3 +1,6 @@
+<%@page import="model.Componente"%>
+<%@page import="model.Item"%>
+<%@page import="model.ItemPedido"%>
 <%@page import="model.Pedido"%>
 <%@page import="model.Cliente"%>
 <%@page import="model.Usuario"%>
@@ -91,23 +94,52 @@
 				%>
 			</div>
 			<div class="col-sm-3" id="status">
-				<%
+				<% 
 					Pedido p = (Pedido) request.getSession().getAttribute("pedido");
 					Usuario u = (Usuario) request.getSession().getAttribute("usuario");
 					Cliente c = p.getCliente();
-				%>
+				 %>
 				<div class="info">
-					<span>Vendedor: <b><%=u.getNome()%></b></span> <br> 
-					<span>CPF do Cliente: <b><%=c.getCPF()%></b></span> <br>
+					<img src="img/fotinho.jpg" class="fotoVendedor img-circle img-thumbnail"/>
+					<span>Vendedor: <b><%=u.getNome() %></b></span> 
+					<br>
+					<span>CPF do Cliente: <b><%=c.getCPF() %></b></span>
+					<br>
 				</div>
 				<div class="dados">
-					<span class="qtd">3 Itens Selecionados</span> 
-					<span class="itens">
-						<span class="item"> 
-							<span class="nome">Intel Core 2 Duo</span> 
-							<span class="tipo">Processador</span>
-						</span>
-					</span>
+					<%if(p.getItemPedido().isEmpty()){%>
+					<span class="qtd">Nenhum item selecionado</span>
+					<%
+					} else{
+						int size = p.getItemPedido().size();
+					%>
+					<span class="qtd"><%=size > 1 ? size +" itens selecionados" : "1 item selecionado"%></span>
+					<%} %>
+					<div class="itens">
+						<%
+						for(ItemPedido ip : p.getItemPedido()){
+							Item item = ip.getItem();
+							String label;
+							String tipo;
+							if(item instanceof Componente){
+								label = ((Componente)item).getFabricante() + " - "+ ((Componente)item).getModelo();
+								if(label.length()>20){
+									label = label.substring(0,18)+"...";
+								}
+							}else{
+								label = "Computador";
+							}
+						%>
+						<div class="item">
+							<img src="img/<%= item.getClass().getSimpleName().toLowerCase() %>.jpg" class="img-thumbnail">
+							<span class="labelItem">
+								<span class="descricaoItem"><%=label%></span>
+								<span class="qtdItem">(x<%=ip.getQtd()%>)</span>
+							</span>
+							<div class="limpar"></div>
+						</div>
+						<%} %>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -186,5 +218,44 @@
 		}
 	</script>	
 	<script src="js/plus-minus-button.js"></script>
+	<div id="myModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<form action="NovoPedidoController" method="post">
+				<input placeholder="Digite o CPF" type="text" name="cpf" id="CPF"
+					class="txtArea" /> <input id="buttonCPF" class="btn btn-primary"
+					type="submit" value="Enviar" />
+				<div class="limpar"></div>
+			</form>
+		</div>
+	</div>
+	<script>
+		//MODAL
+		var modal = document.getElementById('myModal');
+		var btn = document.getElementById('btnPedido');
+		var span = document.getElementsByClassName("close")[0];
+		btn.onclick = function() {
+			modal.style.display = "block";
+		}
+
+		span.onclick = function() {
+			modal.style.display = "none";
+		}
+
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+
+		//MASCARA PARA CPF
+		$(document).ready(function() {
+			$('#CPF').mask('000.000.000-00', {
+				reverse : true
+			});
+		});
+
+	</script>
 </body>
 </html>
