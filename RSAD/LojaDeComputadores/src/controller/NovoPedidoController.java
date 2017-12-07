@@ -13,8 +13,8 @@ import model.Cliente;
 import model.Pedido;
 import model.Usuario;
 import repositories.RepositorioCliente;
+import repositories.RepositorioUsuario;
 import test.DadosTeste;
-import test.RepositorioItemTeste;
 
 @WebServlet("/NovoPedidoController")
 public class NovoPedidoController extends HttpServlet {
@@ -33,8 +33,8 @@ public class NovoPedidoController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String cpf = request.getParameter("cpf");
-		Cliente c = RepositorioCliente.obterCliente(cpf);
-		Usuario u = DadosTeste.getUsuario();
+		Cliente c = RepositorioCliente.getInstance().getCliente(cpf);
+		Usuario u = RepositorioUsuario.getInstance().findByID(1);
 		Pedido p = new Pedido(c, u);
 		request.getSession().setAttribute("pedido", p);
 		request.getSession().setAttribute("usuario", u);

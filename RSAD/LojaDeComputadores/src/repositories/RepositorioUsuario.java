@@ -62,7 +62,7 @@ public class RepositorioUsuario {
 	}
 
 	public Usuario findByID(Integer id) {
-		Connection conn = ConexaoMySQL.getConexaoMySQL();
+		conn = ConexaoMySQL.getConexaoMySQL();
 		Usuario usuario = null;
 		try {
 			String query = "SELECT * FROM Usuario u, Cargo c WHERE c.idCargo = u.idCargo AND u.idUsuario = ?";
@@ -89,7 +89,7 @@ public class RepositorioUsuario {
 	}
 
 	public Integer inserir(Usuario usuario) {
-		Connection conn = ConexaoMySQL.getConexaoMySQL();
+		conn = ConexaoMySQL.getConexaoMySQL();
 		Integer novoId = null;
 		try {
 			String query = "INSERT INTO Usuario(nome, login, senha, cpf, idTipoUsuario, idCargo) VALUES(?, ?, ?, ?, ?, ?)";
@@ -115,7 +115,7 @@ public class RepositorioUsuario {
 	}
 
 	public void atualizar(Usuario usuario) {
-		Connection conn = ConexaoMySQL.getConexaoMySQL();
+		conn = ConexaoMySQL.getConexaoMySQL();
 		try {
 			String query = "UPDATE Usuario SET nome = ?, cpf = ?, login = ?, senha = ?, idTipoUsuario = ?, idCargo = ? WHERE idUsuario = ?";
 			PreparedStatement state = conn.prepareStatement(query);
@@ -136,7 +136,7 @@ public class RepositorioUsuario {
 	}
 
 	public void remover(Integer id) {
-		Connection conn = ConexaoMySQL.getConexaoMySQL();
+		conn = ConexaoMySQL.getConexaoMySQL();
 		try {
 			String query = "DELETE FROM Usuario WHERE idUsuario = ?";
 			PreparedStatement state = conn.prepareStatement(query);
