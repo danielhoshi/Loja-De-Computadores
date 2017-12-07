@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import connection.ConexaoMySQL;
+import model.Computador;
 import model.HD;
+import model.ItemPedido;
 import model.Memoria;
 import model.PlacaMae;
 import model.Processador;
@@ -268,5 +270,65 @@ public class RepositorioItem {
 			fecharConexao();
 		}
 		return memorias;
+	}
+
+	public Computador inserirComputador(Computador comp) {
+		conn = ConexaoMySQL.getConexaoMySQL();
+		try {
+			String query = "INSERT INTO Computador(idPlacaMae, idProcessador) VALUES(?, ?)";
+			PreparedStatement state = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			state.setInt(1, comp.getPlaca().getId());
+			state.setInt(2, comp.getProcessador().getId());
+			state.executeUpdate();
+			ResultSet result = state.getGeneratedKeys();
+			if (result.next()) {
+				Integer novoId = result.getInt(1);
+				comp.setIdComputador(novoId);
+				for (Memoria memoria : comp.getMemorias()) {
+					query = "INSERT INTO Computador_tem_Memoria(idComputador, idMemoria) VALUES(?, ?)";
+					state = conn.prepareStatement(query);
+					state.setInt(1, novoId);
+					state.setInt(2, memoria.getId());
+					state.executeUpdate();
+				}
+				for (HD hd : comp.getHds()) {
+					query = "INSERT INTO Computador_tem_Hd(idComputador, idHD) VALUES(?, ?)";
+					state = conn.prepareStatement(query);
+					state.setInt(1, novoId);
+					state.setInt(2, hd.getId());
+					state.executeUpdate();
+				}
+				query = "INSERT INTO Item(preco, idComputador) VALUES(?, ?)";
+				state = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+				state.setDouble(1, comp.getPreco());
+				state.setInt(2, novoId);
+				state.executeUpdate();
+				ResultSet rs = state.getGeneratedKeys();
+				if (rs.next()) {
+					comp.setIdItem(rs.getInt(1));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			fecharConexao();
+		}
+		return comp;
+	}
+
+	public void inserirItemPedido(ItemPedido itemPedido) {
+		conn = ConexaoMySQL.getConexaoMySQL();
+		try {
+			String query = "INSERT INTO ItemPedido(quantidade, idPedido, idItem) VALUES(?, ?, ?)";
+			PreparedStatement state = conn.prepareStatement(query);
+			state.setInt(1, itemPedido.getQtd());
+			// TODO pegar idPedido
+			state.setInt(3, itemPedido.getItem().getIdItem());
+			state.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			fecharConexao();
+		}
 	}
 }
