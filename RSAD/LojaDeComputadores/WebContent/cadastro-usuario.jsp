@@ -4,7 +4,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Cargo"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -20,12 +20,11 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/usuario.css">
-<title>Insert title here</title>
+<title>Cadastro de Usuário</title>
 </head>
 <body>
 	<nav class="navbar" data-spy="affix">
@@ -111,45 +110,17 @@
 			</button>
 		</form>
 	</div>
-
-	<div id="myModal" class="modal">
+	<div id="modalCPF" class="modal">
 		<!-- Modal content -->
 		<div class="modal-content">
-			<span class="close">&times;</span>
+			<span class="closecpf">&times;</span>
 			<form action="NovoPedidoController" method="post">
-				<input placeholder="Digite o CPF" type="text" name="cpf" id="CPF"
-					class="txtArea" /> <input id="buttonCPF" class="btn btn-primary"
-					type="submit" value="Enviar" />
+				<input placeholder="Digite o CPF" type="text" name="cpf" id="modalTxt" class="txtArea cpf" /> 
+				<input id="buttonCPF" class="btn btn-primary" type="submit" value="Enviar" />
 				<div class="limpar"></div>
 			</form>
 		</div>
 	</div>
-	<script>
-		//MODAL
-		var modal = document.getElementById('myModal');
-		var btn = document.getElementById('btnPedido');
-		var span = document.getElementsByClassName("close")[0];
-		btn.onclick = function() {
-			modal.style.display = "block";
-		}
-
-		span.onclick = function() {
-			modal.style.display = "none";
-		}
-
-		window.onclick = function(event) {
-			if (event.target == modal) {
-				modal.style.display = "none";
-			}
-		}
-
-		//MASCARA PARA CPF
-		$(document).ready(function() {
-			$('#CPF').mask('000.000.000-00', {
-				reverse : true
-			});
-		});
-
-	</script>
+	<script src="js/modalCPF.js"></script>
 </body>
 </html>

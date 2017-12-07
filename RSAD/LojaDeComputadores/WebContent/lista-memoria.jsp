@@ -209,9 +209,8 @@
 		<div class="modal-content">
 			<span class="closecpf">&times;</span>
 			<form action="NovoPedidoController" method="post">
-				<input placeholder="Digite o CPF" type="text" name="cpf" id="CPF"
-					class="txtArea" /> <input id="buttonCPF" class="btn btn-primary"
-					type="submit" value="Enviar" />
+				<input placeholder="Digite o CPF" type="text" name="cpf" id="modalTxt" class="txtArea cpf" /> 
+				<input id="buttonCPF" class="btn btn-primary" type="submit" value="Enviar" />
 				<div class="limpar"></div>
 			</form>
 		</div>

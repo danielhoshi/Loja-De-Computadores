@@ -22,7 +22,7 @@ window.onclick = function(event) {
 
 // MASCARA PARA CPF
 $(document).ready(function() {
-	$('#CPF').mask('000.000.000-00', {
+	$('.cpf').mask('000.000.000-00', {
 		reverse : true
 	});
 });
