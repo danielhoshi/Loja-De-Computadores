@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,14 +39,20 @@ public class SalvarPedidoController extends HttpServlet {
 		Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
 		List<ItemPedido> itensPedido = pedido.getItemPedido();
 		RepositorioItem rep = RepositorioItem.getInstance();
-		for(ItemPedido ip : itensPedido){
-			if(ip.getItem() instanceof Computador){
-				ItemPedido itemComputador = new ItemPedido(rep.inserirComputador((Computador)ip.getItem()), ip.getQtd());
-				rep.inserirItemPedido(itemComputador);
-			}else{
-				rep.inserirItemPedido(ip);
+
+		Integer idPedido = rep.inserirPedido(pedido);
+		for (ItemPedido ip : itensPedido) {
+			if (ip.getItem() instanceof Computador) {
+				ItemPedido itemComputador = new ItemPedido(rep.inserirComputador((Computador) ip.getItem()),
+						ip.getQtd());
+				rep.inserirItemPedido(itemComputador, idPedido);
+			} else {
+				rep.inserirItemPedido(ip, idPedido);
 			}
 		}
+		request.getSession().removeAttribute("pedido");
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+		requestDispatcher.forward(request, response);
 	}
 
 	/**
