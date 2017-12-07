@@ -218,6 +218,19 @@
 			</form>
 		</div>
 	</div>
+	<script>
+		function showModal(id, fabricante, modelo, capacidade, tipo,
+			preco) {
+			modal.style.display = "block";
+			document.getElementById("modalFabricante").value = fabricante;
+			document.getElementById("modalModelo").value = modelo;
+			document.getElementById("modalTipo").value = tipo;
+			document.getElementById("modalCapacidade").value = capacidade;
+			document.getElementById("modalPreco").value = preco;
+			document.getElementById("modalId").value = id;
+		}
+	</script>
+	<script src="js/plus-minus-button.js"></script>
 	<script src="js/modalCPF.js"></script>
 </body>
 </html>
