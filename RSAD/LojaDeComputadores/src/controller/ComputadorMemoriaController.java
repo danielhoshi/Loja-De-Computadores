@@ -10,29 +10,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.HD;
+import model.Memoria;
 import model.PlacaMae;
 import repositories.RepositorioItem;
-import test.RepositorioItemTeste;
 
-@WebServlet("/ProcessadoresComputadorController")
-public class ProcessadoresComputadorController extends HttpServlet {
+@WebServlet("/ComputadorMemoriaController")
+public class ComputadorMemoriaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public ArrayList<HD> hds;
-
-	public ProcessadoresComputadorController() {
+	public ComputadorMemoriaController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ArrayList<PlacaMae> placas = new ArrayList<PlacaMae>();
-		RepositorioItem rep = new RepositorioItemTeste();
-		placas = (ArrayList<PlacaMae>) rep.getPlacasMae();
-		request.setAttribute("listaPlacas", placas);
-		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/computador-lista-processador.jsp");
+		Integer idPlaca = Integer.parseInt(request.getParameter("idPlaca"));
+		Integer idProcessador = Integer.parseInt(request.getParameter("idProcessador"));
+		RepositorioItem rep = RepositorioItem.getInstance();
+		PlacaMae placa = rep.getPlaca(idPlaca);
+		ArrayList<Memoria> memorias = (ArrayList<Memoria>) rep.getMemoriasCompativeis(idPlaca);
+		request.setAttribute("listaMemoria", memorias);
+		RequestDispatcher requestDispatcher = getServletContext()
+				.getRequestDispatcher("/computador-lista-memoria.jsp?idPlaca=" + idPlaca + "&idProcessador="
+						+ idProcessador + "&numeroPentesSobrando=" + placa.getNumeroDePentes());
 		requestDispatcher.forward(request, response);
 	}
 

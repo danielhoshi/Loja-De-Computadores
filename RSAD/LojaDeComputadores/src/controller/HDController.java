@@ -17,8 +17,6 @@ import repositories.RepositorioItem;
 public class HDController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public ArrayList<HD> hds;
-
 	public HDController() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -26,23 +24,11 @@ public class HDController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String id = request.getParameter("id");
-		if (id != null) {
-//			int parsedId = Integer.parseInt(id);
-//			HD hd = (HD) ControladorDeSolicitacao.getInstance().getItem(parsedId);
-//			if (hd != null) {
-//				request.setAttribute("hd", hd);
-//				RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/hd.jsp");
-//				requestDispatcher.forward(request, response);
-//			} else
-//				System.out.println("HD não encontrado");
-		} else {
-			ArrayList<HD> hds = new ArrayList<HD>();
-			hds = (ArrayList<HD>) RepositorioItem.getInstance().getHds();
-			request.setAttribute("lista", hds);
-			RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/lista-hd.jsp");
-			requestDispatcher.forward(request, response);
-		}
+		ArrayList<HD> hds = new ArrayList<HD>();
+		hds = (ArrayList<HD>) RepositorioItem.getInstance().getHds();
+		request.setAttribute("lista", hds);
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/lista-hd.jsp");
+		requestDispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

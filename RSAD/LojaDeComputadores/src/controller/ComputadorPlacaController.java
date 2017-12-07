@@ -10,15 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.HD;
 import model.Processador;
 import repositories.RepositorioItem;
 
 @WebServlet("/ComputadorPlacaController")
 public class ComputadorPlacaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	public ArrayList<HD> hds;
 
 	public ComputadorPlacaController() {
 		super();

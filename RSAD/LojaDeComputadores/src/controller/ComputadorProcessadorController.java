@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.HD;
 import model.Memoria;
 import model.PlacaMae;
 import repositories.RepositorioItem;
@@ -18,8 +17,6 @@ import repositories.RepositorioItem;
 @WebServlet("/ComputadorProcessadorController")
 public class ComputadorProcessadorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	public ArrayList<HD> hds;
 
 	public ComputadorProcessadorController() {
 		super();

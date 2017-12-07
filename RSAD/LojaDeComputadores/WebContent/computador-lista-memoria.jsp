@@ -148,8 +148,8 @@
 		<!-- Modal content -->
 		<div class="modal-content-item">
 			<span class="close">&times;</span>
-			<form action="ComputadorMemoriaController" method="post">
-				<input type="hidden" name="id" id="modalId">
+			<form action="ComputadorMemoriaController?idPlaca=<%=request.getParameter("idPlaca") %>&idProcessador=<%=request.getParameter("idProcessador") %>" method="post">
+				<input type="hidden" name="idMemoria" id="modalId">
 				<div class="col-sm-4" style="margin-top:20px">
 					<img src="img/memoria.jpg" class="img-thumbnail" /> 
 					<div class="input-group" style="margin-top: 5px">
@@ -165,7 +165,8 @@
               			</button>
           				</span>
       				</div>
-      				Deseja adicionar mais memorias?
+      				Adicionar outras memorias?
+      				<br>
       				<label class="radio-inline"><input type="radio" name="adicionarMais" value="false" checked="checked">Não</label>
 					<label class="radio-inline"><input type="radio" name="adicionarMais" value="true" id="radioTrue">Sim</label>
 					<input style="margin-top: 10px" id="buttonAdd" class="btn btn-primary" type="submit" value="Selecionar" />
