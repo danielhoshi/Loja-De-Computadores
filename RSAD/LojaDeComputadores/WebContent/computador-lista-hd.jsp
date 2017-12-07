@@ -4,7 +4,7 @@
 <%@page import="model.Pedido"%>
 <%@page import="model.Cliente"%>
 <%@page import="model.Usuario"%>
-<%@page import="model.Memoria"%>
+<%@page import="model.HD"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -38,7 +38,7 @@
 					data-target="#navItems">
 					<span class="glyphicon glyphicon-menu-hamburger"></span>
 				</button>
-				<a class="navbar-brand" href="#">
+				<a class="navbar-brand" href="/LojaDeComputadores/">
 					<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 				</a>
 			</div>
@@ -58,7 +58,7 @@
 		<div class="row" style="height: 700px">
 			<div class="col-sm-9" id="tipos">
 				<div class="row" style="margin: 50px">
-					<span class="h1" style="font-family: verdana">Memória</span>
+					<span class="h1" style="font-family: verdana">Disco Rígido</span>
 					<div style="float: right">
 						<button id="btnBack" type="button" class="btn btn-default btn-lg"
 							onclick="location.href='NovoPedidoController'">
@@ -68,24 +68,24 @@
 					</div>
 				</div>
 				<%
-					ArrayList<Memoria> listaMemoria = (ArrayList<Memoria>) request.getAttribute("listaMemoria");
-					if(listaMemoria == null){
+					ArrayList<HD> listaHd = (ArrayList<HD>) request.getAttribute("listaHD");
+					if(listaHd == null){
 						%>
-						<span style="font-family: verdana">Não foram encontradas memórias</span>
+						<span style="font-family: verdana">Não foram encontradas HD's</span>
 						<%
 					}
 					else{ 
-						for (Memoria mem : listaMemoria) {
+						for (HD hd : listaHd) {
 				%>
 				<a> 
-					<span onclick="showModal('<%=mem.getId()%>', '<%=mem.getFabricante()%>', '<%=mem.getModelo()%>', '<%=mem.getCapacidade()%>', '<%=mem.getTipoMemoria().getNome()%>', '<%=mem.getPrecoFormat()%>')"
+					<span onclick="showModal('<%=hd.getId()%>', '<%=hd.getFabricante()%>', '<%=hd.getModelo()%>', '<%=hd.getTecnologia()%>', '<%=hd.getCapacidade()%>', '<%=hd.getPrecoFormat()%>')"
 					class="col-sm-4 itemLista"> 
-						<img src="img/memoria.jpg" class="img-thumbnail" /> <br> 
-						<span> Fabricante: <b><%=mem.getFabricante()%></b></span> <br> 
-						<span> Modelo: <b><%=mem.getModelo()%></b></span> <br> 
-						<span> Capacidade: <b><%=mem.getCapacidade()%></b></span> <br> 
-						<span> Tipo de memória: <b><%=mem.getTipoMemoria().getNome()%></b></span> <br> 
-						<span> Preço: <b>R$<%=mem.getPrecoFormat()%></b></span>
+						<img src="img/hd.jpg" class="img-thumbnail" /> <br> 
+						<span> Fabricante: <b><%=hd.getFabricante()%></b></span> <br> 
+						<span> Modelo: <b><%=hd.getModelo()%></b></span> <br> 
+						<span> Tecnologia: <b><%=hd.getTecnologia()%></b></span> <br> 
+						<span> Capacidade: <b><%=hd.getCapacidade()%></b></span> <br> 
+						<span> Preço: <b>R$<%=hd.getPrecoFormat()%></b></span>
 					</span>
 				</a>
 				<%
@@ -148,30 +148,47 @@
 		<!-- Modal content -->
 		<div class="modal-content-item">
 			<span class="close">&times;</span>
-			<form action="ComputadorMemoriaController?idPlaca=<%=request.getParameter("idPlaca") %>&idProcessador=<%=request.getParameter("idProcessador") %>" method="post">
-				<input type="hidden" name="idMemoria" id="modalId">
-				<input type="hidden" name="pentesSobrando" value="<%=request.getParameter("numeroPentesSobrando")%>">
+			<form action="ComputadorHDController?idPlaca=<%=request.getParameter("idPlaca") %>&idProcessador=<%=request.getParameter("idProcessador") %>" method="post">
+				<input type="hidden" name="idHD" id="modalId">
 				<div class="col-sm-4" style="margin-top:20px">
-					<img src="img/memoria.jpg" class="img-thumbnail" /> 
+					<img src="img/hd.jpg" class="img-thumbnail" /> 
 					<div class="input-group" style="margin-top: 5px">
           				<span class="input-group-btn">
-              				<button type="button" class="btn btn-danger btn-number"  data-type="minus" data-field="quantidade">
+              				<button type="button" class="btn btn-danger btn-number"  data-type="minus" data-field="quantidadeHD">
                 				<span class="glyphicon glyphicon-minus"></span>
               				</button>
           				</span>
-          				<input type="text" name="quantidade" class="form-control input-number" value="1" min="1" max="<%=request.getParameter("numeroPentesSobrando")%>">
+          				<input type="text" name="quantidadeHD" class="form-control input-number" value="1" min="1" max="100">
           				<span class="input-group-btn">
-              			<button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quantidade">
+              			<button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quantidadeHD">
                   			<span class="glyphicon glyphicon-plus"></span>
               			</button>
           				</span>
       				</div>
       				<br>
-      				Adicionar outras memorias?
+      				Adicionar outros HDs?
       				<br>
-      				<label class="radio-inline"><input type="radio" name="adicionarOutras" value="false" checked="checked" id="radioFalse">Não</label>
-					<label class="radio-inline"><input type="radio" name="adicionarOutras" value="true" id="radioTrue" <%= Integer.parseInt(request.getParameter("numeroPentesSobrando")) == 1 ? "disabled":""%>>Sim</label>
-					<input style="margin-top: 10px" id="buttonAdd" class="btn btn-primary" type="submit" value="Selecionar" />
+      				<label class="radio-inline"><input type="radio" name="adicionarOutros" value="false" checked="checked">Não</label>
+					<label class="radio-inline"><input type="radio" name="adicionarOutros" value="true" id="radioTrue">Sim</label>
+					<div id="qtdComputadores">
+						<br>
+						Quantidade de computadores:
+						<br>
+						<div class="input-group" style="margin-top: 5px">
+	          				<span class="input-group-btn">
+	              				<button type="button" class="btn btn-danger btn-number"  data-type="minus" data-field="quantidade">
+	                				<span class="glyphicon glyphicon-minus"></span>
+	              				</button>
+	          				</span>
+	          				<input type="text" name="quantidade" class="form-control input-number" value="1" min="1" max="100">
+	          				<span class="input-group-btn">
+	              			<button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quantidade">
+	                  			<span class="glyphicon glyphicon-plus"></span>
+	              			</button>
+	          				</span>
+	      				</div>
+					</div>
+					<input style="margin-top: 10px" id="buttonAdd" class="btn btn-primary" type="submit" value="Adicionar" />
 				</div>
 				<div class="col-sm-8">
 				<div class="form-group row">
@@ -187,15 +204,15 @@
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-sm-3 col-form-label" for="modalCapacidade">Capacidade</label>
+					<label class="col-sm-3 col-form-label" for="modalTecnologia">Tecnologia</label>
 					<div class="col-sm-7">
-						<input type="text" name="capacidade" class="form-control" readonly id="modalCapacidade" />
+						<input type="text" name="tecnologia" class="form-control" readonly id="modalTecnologia" />
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-sm-3 col-form-label" for="modalTipoMemoria">Tipo de memória</label>
+					<label class="col-sm-3 col-form-label" for="modalCapacidade">Capacidade</label>
 					<div class="col-sm-7">
-						<input type="text" name="tipo" class="form-control" readonly id="modalTipo" />
+						<input type="text" name="capacidade" class="form-control" readonly id="modalCapacidade" />
 					</div>
 				</div>
 				<div class="form-group row">
@@ -214,37 +231,45 @@
 		<div class="modal-content">
 			<span class="closecpf">&times;</span>
 			<form action="NovoPedidoController" method="post">
-				<input placeholder="Digite o CPF" type="text" name="cpf" id="CPF"
-					class="txtArea" /> <input id="buttonCPF" class="btn btn-primary"
-					type="submit" value="Enviar" />
-				<div class="limpar"></div>
+				<input placeholder="Digite o CPF" type="text" name="cpf" id="modalTxt" class="txtArea cpf" /> 
+				<div class="row">
+					<div class="col-sm-4">
+						<input id="buttonCPF" class="btn btn-primary" type="submit" value="Enviar" />
+					</div>
+					<div class="col-sm-8">
+						<p style="margin-top: 10px" id="invalidCpf" class="font-weight-light text-danger text-center">CPF inválido</p>
+					</div>
+					<div class="limpar"></div>
+				</div>
 			</form>
 		</div>
 	</div>
+	<script src="js/modal-item.js"></script>
 	<script>
-		function showModal(id, fabricante, modelo, capacidade, tipo,
+	function showModal(id, fabricante, modelo, tecnologia, capacidade,
 			preco) {
-			modal.style.display = "block";
-			document.getElementById("modalFabricante").value = fabricante;
-			document.getElementById("modalModelo").value = modelo;
-			document.getElementById("modalTipo").value = tipo;
-			document.getElementById("modalCapacidade").value = capacidade;
-			document.getElementById("modalPreco").value = preco;
-			document.getElementById("modalId").value = id;
-		}
-		$(document).ready(function() {
-	    $('input[type=text][name=quantidade]').change(function() {
-	    	var numeroPentes = $('input[type=hidden][name=pentesSobrando]').val();
-	        if (numeroPentes - this.value == 0) {
-	            $('#radioFalse').prop('checked', true);
-	            $('#radioTrue').prop('disabled', true);
-	        }else{
-	        	$('#radioTrue').prop('disabled', false);
+		modal.style.display = "block";
+		document.getElementById("modalFabricante").value = fabricante;
+		document.getElementById("modalModelo").value = modelo;
+		document.getElementById("modalTecnologia").value = tecnologia;
+		document.getElementById("modalCapacidade").value = capacidade;
+		document.getElementById("modalPreco").value = preco;
+		document.getElementById("modalId").value = id;
+	}
+	
+	$(document).ready(function() {
+	    $('input[type=radio][name=adicionarOutros]').change(function() {
+	        if (this.value == 'false') {
+	            $('#qtdComputadores').show();
+	        }
+	        else if (this.value == 'true') {
+	            $('#qtdComputadores').hide();
 	        }
     	});
 	});
 	</script>
-	<script src="js/plus-minus-button.js"></script>
 	<script src="js/modalCPF.js"></script>
+	<script src="js/validateCPF.js"></script>
+	<script src="js/plus-minus-button.js"></script>
 </body>
 </html>

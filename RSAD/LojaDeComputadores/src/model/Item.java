@@ -2,22 +2,10 @@ package model;
 
 import java.text.DecimalFormat;
 import java.util.List;
-import java.util.Locale;
 
-/**
- * 
- */
-
-/** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
- * @author aluno
- * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
- */
 public abstract class Item {
 
 	protected Integer idItem;
-	
 	private List<ItemPedido> itemPedido;
 
 	protected Double preco;
@@ -41,7 +29,7 @@ public abstract class Item {
 	public Integer getIdItem() {
 		return idItem;
 	}
-	
+
 	public String getPrecoFormat() {
 		DecimalFormat df = new DecimalFormat("#,##0.00");
 		return df.format(preco);

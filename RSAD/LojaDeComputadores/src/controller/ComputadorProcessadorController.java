@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Memoria;
+import model.ComponenteQuantidade;
 import model.PlacaMae;
 import repositories.RepositorioItem;
 
@@ -31,6 +32,7 @@ public class ComputadorProcessadorController extends HttpServlet {
 		PlacaMae placa = rep.getPlaca(idPlaca);
 		ArrayList<Memoria> memorias = (ArrayList<Memoria>) rep.getMemoriasCompativeis(idPlaca);
 		request.setAttribute("listaMemoria", memorias);
+		request.getSession().setAttribute("memoriasComputador", new ArrayList<ComponenteQuantidade>());
 		RequestDispatcher requestDispatcher = getServletContext()
 				.getRequestDispatcher("/computador-lista-memoria.jsp?idPlaca=" + idPlaca + "&idProcessador="
 						+ idProcessador + "&numeroPentesSobrando=" + placa.getNumeroDePentes());
