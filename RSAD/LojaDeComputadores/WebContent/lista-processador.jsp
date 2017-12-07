@@ -204,6 +204,18 @@
 			</form>
 		</div>
 	</div>
+	<div id="modalCPF" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+			<span class="closecpf">&times;</span>
+			<form action="NovoPedidoController" method="post">
+				<input placeholder="Digite o CPF" type="text" name="cpf" id="CPF"
+					class="txtArea" /> <input id="buttonCPF" class="btn btn-primary"
+					type="submit" value="Enviar" />
+				<div class="limpar"></div>
+			</form>
+		</div>
+	</div>
 	<script src="js/modal-item.js"></script>
 	<script>
 		function showModal(id, fabricante, modelo, frequencia, soquete,
@@ -217,18 +229,6 @@
 			document.getElementById("modalId").value = id;
 		}
 	</script>
-	<div id="modalCPF" class="modal">
-		<!-- Modal content -->
-		<div class="modal-content">
-			<span class="closecpf">&times;</span>
-			<form action="NovoPedidoController" method="post">
-				<input placeholder="Digite o CPF" type="text" name="cpf" id="CPF"
-					class="txtArea" /> <input id="buttonCPF" class="btn btn-primary"
-					type="submit" value="Enviar" />
-				<div class="limpar"></div>
-			</form>
-		</div>
-	</div>
 	<script src="js/modalCPF.js"></script>
 	<script src="js/plus-minus-button.js"></script>
 </body>
