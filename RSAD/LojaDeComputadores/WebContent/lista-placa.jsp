@@ -80,7 +80,7 @@
 				<a> 
 					<span onclick="showModal('<%=placa.getId()%>', '<%=placa.getFabricante()%>', '<%=placa.getModelo()%>', '<%=placa.getSoquete().getNome()%>', '<%=placa.getNumeroDePentes()%>', '<%=placa.getPrecoFormat()%>')"
 					class="col-sm-4 itemLista"> 
-						<img src="img/placa.jpg" class="img-thumbnail" /> <br> 
+						<img src="img/placamae.jpg" class="img-thumbnail" /> <br> 
 						<span> Fabricante: <b><%=placa.getFabricante()%></b></span> <br> 
 						<span> Modelo: <b><%=placa.getModelo()%></b></span> <br> 
 						<span> Soquete: <b><%=placa.getSoquete().getNome()%></b></span> <br> 
@@ -152,7 +152,7 @@
 				<input type="hidden" name="id" id="modalId">
 				<input type="hidden" name="tipoItem" id="modalId" value=1>
 				<div class="col-sm-4" style="margin-top:20px">
-					<img src="img/placa.jpg" class="img-thumbnail" /> 
+					<img src="img/placamae.jpg" class="img-thumbnail" /> 
 					<div class="input-group" style="margin-top: 5px">
           				<span class="input-group-btn">
               				<button type="button" class="btn btn-danger btn-number"  data-type="minus" data-field="quantidade">
@@ -204,24 +204,10 @@
 			</form>
 		</div>
 	</div>
-	<script src="js/modal-item.js"></script>
-	<script>
-		function showModal(id, fabricante, modelo, soquete, memorias,
-				preco) {
-			modal.style.display = "block";
-			document.getElementById("modalFabricante").value = fabricante;
-			document.getElementById("modalModelo").value = modelo;
-			document.getElementById("modalSoquete").value = soquete;
-			document.getElementById("modalMemorias").value = memorias;
-			document.getElementById("modalPreco").value = preco;
-			document.getElementById("modalId").value = id;
-		}
-	</script>	
-	<script src="js/plus-minus-button.js"></script>
-	<div id="myModal" class="modal">
+	<div id="modalCPF" class="modal">
 		<!-- Modal content -->
 		<div class="modal-content">
-			<span class="close">&times;</span>
+			<span class="closecpf">&times;</span>
 			<form action="NovoPedidoController" method="post">
 				<input placeholder="Digite o CPF" type="text" name="cpf" id="CPF"
 					class="txtArea" /> <input id="buttonCPF" class="btn btn-primary"
@@ -230,32 +216,20 @@
 			</form>
 		</div>
 	</div>
+	<script src="js/modal-item.js"></script>
 	<script>
-		//MODAL
-		var modal = document.getElementById('myModal');
-		var btn = document.getElementById('btnPedido');
-		var span = document.getElementsByClassName("close")[0];
-		btn.onclick = function() {
+		function showModal(id, fabricante, modelo, soquete, memorias,
+			preco) {
 			modal.style.display = "block";
-		}
-
-		span.onclick = function() {
-			modal.style.display = "none";
-		}
-
-		window.onclick = function(event) {
-			if (event.target == modal) {
-				modal.style.display = "none";
-			}
-		}
-
-		//MASCARA PARA CPF
-		$(document).ready(function() {
-			$('#CPF').mask('000.000.000-00', {
-				reverse : true
-			});
-		});
-
+			document.getElementById("modalFabricante").value = fabricante;
+			document.getElementById("modalModelo").value = modelo;
+			document.getElementById("modalSoquete").value = soquete;
+			document.getElementById("modalMemorias").value = memorias;
+			document.getElementById("modalPreco").value = preco;
+			document.getElementById("modalId").value = id;
+	}
 	</script>
+	<script src="js/modalCPF.js"></script>
+	<script src="js/plus-minus-button.js"></script>
 </body>
 </html>
