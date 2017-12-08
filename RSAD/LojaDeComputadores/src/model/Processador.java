@@ -8,9 +8,10 @@ public class Processador extends Componente {
 
 	private Soquete soquete;
 
-	public Processador(Integer id, Double preco, String fabricante, String modelo, String frequencia, Soquete soquete) {
+	public Processador(Integer id, Integer idItem, Double preco, String fabricante, String modelo, String frequencia, Soquete soquete) {
 		super();
 		this.id = id;
+		this.idItem = idItem;
 		this.preco = preco;
 		this.fabricante = fabricante;
 		this.modelo = modelo;
@@ -28,5 +29,10 @@ public class Processador extends Componente {
 
 	public Integer getId() {
 		return id;
+	}
+
+	@Override
+	public String getNome() {
+		return "Processador " + this.fabricante + " " + this.modelo + " " + this.frequencia;
 	}
 }

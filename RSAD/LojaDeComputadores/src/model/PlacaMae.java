@@ -17,10 +17,11 @@ public class PlacaMae extends Componente {
 	private Integer numeroDePentes;
 	private Soquete soquete;
 	
-	public PlacaMae(Integer id, Double preco, List<TipoMemoria> tipoMemoria, String fabricante, String modelo, Integer numeroDePentes,
+	public PlacaMae(Integer id, Integer idItem, Double preco, List<TipoMemoria> tipoMemoria, String fabricante, String modelo, Integer numeroDePentes,
 			Soquete soquete) {
 		super();
 		this.id = id;
+		this.idItem = idItem;
 		this.preco = preco;
 		this.tipoMemoria = tipoMemoria;
 		this.fabricante = fabricante;
@@ -43,6 +44,11 @@ public class PlacaMae extends Componente {
 
 	public Soquete getSoquete() {
 		return soquete;
+	}
+
+	@Override
+	public String getNome() {
+		return "Placa Mãe " + this.fabricante + " " + this.modelo + " " + this.soquete.getNome();
 	}
 
 }

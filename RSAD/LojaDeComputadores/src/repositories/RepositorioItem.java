@@ -48,7 +48,7 @@ public class RepositorioItem {
 			state.setInt(1, id);
 			ResultSet result = state.executeQuery();
 			while (result.next()) {
-				hd = new HD(result.getInt("h.idHD"), result.getDouble("i.preco"), result.getString("h.fabricante"),
+				hd = new HD(result.getInt("h.idHD"), result.getInt("i.idItem"), result.getDouble("i.preco"), result.getString("h.fabricante"),
 						result.getString("h.modelo"), result.getString("h.capacidade"),
 						result.getString("h.tecnologia"));
 			}
@@ -69,7 +69,7 @@ public class RepositorioItem {
 			state.setInt(1, id);
 			ResultSet result = state.executeQuery();
 			while (result.next()) {
-				memoria = new Memoria(result.getInt("m.idMemoria"), result.getDouble("i.preco"),
+				memoria = new Memoria(result.getInt("m.idMemoria"), result.getInt("i.idItem"), result.getDouble("i.preco"),
 						result.getString("m.fabricante"), result.getString("m.mdelo"), result.getString("m.capacidade"),
 						new TipoMemoria(result.getInt("t.idTipoMemoria"), result.getString("t.nome")));
 			}
@@ -90,7 +90,7 @@ public class RepositorioItem {
 			state.setInt(1, id);
 			ResultSet result = state.executeQuery();
 			while (result.next()) {
-				processador = new Processador(result.getInt("p.idProcessador"), result.getDouble("i.preco"),
+				processador = new Processador(result.getInt("p.idProcessador"), result.getInt("i.idItem"), result.getDouble("i.preco"),
 						result.getString("p.fabricante"), result.getString("p.modelo"),
 						result.getString("p.frequencia"),
 						new Soquete(result.getInt("s.idSoquete"), result.getString("s.nome")));
@@ -113,7 +113,7 @@ public class RepositorioItem {
 			state.setInt(1, id);
 			ResultSet result = state.executeQuery();
 			while (result.next()) {
-				placa = new PlacaMae(result.getInt("p.idPlacaMae"), result.getDouble("i.preco"), tipos,
+				placa = new PlacaMae(result.getInt("p.idPlacaMae"), result.getInt("i.idItem"), result.getDouble("i.preco"), tipos,
 						result.getString("p.fabricante"), result.getString("p.modelo"),
 						result.getInt("p.numeroDePentes"),
 						new Soquete(result.getInt("s.idSoquete"), result.getString("s.nome")));
@@ -153,7 +153,7 @@ public class RepositorioItem {
 			String query = "SELECT * FROM Memoria m, TipoMemoria t, Item i WHERE t.idTipoMemoria = m.idTipoMemoria AND m.idMemoria = i.idMemoria";
 			ResultSet result = state.executeQuery(query);
 			while (result.next()) {
-				memorias.add(new Memoria(result.getInt("m.idMemoria"), result.getDouble("i.preco"),
+				memorias.add(new Memoria(result.getInt("m.idMemoria"), result.getInt("i.idItem"), result.getDouble("i.preco"),
 						result.getString("m.fabricante"), result.getString("m.mdelo"), result.getString("m.capacidade"),
 						new TipoMemoria(result.getInt("t.idTipoMemoria"), result.getString("t.nome"))));
 			}
@@ -173,7 +173,7 @@ public class RepositorioItem {
 			String query = "SELECT * FROM HD h, Item i WHERE h.idHD = i.idHD";
 			ResultSet result = state.executeQuery(query);
 			while (result.next()) {
-				hds.add(new HD(result.getInt("h.idHD"), result.getDouble("i.preco"), result.getString("h.fabricante"),
+				hds.add(new HD(result.getInt("h.idHD"), result.getInt("i.idItem"), result.getDouble("i.preco"), result.getString("h.fabricante"),
 						result.getString("h.modelo"), result.getString("h.capacidade"),
 						result.getString("h.tecnologia")));
 			}
@@ -195,7 +195,7 @@ public class RepositorioItem {
 			while (result.next()) {
 				Integer idPlaca = result.getInt("p.idPlacaMae");
 				List<TipoMemoria> tipos = getTiposMemoria(idPlaca);
-				placas.add(new PlacaMae(result.getInt("p.idPlacaMae"), result.getDouble("i.preco"), tipos,
+				placas.add(new PlacaMae(result.getInt("p.idPlacaMae"), result.getInt("i.idItem"), result.getDouble("i.preco"), tipos,
 						result.getString("p.fabricante"), result.getString("p.modelo"),
 						result.getInt("p.numeroDePentes"),
 						new Soquete(result.getInt("s.idSoquete"), result.getString("s.nome"))));
@@ -216,7 +216,7 @@ public class RepositorioItem {
 			String query = "SELECT * FROM Processador p, Item i, Soquete s WHERE i.idProcessador = p.idProcessador AND s.idSoquete = p.idSoquete";
 			ResultSet result = state.executeQuery(query);
 			while (result.next()) {
-				processadores.add(new Processador(result.getInt("p.idProcessador"), result.getDouble("i.preco"),
+				processadores.add(new Processador(result.getInt("p.idProcessador"), result.getInt("i.idItem"), result.getDouble("i.preco"),
 						result.getString("p.fabricante"), result.getString("p.modelo"),
 						result.getString("p.frequencia"),
 						new Soquete(result.getInt("s.idSoquete"), result.getString("s.nome"))));
@@ -238,7 +238,7 @@ public class RepositorioItem {
 			state.setInt(1, idPlaca);
 			ResultSet result = state.executeQuery();
 			while (result.next()) {
-				processadores.add(new Processador(result.getInt("p.idProcessador"), result.getDouble("i.preco"),
+				processadores.add(new Processador(result.getInt("p.idProcessador"), result.getInt("i.idItem"), result.getDouble("i.preco"),
 						result.getString("p.fabricante"), result.getString("p.modelo"),
 						result.getString("p.frequencia"),
 						new Soquete(result.getInt("s.idSoquete"), result.getString("s.nome"))));
@@ -261,7 +261,7 @@ public class RepositorioItem {
 			state.setInt(1, idPlaca);
 			ResultSet result = state.executeQuery();
 			while (result.next()) {
-				memorias.add(new Memoria(result.getInt("m.idMemoria"), result.getDouble("i.preco"),
+				memorias.add(new Memoria(result.getInt("m.idMemoria"), result.getInt("i.idItem"), result.getDouble("i.preco"),
 						result.getString("m.fabricante"), result.getString("m.mdelo"), result.getString("m.capacidade"),
 						new TipoMemoria(result.getInt("t.idTipoMemoria"), result.getString("t.nome"))));
 			}
@@ -326,7 +326,7 @@ public class RepositorioItem {
 			state.setDouble(1, pedido.getPrecoFinal());
 			state.setDouble(2, pedido.getDesconto());
 			state.setInt(3, pedido.getCliente().getId());
-			state.setInt(3, pedido.getUsuario().getId());
+			state.setInt(4, pedido.getUsuario().getId());
 			state.executeUpdate();
 			ResultSet rs = state.getGeneratedKeys();
 			if (rs.next()) {
