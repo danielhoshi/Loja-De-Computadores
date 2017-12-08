@@ -51,6 +51,7 @@ public class SalvarPedidoController extends HttpServlet {
 			}
 		}
 		request.getSession().removeAttribute("pedido");
+		request.setAttribute("msg", "Pedido salvo com sucesso!");
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/index.jsp");
 		requestDispatcher.forward(request, response);
 	}

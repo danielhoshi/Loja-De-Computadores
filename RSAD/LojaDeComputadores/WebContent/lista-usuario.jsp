@@ -46,9 +46,9 @@
 		</div>
 	</nav>
 	<div class="container">
-		<div class="row listHeader">
+		<div class="row listHeader" style="margin-left: 20px;">
 			<div class="col-sm-10">
-				<h1>Usuários</h1>
+				<h1 class="text-warning">Usuários</h1>
 			</div>
 			<div class="col-sm-2">
 				<a href="CadastroUsuarioController" class="btn btn-warning">

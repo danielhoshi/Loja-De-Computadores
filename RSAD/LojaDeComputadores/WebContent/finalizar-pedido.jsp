@@ -33,6 +33,7 @@ pageEncoding="ISO-8859-1"%>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<title>Finalizar Pedido</title>
 </head>
 
 <body>
@@ -60,9 +61,9 @@ pageEncoding="ISO-8859-1"%>
 		Pedido p = (Pedido) request.getSession().getAttribute("pedido");
 		DecimalFormat df = new DecimalFormat("#,##0.00");
 		%>
-		<div class="detalhesCompra">
+		<div class="detalhesCompra detalhes">
 			<div class="row" style="margin-bottom: 30px; margin-left: 30px">
-				<h1 class="text-info">Detalhes da Compra</h1>
+				<h1 class="text-warning">Detalhes da Compra</h1>
 			</div>
 			<div class="row">
 				<div class="col-sm-4 dadosFinalizar">
@@ -89,17 +90,23 @@ pageEncoding="ISO-8859-1"%>
 						</span>
 					</div>
 				</div>
-				<div class="col-sm-5 buttonsfinalizar">
-					<a href='SalvarPedidoController' id="finalizar" class="btn btn-success">Finalizar Compra</a>
-					<button id="cancelar" class="btn btn-danger">Cancelar</button>
-					<button id="voltar" class="btn btn-primary">Voltar</button>
+				<div class="buttonsfinalizar">
+					<div class="col-sm-5 ">
+						<a href="SalvarPedidoController" id="finalizar" class="btn btn-success">Finalizar Compra</a>
+					</div>
+					<div class="col-sm-5">
+						<a href="CancelarPedidoController"  id="cancelar" class="btn btn-danger">Cancelar</a>
+					</div>
+					<div class="col-sm-5">
+						<a href="pedido.jsp" id="voltar" class="btn btn-primary">Voltar</a>
+					</div>
 				</div>
 			</div>
 		</div>
 		<hr>
 		<div class="detalhesPedido">
 			<div class="row" style="margin-bottom: 30px; margin-left: 30px">
-				<h1 class="text-info">Detalhes do Pedido</h1>
+				<h1 class="text-warning">Detalhes do Pedido</h1>
 				<div id="itens">
 					<div id="listaComputadores">
 					<% 

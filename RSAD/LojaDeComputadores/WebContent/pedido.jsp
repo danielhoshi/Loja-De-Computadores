@@ -30,6 +30,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<title>Pedido</title>
 </head>
 
 <body>
@@ -123,7 +124,7 @@
 						</span>
 					</div>
 					<div class="row buttons">
-						<button id="cancelar" class="btn btn-danger">Cancelar</button>
+						<a href="CancelarPedidoController"  id="cancelar" class="btn btn-danger">Cancelar</a>
 						<button onclick="location.href='finalizar-pedido.jsp';" id="finalizar" class="btn btn-success">Finalizar</button>
 					</div>
 					<%if(p.getItemPedido().isEmpty()){%>

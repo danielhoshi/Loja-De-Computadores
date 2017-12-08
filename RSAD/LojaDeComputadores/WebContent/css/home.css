@@ -1,0 +1,12 @@
+.container img{
+	width: 40%;
+	margin: 40px 30% 100px;
+}
+
+.container .feedback{
+	margin-top: 40px;
+	line-height:30px;
+	font-size: 15px;
+	width: 100%;
+	text-align: center;
+}

@@ -50,7 +50,7 @@
 		</div>
 	</nav>
 	<div class="container">
-		<h1>Novo Usuário</h1>
+		<h1 class="text-warning" style="margin-left: 30px;">Novo Usuário</h1>
 		<form data-toggle="validator" role="form" action="CadastroUsuarioController" method="post">
 			<div class="row linhaForm">
   				<div class="form-group" style="margin-bottom: 0">
@@ -117,7 +117,7 @@
 	  				</select>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-warning btnForm" id="btnCadastrar">
+			<button type="submit" class="btn btn-warning btnForm"  style="margin: 10px 0 30px 30px;" id="btnCadastrar">
 				<span class="glyphicon glyphicon-ok-circle"></span> Salvar
 			</button>
 		</form>
