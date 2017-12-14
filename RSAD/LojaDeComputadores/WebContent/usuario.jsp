@@ -76,6 +76,7 @@
 				</div>
 				<div class="col-sm-3">
 					<input type="text" class="form-control cpf" name="cpf" value="<%= usuario.getCpf() %>" disabled id="CPF"/>
+					<p id="invalidUserCpf" class="font-weight-light text-danger text-center">CPF inválido</p>
 				</div>
 				<div class="col-sm-1 labelForm">
 					Cargo:
@@ -147,12 +148,23 @@
 	</div>
 	<script>
 		$(document).ready(function(){
+			$('#invalidUserCpf').hide();
     		$('#btnEditar').click(function(){
     			$("input").removeAttr('disabled');
     			$("select").removeAttr('disabled');
     			$("#btnSalvar").removeClass("escondido");
     			$("#btnEditar").addClass("escondido");
     		});
+    		
+    		$('.cpf').keyup(function() {
+			if (validarCPF($(this).val())) {
+				$('#btnSalvar').prop('disabled', false);
+				$('#invalidUserCpf').hide();
+			} else {
+				$('#btnSalvar').prop('disabled', true);
+				$('#invalidUserCpf').show();
+			}
+		});
    		});
 	</script>
 	<script src="js/modalCPF.js"></script>
