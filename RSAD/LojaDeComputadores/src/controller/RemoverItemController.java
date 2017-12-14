@@ -22,8 +22,9 @@ public class RemoverItemController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Integer idItem = Integer.parseInt(request.getParameter("idItem"));
+		Integer quantidade = Integer.parseInt(request.getParameter("quantidade"));
 		Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
-		pedido.removerItemPedido(idItem);
+		pedido.removerItemPedido(idItem, quantidade);
 		request.getSession().setAttribute("pedido", pedido);
 		
 		String view;

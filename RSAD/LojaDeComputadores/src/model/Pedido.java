@@ -29,10 +29,10 @@ public class Pedido {
 		this.precoFinal = calculaPreco();
 	}
 
-	public void removerItemPedido(Integer idItem) {
+	public void removerItemPedido(Integer idItem, Integer quantidade) {
 		int indexARemover = -1;
 		for (int i = 0; i < itemPedido.size(); i++) {
-			if (itemPedido.get(i).getItem().getIdItem() == idItem) {
+			if (itemPedido.get(i).getItem().getIdItem() == idItem && itemPedido.get(i).getQtd() == quantidade) {
 				indexARemover = i;
 			}
 		}

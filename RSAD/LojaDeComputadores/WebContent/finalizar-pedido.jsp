@@ -195,7 +195,7 @@ pageEncoding="ISO-8859-1"%>
 											x<%=ip.getQtd() %>
 										</div>
 										<div class="col-sm-1">
-											<a href="RemoverItemController?idItem=<%=ip.getItem().getIdItem() %>" class="btn btn-danger btn-sm">
+											<a href="RemoverItemController?idItem=<%=ip.getItem().getIdItem() %>&quantidade=<%=ip.getQtd() %>" class="btn btn-danger btn-sm">
 												<span class="glyphicon glyphicon-remove"></span>
 											</a>
 										</div>
@@ -248,7 +248,7 @@ pageEncoding="ISO-8859-1"%>
 											<%=ip.getQtd() %>
 										</div>
 										<div class="col-sm-1">
-											<a href="RemoverItemController?idItem=<%=ip.getItem().getIdItem() %>" class="btn btn-danger btn-sm">
+											<a href="RemoverItemController?idItem=<%=ip.getItem().getIdItem() %>&quantidade=<%=ip.getQtd() %>" class="btn btn-danger btn-sm">
 												<span class="glyphicon glyphicon-remove"></span>
 											</a>
 										</div>
@@ -301,7 +301,7 @@ pageEncoding="ISO-8859-1"%>
 											<%=ip.getQtd() %>
 										</div>
 										<div class="col-sm-1">
-											<a href="RemoverItemController?idItem=<%=ip.getItem().getIdItem() %>" class="btn btn-danger btn-sm">
+											<a href="RemoverItemController?idItem=<%=ip.getItem().getIdItem() %>&quantidade=<%=ip.getQtd() %>" class="btn btn-danger btn-sm">
 												<span class="glyphicon glyphicon-remove"></span>
 											</a>
 										</div>
@@ -354,7 +354,7 @@ pageEncoding="ISO-8859-1"%>
 											<%=ip.getQtd() %>
 										</div>
 										<div class="col-sm-1">
-											<a href="RemoverItemController?idItem=<%=ip.getItem().getIdItem() %>" class="btn btn-danger btn-sm">
+											<a href="RemoverItemController?idItem=<%=ip.getItem().getIdItem() %>&quantidade=<%=ip.getQtd() %>" class="btn btn-danger btn-sm">
 												<span class="glyphicon glyphicon-remove"></span>
 											</a>
 										</div>
