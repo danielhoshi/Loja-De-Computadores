@@ -1,4 +1,5 @@
 package model;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -24,6 +25,19 @@ public class Pedido {
 	public void adicionaItemPedido(ItemPedido... itens) {
 		for (ItemPedido ip : itens) {
 			itemPedido.add(ip);
+		}
+		this.precoFinal = calculaPreco();
+	}
+
+	public void removerItemPedido(Integer idItem) {
+		int indexARemover = 0;
+		for (int i = 0; i < itemPedido.size(); i++) {
+			if (itemPedido.get(i).getItem().getIdItem() == idItem) {
+				indexARemover = i;
+			}
+		}
+		if (indexARemover != 0) {
+			itemPedido.remove(indexARemover);
 			this.precoFinal = calculaPreco();
 		}
 	}
@@ -93,27 +107,28 @@ public class Pedido {
 			int contProcessador = 0, contHd = 0;
 			for (int cont = 0; cont < menorQtd; cont++) {
 				novoDesconto += listaPlacas.get(cont) * 0.05;
-				if(contProcessador >= processadores){
+				if (contProcessador >= processadores) {
 					novoDesconto += listaHd.get(contHd) * 0.05;
 					contHd++;
-				} else if(contHd >= hds){
+				} else if (contHd >= hds) {
 					novoDesconto += listaProcessador.get(contProcessador) * 0.05;
 					contProcessador++;
-				} else if (listaHd.get(contHd) < listaProcessador.get(contProcessador)){
+				} else if (listaHd.get(contHd) < listaProcessador.get(contProcessador)) {
 					novoDesconto += listaProcessador.get(contProcessador) * 0.05;
 					contProcessador++;
-				} else{
+				} else {
 					novoDesconto += listaHd.get(contHd) * 0.05;
 					contHd++;
 				}
 			}
 		}
 		this.desconto = novoDesconto;
-		precoTotal = precoTotalComputadores + precoTotalHds + precoTotalMemorias + precoTotalPlacas + precoTotalProcessadores;
+		precoTotal = precoTotalComputadores + precoTotalHds + precoTotalMemorias + precoTotalPlacas
+				+ precoTotalProcessadores;
 		return precoTotal - this.desconto;
 	}
-	
-	public List<ItemPedido> getItemLista(Class classe){
+
+	public List<ItemPedido> getItemLista(Class classe) {
 		List<ItemPedido> list = new ArrayList<ItemPedido>();
 		for (ItemPedido ip : this.itemPedido) {
 			if (classe.isInstance(ip.getItem())) {
@@ -122,10 +137,10 @@ public class Pedido {
 		}
 		return list;
 	}
-	
+
 	public Double getPrecoLista(List<ItemPedido> list) {
 		Double preco = 0.0;
-		for(ItemPedido ip : list) {
+		for (ItemPedido ip : list) {
 			preco += ip.getItem().getPreco() * ip.getQtd();
 		}
 		return preco;

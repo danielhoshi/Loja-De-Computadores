@@ -111,6 +111,7 @@ pageEncoding="ISO-8859-1"%>
 					<div id="listaComputadores">
 					<% 
 						List<ItemPedido> listaComputadores = p.getItemLista(Computador.class);
+						if(listaComputadores != null && !listaComputadores.isEmpty()){
 					%>
 						
 						<div class="tipo_item row">
@@ -153,10 +154,12 @@ pageEncoding="ISO-8859-1"%>
 								%>
 							</ul>
 						</div>
+					<%} %>
 					</div>
 					<div id="listaProcessadores">
 					<% 
 						List<ItemPedido> listaProcessadores = p.getItemLista(Processador.class);
+						if(listaProcessadores != null && !listaProcessadores.isEmpty()){
 					%>
 						
 						<div class="tipo_item row">
@@ -181,7 +184,7 @@ pageEncoding="ISO-8859-1"%>
 										<div class="col-sm-1">
 											<img src="img/processador.jpg" class="img-circle border" alt="Processadores" width="50" height="50">
 										</div>
-										<div class="col-sm-8">
+										<div class="col-sm-7">
 											<%=ip.getItem().getNome() %>
 										</div>
 										<div class="col-sm-2 right">
@@ -191,6 +194,11 @@ pageEncoding="ISO-8859-1"%>
 										<div class="col-sm-1">
 											x<%=ip.getQtd() %>
 										</div>
+										<div class="col-sm-1">
+											<a href="RemoverItemController?idItem=<%=ip.getItem().getIdItem() %>" class="btn btn-danger btn-sm">
+												<span class="glyphicon glyphicon-remove"></span>
+											</a>
+										</div>
 									</div>
 								</li>
 								<%
@@ -198,10 +206,12 @@ pageEncoding="ISO-8859-1"%>
 								%>
 							</ul>
 						</div>
+					<%} %>
 					</div>
 					<div id="listaPlacas">
 					<% 
 						List<ItemPedido> listaPlacas = p.getItemLista(PlacaMae.class);
+						if(listaPlacas != null && !listaPlacas.isEmpty()){
 					%>
 						
 						<div class="tipo_item row">
@@ -226,7 +236,7 @@ pageEncoding="ISO-8859-1"%>
 										<div class="col-sm-1">
 											<img src="img/placamae.jpg" class="img-circle border" alt="Placas-mae" width="50" height="50">
 										</div>
-										<div class="col-sm-8">
+										<div class="col-sm-7">
 											<%=ip.getItem().getNome() %>
 										</div>
 										<div class="col-sm-2 right">
@@ -237,6 +247,11 @@ pageEncoding="ISO-8859-1"%>
 											x
 											<%=ip.getQtd() %>
 										</div>
+										<div class="col-sm-1">
+											<a href="RemoverItemController?idItem=<%=ip.getItem().getIdItem() %>" class="btn btn-danger btn-sm">
+												<span class="glyphicon glyphicon-remove"></span>
+											</a>
+										</div>
 									</div>
 								</li>
 								<%
@@ -244,10 +259,12 @@ pageEncoding="ISO-8859-1"%>
 								%>
 							</ul>
 						</div>
+					<%} %>
 					</div>
 					<div id="listaHd">
 					<% 
 						List<ItemPedido> listaHd = p.getItemLista(HD.class);
+						if(listaHd != null && !listaHd.isEmpty()){
 					%>
 						
 						<div class="tipo_item row">
@@ -272,7 +289,7 @@ pageEncoding="ISO-8859-1"%>
 										<div class="col-sm-1">
 											<img src="img/hd.jpg" class="img-circle border" alt="HDs" width="50" height="50">
 										</div>
-										<div class="col-sm-8">
+										<div class="col-sm-7">
 											<%=ip.getItem().getNome() %>
 										</div>
 										<div class="col-sm-2 right">
@@ -283,6 +300,11 @@ pageEncoding="ISO-8859-1"%>
 											x
 											<%=ip.getQtd() %>
 										</div>
+										<div class="col-sm-1">
+											<a href="RemoverItemController?idItem=<%=ip.getItem().getIdItem() %>" class="btn btn-danger btn-sm">
+												<span class="glyphicon glyphicon-remove"></span>
+											</a>
+										</div>
 									</div>
 								</li>
 								<%
@@ -290,10 +312,12 @@ pageEncoding="ISO-8859-1"%>
 								%>
 							</ul>
 						</div>
+					<%} %>
 					</div>
 					<div id="Memorias">
 					<% 
 						List<ItemPedido> listaMemorias = p.getItemLista(Memoria.class);
+						if(listaMemorias != null && !listaMemorias.isEmpty()){
 					%>
 						
 						<div class="tipo_item row">
@@ -318,7 +342,7 @@ pageEncoding="ISO-8859-1"%>
 										<div class="col-sm-1">
 											<img src="img/memoria.jpg" class="img-circle border" alt="Memorias" width="50" height="50">
 										</div>
-										<div class="col-sm-8">
+										<div class="col-sm-7">
 											<%=ip.getItem().getNome() %>
 										</div>
 										<div class="col-sm-2 right">
@@ -329,6 +353,11 @@ pageEncoding="ISO-8859-1"%>
 											x
 											<%=ip.getQtd() %>
 										</div>
+										<div class="col-sm-1">
+											<a href="RemoverItemController?idItem=<%=ip.getItem().getIdItem() %>" class="btn btn-danger btn-sm">
+												<span class="glyphicon glyphicon-remove"></span>
+											</a>
+										</div>
 									</div>
 								</li>
 								<%
@@ -336,6 +365,7 @@ pageEncoding="ISO-8859-1"%>
 								%>
 							</ul>
 						</div>
+					<%} %>
 					</div>
 				</div>
 			</div>
