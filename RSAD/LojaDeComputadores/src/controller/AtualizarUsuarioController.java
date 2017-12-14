@@ -28,7 +28,6 @@ public class AtualizarUsuarioController extends HttpServlet {
 	 */
 	public AtualizarUsuarioController() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

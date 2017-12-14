@@ -71,10 +71,10 @@ public class Computador extends Item {
 	@Override
 	public String getNome() {
 		String nome = "Computador com " + this.processador.getNome() + ", ";
-		for(HD hd : this.hds) {
+		for (HD hd : this.hds) {
 			nome += hd.getNome() + ", ";
 		}
-		for(Memoria mem : this.memorias) {
+		for (Memoria mem : this.memorias) {
 			nome += mem.getNome() + ", ";
 		}
 		nome += this.placa.getNome();

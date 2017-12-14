@@ -30,7 +30,6 @@ public class CadastroUsuarioController extends HttpServlet {
 	 */
 	public CadastroUsuarioController() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

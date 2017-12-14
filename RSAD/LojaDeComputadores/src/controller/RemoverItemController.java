@@ -26,7 +26,7 @@ public class RemoverItemController extends HttpServlet {
 		Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
 		pedido.removerItemPedido(idItem, quantidade);
 		request.getSession().setAttribute("pedido", pedido);
-		
+
 		String view;
 		if (pedido.getItemPedido().isEmpty()) {
 			view = "/pedido.jsp";
@@ -41,6 +41,7 @@ public class RemoverItemController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		doGet(request, response);
 	}
 
 }

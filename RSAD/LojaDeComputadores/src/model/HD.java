@@ -1,12 +1,13 @@
 package model;
 
 public class HD extends Componente {
-	
+
 	private Integer id;
 	private String capacidade;
 	private String tecnologia;
 
-	public HD(Integer id, Integer idItem, Double preco, String fabricante, String modelo, String capacidade, String tecnologia) {
+	public HD(Integer id, Integer idItem, Double preco, String fabricante, String modelo, String capacidade,
+			String tecnologia) {
 		super();
 		this.id = id;
 		this.idItem = idItem;

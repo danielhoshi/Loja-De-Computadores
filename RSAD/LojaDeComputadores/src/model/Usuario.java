@@ -1,14 +1,14 @@
 package model;
 
 public abstract class Usuario {
-	
+
 	private Integer id;
 	private String login;
 	private String senha;
 	private String nome;
 	private String cpf;
 	private Cargo cargo;
-	
+
 	protected Usuario(Integer id, String login, String senha, String nome, String cpf, Cargo cargo) {
 		super();
 		this.id = id;
@@ -18,7 +18,7 @@ public abstract class Usuario {
 		this.cpf = cpf;
 		this.cargo = cargo;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -38,7 +38,7 @@ public abstract class Usuario {
 	public String getCpf() {
 		return cpf;
 	}
-	
+
 	public Cargo getCargo() {
 		return cargo;
 	}

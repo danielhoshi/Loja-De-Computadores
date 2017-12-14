@@ -1,7 +1,7 @@
 package model;
 
 public class ItemPedido {
-	
+
 	private Integer id;
 	private Item item;
 	private Integer qtd;
@@ -15,7 +15,7 @@ public class ItemPedido {
 	public Integer getId() {
 		return id;
 	}
-	
+
 	public Item getItem() {
 		return item;
 	}

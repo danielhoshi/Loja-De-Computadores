@@ -1,7 +1,7 @@
 package model;
 
 public class Memoria extends Componente {
-	
+
 	private Integer id;
 	private String capacidade;
 	private TipoMemoria tipoMemoria;
@@ -32,6 +32,7 @@ public class Memoria extends Componente {
 
 	@Override
 	public String getNome() {
-		return "Pente de memória " + this.fabricante + " " + this.modelo + " " + this.capacidade + " " + this.tipoMemoria.getNome();
+		return "Pente de memória " + this.fabricante + " " + this.modelo + " " + this.capacidade + " "
+				+ this.tipoMemoria.getNome();
 	}
 }

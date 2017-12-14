@@ -28,7 +28,6 @@ public class SalvarPedidoController extends HttpServlet {
 	 */
 	public SalvarPedidoController() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

@@ -21,7 +21,6 @@ public class CancelarPedidoController extends HttpServlet {
 	 */
 	public CancelarPedidoController() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

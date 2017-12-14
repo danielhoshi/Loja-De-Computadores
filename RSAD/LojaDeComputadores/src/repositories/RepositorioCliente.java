@@ -45,13 +45,13 @@ public class RepositorioCliente {
 		} finally {
 			fecharConexao();
 		}
-		if(cliente == null) {
+		if (cliente == null) {
 			Integer novoId = inserirCliente(cpf);
 			cliente = new Cliente(novoId, cpf);
 		}
 		return cliente;
 	}
-	
+
 	public Integer inserirCliente(String cpf) {
 		conn = ConexaoMySQL.getConexaoMySQL();
 		Integer novoId = null;

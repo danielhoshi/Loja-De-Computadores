@@ -25,7 +25,6 @@ public class ComputadorHDController extends HttpServlet {
 
 	public ComputadorHDController() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -51,7 +50,8 @@ public class ComputadorHDController extends HttpServlet {
 					"/computador-lista-hd.jsp?idPlaca=" + idPlaca + "&idProcessador=" + idProcessador);
 			requestDispatcher.forward(request, response);
 		} else {
-			Computador computador = new Computador(null, null, rep.getPlaca(idPlaca), rep.getProcessador(idProcessador));
+			Computador computador = new Computador(null, null, rep.getPlaca(idPlaca),
+					rep.getProcessador(idProcessador));
 			ArrayList<ComponenteQuantidade> memoriasComputador = (ArrayList<ComponenteQuantidade>) request.getSession()
 					.getAttribute("memoriasComputador");
 			for (ComponenteQuantidade memoriaQtd : memoriasComputador) {
@@ -78,7 +78,6 @@ public class ComputadorHDController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

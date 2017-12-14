@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class TipoMemoria {
 	private Integer id;
-	
+
 	private String nome;
 
 	private Set<Memoria> memoria;

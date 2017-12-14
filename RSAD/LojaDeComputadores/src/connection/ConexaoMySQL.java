@@ -21,11 +21,6 @@ public class ConexaoMySQL {
 
 			connection = DriverManager.getConnection("jdbc:mysql://143.107.102.5:3306/t1g2?autoReconnect=true&useSSL=false", username, password);
 			
-//			String username = "root";
-//			String password = "admin";
-//
-//			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/t1g2?autoReconnect=true&useSSL=false", username, password);
-
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

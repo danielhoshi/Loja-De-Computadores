@@ -11,9 +11,7 @@ import java.util.List;
 import connection.ConexaoMySQL;
 import model.Computador;
 import model.HD;
-import model.ItemPedido;
 import model.Memoria;
-import model.Pedido;
 import model.PlacaMae;
 import model.Processador;
 import model.Soquete;
@@ -48,9 +46,9 @@ public class RepositorioItem {
 			state.setInt(1, id);
 			ResultSet result = state.executeQuery();
 			while (result.next()) {
-				hd = new HD(result.getInt("h.idHD"), result.getInt("i.idItem"), result.getDouble("i.preco"), result.getString("h.fabricante"),
-						result.getString("h.modelo"), result.getString("h.capacidade"),
-						result.getString("h.tecnologia"));
+				hd = new HD(result.getInt("h.idHD"), result.getInt("i.idItem"), result.getDouble("i.preco"),
+						result.getString("h.fabricante"), result.getString("h.modelo"),
+						result.getString("h.capacidade"), result.getString("h.tecnologia"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -69,8 +67,9 @@ public class RepositorioItem {
 			state.setInt(1, id);
 			ResultSet result = state.executeQuery();
 			while (result.next()) {
-				memoria = new Memoria(result.getInt("m.idMemoria"), result.getInt("i.idItem"), result.getDouble("i.preco"),
-						result.getString("m.fabricante"), result.getString("m.mdelo"), result.getString("m.capacidade"),
+				memoria = new Memoria(result.getInt("m.idMemoria"), result.getInt("i.idItem"),
+						result.getDouble("i.preco"), result.getString("m.fabricante"), result.getString("m.mdelo"),
+						result.getString("m.capacidade"),
 						new TipoMemoria(result.getInt("t.idTipoMemoria"), result.getString("t.nome")));
 			}
 		} catch (SQLException e) {
@@ -90,8 +89,8 @@ public class RepositorioItem {
 			state.setInt(1, id);
 			ResultSet result = state.executeQuery();
 			while (result.next()) {
-				processador = new Processador(result.getInt("p.idProcessador"), result.getInt("i.idItem"), result.getDouble("i.preco"),
-						result.getString("p.fabricante"), result.getString("p.modelo"),
+				processador = new Processador(result.getInt("p.idProcessador"), result.getInt("i.idItem"),
+						result.getDouble("i.preco"), result.getString("p.fabricante"), result.getString("p.modelo"),
 						result.getString("p.frequencia"),
 						new Soquete(result.getInt("s.idSoquete"), result.getString("s.nome")));
 			}
@@ -113,9 +112,9 @@ public class RepositorioItem {
 			state.setInt(1, id);
 			ResultSet result = state.executeQuery();
 			while (result.next()) {
-				placa = new PlacaMae(result.getInt("p.idPlacaMae"), result.getInt("i.idItem"), result.getDouble("i.preco"), tipos,
-						result.getString("p.fabricante"), result.getString("p.modelo"),
-						result.getInt("p.numeroDePentes"),
+				placa = new PlacaMae(result.getInt("p.idPlacaMae"), result.getInt("i.idItem"),
+						result.getDouble("i.preco"), tipos, result.getString("p.fabricante"),
+						result.getString("p.modelo"), result.getInt("p.numeroDePentes"),
 						new Soquete(result.getInt("s.idSoquete"), result.getString("s.nome")));
 			}
 		} catch (SQLException e) {
@@ -153,8 +152,9 @@ public class RepositorioItem {
 			String query = "SELECT * FROM Memoria m, TipoMemoria t, Item i WHERE t.idTipoMemoria = m.idTipoMemoria AND m.idMemoria = i.idMemoria";
 			ResultSet result = state.executeQuery(query);
 			while (result.next()) {
-				memorias.add(new Memoria(result.getInt("m.idMemoria"), result.getInt("i.idItem"), result.getDouble("i.preco"),
-						result.getString("m.fabricante"), result.getString("m.mdelo"), result.getString("m.capacidade"),
+				memorias.add(new Memoria(result.getInt("m.idMemoria"), result.getInt("i.idItem"),
+						result.getDouble("i.preco"), result.getString("m.fabricante"), result.getString("m.mdelo"),
+						result.getString("m.capacidade"),
 						new TipoMemoria(result.getInt("t.idTipoMemoria"), result.getString("t.nome"))));
 			}
 		} catch (SQLException e) {
@@ -173,9 +173,9 @@ public class RepositorioItem {
 			String query = "SELECT * FROM HD h, Item i WHERE h.idHD = i.idHD";
 			ResultSet result = state.executeQuery(query);
 			while (result.next()) {
-				hds.add(new HD(result.getInt("h.idHD"), result.getInt("i.idItem"), result.getDouble("i.preco"), result.getString("h.fabricante"),
-						result.getString("h.modelo"), result.getString("h.capacidade"),
-						result.getString("h.tecnologia")));
+				hds.add(new HD(result.getInt("h.idHD"), result.getInt("i.idItem"), result.getDouble("i.preco"),
+						result.getString("h.fabricante"), result.getString("h.modelo"),
+						result.getString("h.capacidade"), result.getString("h.tecnologia")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -195,9 +195,9 @@ public class RepositorioItem {
 			while (result.next()) {
 				Integer idPlaca = result.getInt("p.idPlacaMae");
 				List<TipoMemoria> tipos = getTiposMemoria(idPlaca);
-				placas.add(new PlacaMae(result.getInt("p.idPlacaMae"), result.getInt("i.idItem"), result.getDouble("i.preco"), tipos,
-						result.getString("p.fabricante"), result.getString("p.modelo"),
-						result.getInt("p.numeroDePentes"),
+				placas.add(new PlacaMae(result.getInt("p.idPlacaMae"), result.getInt("i.idItem"),
+						result.getDouble("i.preco"), tipos, result.getString("p.fabricante"),
+						result.getString("p.modelo"), result.getInt("p.numeroDePentes"),
 						new Soquete(result.getInt("s.idSoquete"), result.getString("s.nome"))));
 			}
 		} catch (SQLException e) {
@@ -216,8 +216,8 @@ public class RepositorioItem {
 			String query = "SELECT * FROM Processador p, Item i, Soquete s WHERE i.idProcessador = p.idProcessador AND s.idSoquete = p.idSoquete";
 			ResultSet result = state.executeQuery(query);
 			while (result.next()) {
-				processadores.add(new Processador(result.getInt("p.idProcessador"), result.getInt("i.idItem"), result.getDouble("i.preco"),
-						result.getString("p.fabricante"), result.getString("p.modelo"),
+				processadores.add(new Processador(result.getInt("p.idProcessador"), result.getInt("i.idItem"),
+						result.getDouble("i.preco"), result.getString("p.fabricante"), result.getString("p.modelo"),
 						result.getString("p.frequencia"),
 						new Soquete(result.getInt("s.idSoquete"), result.getString("s.nome"))));
 			}
@@ -238,8 +238,8 @@ public class RepositorioItem {
 			state.setInt(1, idPlaca);
 			ResultSet result = state.executeQuery();
 			while (result.next()) {
-				processadores.add(new Processador(result.getInt("p.idProcessador"), result.getInt("i.idItem"), result.getDouble("i.preco"),
-						result.getString("p.fabricante"), result.getString("p.modelo"),
+				processadores.add(new Processador(result.getInt("p.idProcessador"), result.getInt("i.idItem"),
+						result.getDouble("i.preco"), result.getString("p.fabricante"), result.getString("p.modelo"),
 						result.getString("p.frequencia"),
 						new Soquete(result.getInt("s.idSoquete"), result.getString("s.nome"))));
 			}
@@ -261,8 +261,9 @@ public class RepositorioItem {
 			state.setInt(1, idPlaca);
 			ResultSet result = state.executeQuery();
 			while (result.next()) {
-				memorias.add(new Memoria(result.getInt("m.idMemoria"), result.getInt("i.idItem"), result.getDouble("i.preco"),
-						result.getString("m.fabricante"), result.getString("m.mdelo"), result.getString("m.capacidade"),
+				memorias.add(new Memoria(result.getInt("m.idMemoria"), result.getInt("i.idItem"),
+						result.getDouble("i.preco"), result.getString("m.fabricante"), result.getString("m.mdelo"),
+						result.getString("m.capacidade"),
 						new TipoMemoria(result.getInt("t.idTipoMemoria"), result.getString("t.nome"))));
 			}
 		} catch (SQLException e) {

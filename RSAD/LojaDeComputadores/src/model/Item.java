@@ -34,6 +34,6 @@ public abstract class Item {
 		DecimalFormat df = new DecimalFormat("#,##0.00");
 		return df.format(preco);
 	}
-	
+
 	public abstract String getNome();
 }

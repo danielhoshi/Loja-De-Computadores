@@ -1,4 +1,5 @@
 package unit_test;
+
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
@@ -8,7 +9,7 @@ import model.TipoMemoria;
 public class ItemTest {
 
 	@Test
-	public void getPrecoFormatTest(){
+	public void getPrecoFormatTest() {
 		Double preco = 1352.342;
 		String fabricante = "Kingston";
 		String modelo = "Fury 2133MHz";
@@ -16,9 +17,9 @@ public class ItemTest {
 		Memoria mem = new Memoria(null, null, preco, fabricante, modelo, capacidade, null);
 		assertEquals("1.352,34", mem.getPrecoFormat());
 	}
-	
+
 	@Test
-	public void getNomeMemoriaTest(){
+	public void getNomeMemoriaTest() {
 		Double preco = 1352.342;
 		String fabricante = "Kingston";
 		String modelo = "Fury 2133MHz";
