@@ -102,6 +102,11 @@
 					<br>
 				</div>
 				<div class="dados">
+					<%if(p.getItemPedido().isEmpty()){%>
+					<span class="qtd">Nenhum item selecionado</span>
+					<%
+					} else{
+					%>
 					<div class="row">
 						<span class="precoTxt">Preço Total:</span>
 						<span class="precoTotal">
@@ -127,12 +132,7 @@
 						<a href="CancelarPedidoController"  id="cancelar" class="btn btn-danger">Cancelar</a>
 						<button onclick="location.href='finalizar-pedido.jsp';" id="finalizar" class="btn btn-success">Finalizar</button>
 					</div>
-					<%if(p.getItemPedido().isEmpty()){%>
-					<span class="qtd">Nenhum item selecionado</span>
-					<%
-					} else{
-						int size = p.getItemPedido().size();
-					%>
+					<%int size = p.getItemPedido().size(); %>
 					<span class="qtd"><%=size > 1 ? size +" itens selecionados" : "1 item selecionado"%></span>
 					<%} %>
 					<div class="itens">
