@@ -19,6 +19,8 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/home.css">
+<title>Loja Virtual</title>
 </head>
 
 <body>
@@ -42,7 +44,12 @@
 		</div>
 	</nav>
 	<div class="container">
-		<div class="row" style="height: 700px"></div>
+		<div class="row">
+		<div class="feedback">
+			<p class="bg-warning"><%=request.getAttribute("msg") == null ? "" : (String) request.getAttribute("msg")%></p>
+		</div>
+		<img src="img/home.png"/>
+		</div>
 	</div>
 	<div id="modalCPF" class="modal">
 		<!-- Modal content -->

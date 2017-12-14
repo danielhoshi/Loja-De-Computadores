@@ -6,6 +6,7 @@
 <%@page import="model.Pedido"%>
 <%@page import="model.Cliente"%>
 <%@page import="model.Usuario"%>
+<%@page import="java.text.DecimalFormat" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
@@ -29,6 +30,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<title>Pedido</title>
 </head>
 
 <body>
@@ -90,6 +92,7 @@
 					Pedido p = (Pedido) request.getSession().getAttribute("pedido");
 					Usuario u = (Usuario) request.getSession().getAttribute("usuario");
 					Cliente c = p.getCliente();
+					DecimalFormat df = new DecimalFormat("#,##0.00");
 				 %>
 				<div class="info">
 					<img src="img/fotinho.jpg" class="fotoVendedor img-circle img-thumbnail"/>
@@ -103,25 +106,25 @@
 						<span class="precoTxt">Preço Total:</span>
 						<span class="precoTotal">
 							R$ 
-							<span id="preco"><%=p.getPrecoTotalFormat()%></span>
+							<span id="preco"><%=df.format(p.getPrecoFinal() + p.getDesconto())%></span>
 						</span>
 					</div>
 					<div class="row">
 						<span class="precoTxt text-danger">Desconto:</span>
 						<span class="precoTotal text-danger">
 							-R$ 
-							<span id="preco"><%=p.getDescontoFormat()%></span>
+							<span id="preco"><%=df.format(p.getDesconto())%></span>
 						</span>
 					</div>
 					<div class="row">
 						<span class="precoTxtFinal">Preço Final:</span>
 						<span class="precoTotalFinal">
 							R$ 
-							<span id="preco"><%=p.getPrecoFinalFormat()%></span>
+							<span id="preco"><%=df.format(p.getPrecoFinal())%></span>
 						</span>
 					</div>
 					<div class="row buttons">
-						<button id="cancelar" class="btn btn-danger">Cancelar</button>
+						<a href="CancelarPedidoController"  id="cancelar" class="btn btn-danger">Cancelar</a>
 						<button onclick="location.href='finalizar-pedido.jsp';" id="finalizar" class="btn btn-success">Finalizar</button>
 					</div>
 					<%if(p.getItemPedido().isEmpty()){%>

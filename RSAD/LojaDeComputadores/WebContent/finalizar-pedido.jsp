@@ -1,9 +1,15 @@
 <%@page import="model.Componente"%>
 <%@page import="model.Memoria"%>
 <%@page import="model.Processador"%>
+<%@page import="model.Computador"%>
+<%@page import="model.PlacaMae"%>
+<%@page import="model.HD"%>
 <%@page import="model.Item"%>
 <%@page import="model.ItemPedido"%>
 <%@page import="model.Pedido"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="java.text.DecimalFormat" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%>
 
@@ -27,6 +33,7 @@ pageEncoding="ISO-8859-1"%>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<title>Finalizar Pedido</title>
 </head>
 
 <body>
@@ -50,40 +57,289 @@ pageEncoding="ISO-8859-1"%>
 		</div>
 	</nav>
 	<div class="container">
-			<% 
-			Pedido p = (Pedido) request.getSession().getAttribute("pedido");
-			%>
-			<div class="dadosFinalizar">
-			<div class="col-sm-3">
-				<div class="row">
-					<span class="precoTxt">Preço Total:</span>
-					<span class="precoTotal">
-						R$ 
-						<span id="preco"><%=p.getPrecoTotalFormat()%></span>
-					</span>
+		<% 
+		Pedido p = (Pedido) request.getSession().getAttribute("pedido");
+		DecimalFormat df = new DecimalFormat("#,##0.00");
+		%>
+		<div class="detalhesCompra detalhes">
+			<div class="row" style="margin-bottom: 30px; margin-left: 30px">
+				<h1 class="text-warning">Detalhes da Compra</h1>
+			</div>
+			<div class="row">
+				<div class="col-sm-4 dadosFinalizar">
+					<div class="row">
+						<span class="precoTxt">Preço Total:</span>
+						<span class="precoTotal">
+							R$ 
+							<span id="preco"><%=df.format(p.getPrecoFinal() + p.getDesconto())%></span>
+						</span>
+					</div>
+					<div class="row">
+						<span class="precoTxt text-danger">Desconto:</span>
+						<span class="precoTotal text-danger">
+							-R$ 
+							<span id="preco"><%=df.format(p.getDesconto())%></span>
+						</span>
+					</div>
+					<hr style="margin: 7px 0 7px">
+					<div class="row">
+						<span class="precoTxtFinal">Preço Final:</span>
+						<span class="precoTotalFinal">
+							R$ 
+							<span id="preco"><%=df.format(p.getPrecoFinal())%></span>
+						</span>
+					</div>
 				</div>
-				<div class="row">
-					<span class="precoTxt text-danger">Desconto:</span>
-					<span class="precoTotal text-danger">
-						-R$ 
-						<span id="preco"><%=p.getDescontoFormat()%></span>
-					</span>
-				</div>
-				<div class="row">
-					<span class="precoTxtFinal">Preço Final:</span>
-					<span class="precoTotalFinal">
-						R$ 
-						<span id="preco"><%=p.getPrecoFinalFormat()%></span>
-					</span>
+				<div class="buttonsfinalizar">
+					<div class="col-sm-5 ">
+						<a href="SalvarPedidoController" id="finalizar" class="btn btn-success">Finalizar Compra</a>
+					</div>
+					<div class="col-sm-5">
+						<a href="CancelarPedidoController"  id="cancelar" class="btn btn-danger">Cancelar</a>
+					</div>
+					<div class="col-sm-5">
+						<a href="pedido.jsp" id="voltar" class="btn btn-primary">Voltar</a>
+					</div>
 				</div>
 			</div>
-			<div class="col-sm-5 buttonsfinalizar">
-				<button id="finalizar" class="btn btn-success">Finalizar Compra</button>
-				<button id="cancelar" class="btn btn-danger">Cancelar</button>
-				<button id="voltar" class="btn btn-primary">Voltar</button>
+		</div>
+		<hr>
+		<div class="detalhesPedido">
+			<div class="row" style="margin-bottom: 30px; margin-left: 30px">
+				<h1 class="text-warning">Detalhes do Pedido</h1>
+				<div id="itens">
+					<div id="listaComputadores">
+					<% 
+						List<ItemPedido> listaComputadores = p.getItemLista(Computador.class);
+					%>
+						
+						<div class="tipo_item row">
+							<div class="col-sm-9">
+								Computadores
+							</div>
+							<div class="col-sm-2 right">
+								R$ 
+								<%=df.format(p.getPrecoLista(listaComputadores))%>
+							</div>
+							<a data-toggle="collapse" data-target="#computadores" class="col-sm-1"> 
+								<span class="glyphicon glyphicon-chevron-down"></span>
+							</a>
+						</div>
+						<div class="collapse" id="computadores">
+							<ul>
+								<%
+									for(ItemPedido ip : listaComputadores){
+								%>
+								<li>
+									<div class="row">
+										<div class="col-sm-1">
+											<img src="img/computador.jpg" class="img-circle border" alt="Computadores" width="50" height="50">
+										</div>
+										<div class="col-sm-8">
+											<%=ip.getItem().getNome() %>
+										</div>
+										<div class="col-sm-2 right">
+											R$
+											<%=df.format(ip.getItem().getPreco())%>
+										</div>
+										<div class="col-sm-1">
+											x
+											<%=ip.getQtd() %>
+										</div>
+									</div>
+								</li>
+								<%
+									}
+								%>
+							</ul>
+						</div>
+					</div>
+					<div id="listaProcessadores">
+					<% 
+						List<ItemPedido> listaProcessadores = p.getItemLista(Processador.class);
+					%>
+						
+						<div class="tipo_item row">
+							<div class="col-sm-9">
+								Processadores
+							</div>
+							<div class="col-sm-2 right">
+								R$ 
+								<%=df.format(p.getPrecoLista(listaProcessadores))%>
+							</div>
+							<a data-toggle="collapse" data-target="#processadores" class="col-sm-1"> 
+								<span class="glyphicon glyphicon-chevron-down"></span>
+							</a>
+						</div>
+						<div class="collapse" id="processadores">
+							<ul>
+								<%
+									for(ItemPedido ip : listaProcessadores){
+								%>
+								<li>
+									<div class="row">
+										<div class="col-sm-1">
+											<img src="img/processador.jpg" class="img-circle border" alt="Processadores" width="50" height="50">
+										</div>
+										<div class="col-sm-8">
+											<%=ip.getItem().getNome() %>
+										</div>
+										<div class="col-sm-2 right">
+											R$
+											<%=df.format(ip.getItem().getPreco())%>
+										</div>
+										<div class="col-sm-1">
+											x<%=ip.getQtd() %>
+										</div>
+									</div>
+								</li>
+								<%
+									}
+								%>
+							</ul>
+						</div>
+					</div>
+					<div id="listaPlacas">
+					<% 
+						List<ItemPedido> listaPlacas = p.getItemLista(PlacaMae.class);
+					%>
+						
+						<div class="tipo_item row">
+							<div class="col-sm-9">
+								Placas-Mãe
+							</div>
+							<div class="col-sm-2 right">
+								R$ 
+								<%=df.format(p.getPrecoLista(listaPlacas))%>
+							</div>
+							<a data-toggle="collapse" data-target="#placasmae" class="col-sm-1"> 
+								<span class="glyphicon glyphicon-chevron-down"></span>
+							</a>
+						</div>
+						<div class="collapse" id="placasmae">
+							<ul>
+								<%
+									for(ItemPedido ip : listaPlacas){
+								%>
+								<li>
+									<div class="row">
+										<div class="col-sm-1">
+											<img src="img/placamae.jpg" class="img-circle border" alt="Placas-mae" width="50" height="50">
+										</div>
+										<div class="col-sm-8">
+											<%=ip.getItem().getNome() %>
+										</div>
+										<div class="col-sm-2 right">
+											R$
+											<%=df.format(ip.getItem().getPreco())%>
+										</div>
+										<div class="col-sm-1">
+											x
+											<%=ip.getQtd() %>
+										</div>
+									</div>
+								</li>
+								<%
+									}
+								%>
+							</ul>
+						</div>
+					</div>
+					<div id="listaHd">
+					<% 
+						List<ItemPedido> listaHd = p.getItemLista(HD.class);
+					%>
+						
+						<div class="tipo_item row">
+							<div class="col-sm-9">
+								HDs
+							</div>
+							<div class="col-sm-2 right">
+								R$ 
+								<%=df.format(p.getPrecoLista(listaHd))%>
+							</div>
+							<a data-toggle="collapse" data-target="#hds" class="col-sm-1"> 
+								<span class="glyphicon glyphicon-chevron-down"></span>
+							</a>
+						</div>
+						<div class="collapse" id="hds">
+							<ul>
+								<%
+									for(ItemPedido ip : listaHd){
+								%>
+								<li>
+									<div class="row">
+										<div class="col-sm-1">
+											<img src="img/hd.jpg" class="img-circle border" alt="HDs" width="50" height="50">
+										</div>
+										<div class="col-sm-8">
+											<%=ip.getItem().getNome() %>
+										</div>
+										<div class="col-sm-2 right">
+											R$
+											<%=df.format(ip.getItem().getPreco())%>
+										</div>
+										<div class="col-sm-1">
+											x
+											<%=ip.getQtd() %>
+										</div>
+									</div>
+								</li>
+								<%
+									}
+								%>
+							</ul>
+						</div>
+					</div>
+					<div id="Memorias">
+					<% 
+						List<ItemPedido> listaMemorias = p.getItemLista(Memoria.class);
+					%>
+						
+						<div class="tipo_item row">
+							<div class="col-sm-9">
+								Pentes de memória
+							</div>
+							<div class="col-sm-2 right">
+								R$ 
+								<%=df.format(p.getPrecoLista(listaMemorias))%>
+							</div>
+							<a data-toggle="collapse" data-target="#memorias" class="col-sm-1"> 
+								<span class="glyphicon glyphicon-chevron-down"></span>
+							</a>
+						</div>
+						<div class="collapse" id="memorias">
+							<ul>
+								<%
+									for(ItemPedido ip : listaMemorias){
+								%>
+								<li>
+									<div class="row">
+										<div class="col-sm-1">
+											<img src="img/memoria.jpg" class="img-circle border" alt="Memorias" width="50" height="50">
+										</div>
+										<div class="col-sm-8">
+											<%=ip.getItem().getNome() %>
+										</div>
+										<div class="col-sm-2 right">
+											R$
+											<%=df.format(ip.getItem().getPreco() )%>
+										</div>
+										<div class="col-sm-1">
+											x
+											<%=ip.getQtd() %>
+										</div>
+									</div>
+								</li>
+								<%
+									}
+								%>
+							</ul>
+						</div>
+					</div>
+				</div>
 			</div>
-			</div>
-		
+		</div>
 	</div>
 	<div id="modalCPF" class="modal">
 		<!-- Modal content -->

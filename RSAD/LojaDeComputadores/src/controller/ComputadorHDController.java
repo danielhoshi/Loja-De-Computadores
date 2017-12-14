@@ -14,7 +14,9 @@ import model.ComponenteQuantidade;
 import model.Computador;
 import model.HD;
 import model.ItemPedido;
+import model.Memoria;
 import model.Pedido;
+import model.PlacaMae;
 import repositories.RepositorioItem;
 
 @WebServlet("/ComputadorHDController")
@@ -49,7 +51,7 @@ public class ComputadorHDController extends HttpServlet {
 					"/computador-lista-hd.jsp?idPlaca=" + idPlaca + "&idProcessador=" + idProcessador);
 			requestDispatcher.forward(request, response);
 		} else {
-			Computador computador = new Computador(null, rep.getPlaca(idPlaca), rep.getProcessador(idProcessador));
+			Computador computador = new Computador(null, null, rep.getPlaca(idPlaca), rep.getProcessador(idProcessador));
 			ArrayList<ComponenteQuantidade> memoriasComputador = (ArrayList<ComponenteQuantidade>) request.getSession()
 					.getAttribute("memoriasComputador");
 			for (ComponenteQuantidade memoriaQtd : memoriasComputador) {

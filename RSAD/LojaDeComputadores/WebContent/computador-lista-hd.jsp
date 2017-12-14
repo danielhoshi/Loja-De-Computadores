@@ -28,6 +28,7 @@
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/itens.css">
+<title>Lista - HDs</title>
 </head>
 
 <body>
@@ -58,7 +59,7 @@
 		<div class="row" style="height: 700px">
 			<div class="col-sm-9" id="tipos">
 				<div class="row" style="margin: 50px">
-					<span class="h1" style="font-family: verdana">Disco Rígido</span>
+					<span class="h1 text-warning" style="font-family: verdana">Disco Rígido</span>
 					<div style="float: right">
 						<button id="btnBack" type="button" class="btn btn-default btn-lg"
 							onclick="location.href='NovoPedidoController'">

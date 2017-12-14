@@ -15,15 +15,16 @@ public class ConexaoMySQL {
 
 			Class.forName(driverName);
 
-			String username = "t1g2";
-			String password = "$wS!hMY%";
 
-			connection = DriverManager.getConnection("jdbc:mysql://143.107.102.5:3306/t1g2", username, password);
-			
-//			String username = "root";
-//			String password = "admin";
+//			String username = "t1g2";
+//			String password = "$wS!hMY%";
 //
-//			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/t1g2?autoReconnect=true&useSSL=false", username, password);
+//			connection = DriverManager.getConnection("jdbc:mysql://143.107.102.5:3306/t1g2", username, password);
+			
+			String username = "root";
+			String password = "admin";
+
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/t1g2?autoReconnect=true&useSSL=false", username, password);
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

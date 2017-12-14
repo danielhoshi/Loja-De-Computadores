@@ -18,14 +18,14 @@ import repositories.RepositorioItem;
 /**
  * Servlet implementation class UsuarioController
  */
-@WebServlet("/SalvarPedidoController")
-public class SalvarPedidoController extends HttpServlet {
+@WebServlet("/CancelarPedidoController")
+public class CancelarPedidoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public SalvarPedidoController() {
+	public CancelarPedidoController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -36,24 +36,12 @@ public class SalvarPedidoController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
-		List<ItemPedido> itensPedido = pedido.getItemPedido();
-		RepositorioItem rep = RepositorioItem.getInstance();
 
-		Integer idPedido = rep.inserirPedido(pedido);
-		for (ItemPedido ip : itensPedido) {
-			if (ip.getItem() instanceof Computador) {
-				ItemPedido itemComputador = new ItemPedido(rep.inserirComputador((Computador) ip.getItem()),
-						ip.getQtd());
-				rep.inserirItemPedido(itemComputador, idPedido);
-			} else {
-				rep.inserirItemPedido(ip, idPedido);
-			}
-		}
 		request.getSession().removeAttribute("pedido");
-		request.setAttribute("msg", "Pedido salvo com sucesso!");
+		request.setAttribute("msg", "Pedido cancelado!");
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/index.jsp");
 		requestDispatcher.forward(request, response);
+
 	}
 
 	/**

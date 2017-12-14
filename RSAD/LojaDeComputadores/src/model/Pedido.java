@@ -1,6 +1,4 @@
 package model;
-
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -115,19 +113,22 @@ public class Pedido {
 		return precoTotal - this.desconto;
 	}
 	
-	public String getPrecoTotalFormat(){
-		DecimalFormat df = new DecimalFormat("#,##0.00");
-		return df.format(this.precoFinal + this.desconto);
+	public List<ItemPedido> getItemLista(Class classe){
+		List<ItemPedido> list = new ArrayList<ItemPedido>();
+		for (ItemPedido ip : this.itemPedido) {
+			if (classe.isInstance(ip.getItem())) {
+				list.add(ip);
+			}
+		}
+		return list;
 	}
 	
-	public String getPrecoFinalFormat(){
-		DecimalFormat df = new DecimalFormat("#,##0.00");
-		return df.format(this.precoFinal);
-	}
-	
-	public String getDescontoFormat(){
-		DecimalFormat df = new DecimalFormat("#,##0.00");
-		return df.format(this.desconto);
+	public Double getPrecoLista(List<ItemPedido> list) {
+		Double preco = 0.0;
+		for(ItemPedido ip : list) {
+			preco += ip.getItem().getPreco() * ip.getQtd();
+		}
+		return preco;
 	}
 
 	public List<ItemPedido> getItemPedido() {

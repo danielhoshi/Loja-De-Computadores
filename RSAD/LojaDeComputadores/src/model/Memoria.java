@@ -1,25 +1,16 @@
 package model;
-/**
- * 
- */
 
-/**
- * <!-- begin-UML-doc --> <!-- end-UML-doc -->
- * 
- * @author aluno
- * @generated "UML to Java
- *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
- */
 public class Memoria extends Componente {
 	
 	private Integer id;
 	private String capacidade;
 	private TipoMemoria tipoMemoria;
 
-	public Memoria(Integer id, Double preco, String fabricante, String modelo, String capacidade,
+	public Memoria(Integer id, Integer idItem, Double preco, String fabricante, String modelo, String capacidade,
 			TipoMemoria tipoMemoria) {
 		super();
 		this.id = id;
+		this.idItem = idItem;
 		this.preco = preco;
 		this.fabricante = fabricante;
 		this.modelo = modelo;
@@ -37,5 +28,10 @@ public class Memoria extends Componente {
 
 	public Integer getId() {
 		return id;
+	}
+
+	@Override
+	public String getNome() {
+		return "Pente de memória " + this.fabricante + " " + this.modelo + " " + this.capacidade + " " + this.tipoMemoria.getNome();
 	}
 }

@@ -11,9 +11,10 @@ public class Computador extends Item {
 	private PlacaMae placa;
 	private Processador processador;
 
-	public Computador(Integer idComputador, PlacaMae placa, Processador processador) {
+	public Computador(Integer idComputador, Integer idItem, PlacaMae placa, Processador processador) {
 		super();
 		this.idComputador = idComputador;
+		this.idItem = idItem;
 		this.placa = placa;
 		this.processador = processador;
 		this.hds = new ArrayList<HD>();
@@ -65,5 +66,18 @@ public class Computador extends Item {
 
 	public void setIdItem(Integer idItem) {
 		this.idItem = idItem;
+	}
+
+	@Override
+	public String getNome() {
+		String nome = "Computador com " + this.processador.getNome() + ", ";
+		for(HD hd : this.hds) {
+			nome += hd.getNome() + ", ";
+		}
+		for(Memoria mem : this.memorias) {
+			nome += mem.getNome() + ", ";
+		}
+		nome += this.placa.getNome();
+		return nome;
 	}
 }

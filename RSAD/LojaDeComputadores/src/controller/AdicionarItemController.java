@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,11 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.Item;
 import model.ItemPedido;
-import model.Memoria;
 import model.Pedido;
 import model.TipoItem;
 import repositories.RepositorioItem;
-import test.RepositorioItemTeste;
 
 @WebServlet("/AdicionarItemController")
 public class AdicionarItemController extends HttpServlet {
@@ -37,13 +34,13 @@ public class AdicionarItemController extends HttpServlet {
 		Integer qtd = Integer.parseInt(request.getParameter("quantidade"));
 		Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
 		Item item = null;
-		if(tipoItem == TipoItem.PLACA.getId()) {
+		if (tipoItem == TipoItem.PLACA.getId()) {
 			item = RepositorioItem.getInstance().getPlaca(id);
-		} else if(tipoItem == TipoItem.PROCESSADOR.getId()) {
+		} else if (tipoItem == TipoItem.PROCESSADOR.getId()) {
 			item = RepositorioItem.getInstance().getProcessador(id);
-		} else if(tipoItem == TipoItem.HD.getId()) {
+		} else if (tipoItem == TipoItem.HD.getId()) {
 			item = RepositorioItem.getInstance().getHd(id);
-		} else if(tipoItem == TipoItem.MEMORIA.getId()) {
+		} else if (tipoItem == TipoItem.MEMORIA.getId()) {
 			item = RepositorioItem.getInstance().getMemoria(id);
 		}
 		ItemPedido itemPedido = new ItemPedido(item, qtd);

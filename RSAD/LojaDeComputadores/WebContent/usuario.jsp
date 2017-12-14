@@ -27,7 +27,7 @@
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/usuario.css">
-<title>Insert title here</title>
+<title>Usuário</title>
 </head>
 <body>
 	<nav class="navbar" data-spy="affix">
@@ -52,7 +52,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-10">
-				<h1>Novo Usuário</h1>
+				<h1 class="text-warning" style="margin-left: 30px;">Usuário</h1>
 			</div>
 			<div class="col-sm-2">
 				<button id="btnEditar" class="btn btn-warning btnForm">
@@ -122,7 +122,7 @@
 	  				</select>
 				</div>
 			</div>
-			<button id="btnSalvar" type="submit" class="btn btn-warning btnForm escondido">
+			<button id="btnSalvar" type="submit" style="margin: 10px 0 30px 30px;" class="btn btn-warning btnForm escondido">
 				<span class="glyphicon glyphicon-ok-circle"></span> Salvar
 			</button>
 		</form>
