@@ -30,19 +30,20 @@ public class RepositorioPedido {
 		}
 	}
 	
-	public Integer inserirItemPedido(ItemPedido itemPedido, Pedido pedido) {
+	public Integer inserirPedido(Pedido pedido) {
 		conn = ConexaoMySQL.getConexaoMySQL();
 		Integer novoId = null;
 		try {
-			String query = "INSERT INTO Itempedido(quantidade, idPedido, idItem) VALUES(?, ?, ?)";
+			String query = "INSERT INTO Pedido(precoFinal, desconto, idCliente, idUsuario) VALUES(?, ?, ?, ?)";
 			PreparedStatement state = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-			state.setInt(1, itemPedido.getQtd());
-			state.setInt(2, pedido.getId());
-			state.setInt(3, itemPedido.getItem().getIdItem());
+			state.setDouble(1, pedido.getPrecoFinal());
+			state.setDouble(2, pedido.getDesconto());
+			state.setInt(3, pedido.getCliente().getId());
+			state.setInt(4, pedido.getUsuario().getId());
 			state.executeUpdate();
-			ResultSet result = state.getGeneratedKeys();
-			if (result.next()) {
-				novoId = result.getInt(1);
+			ResultSet rs = state.getGeneratedKeys();
+			if (rs.next()) {
+				novoId = rs.getInt(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -50,5 +51,21 @@ public class RepositorioPedido {
 			fecharConexao();
 		}
 		return novoId;
+	}
+
+	public void inserirItemPedido(ItemPedido itemPedido, Integer idPedido) {
+		conn = ConexaoMySQL.getConexaoMySQL();
+		try {
+			String query = "INSERT INTO ItemPedido(quantidade, idPedido, idItem) VALUES(?, ?, ?)";
+			PreparedStatement state = conn.prepareStatement(query);
+			state.setInt(1, itemPedido.getQtd());
+			state.setInt(2, idPedido);
+			state.setInt(3, itemPedido.getItem().getIdItem());
+			state.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			fecharConexao();
+		}
 	}
 }

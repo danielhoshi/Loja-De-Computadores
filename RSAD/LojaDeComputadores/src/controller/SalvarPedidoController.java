@@ -14,6 +14,7 @@ import model.Computador;
 import model.ItemPedido;
 import model.Pedido;
 import repositories.RepositorioItem;
+import repositories.RepositorioPedido;
 
 /**
  * Servlet implementation class UsuarioController
@@ -38,12 +39,13 @@ public class SalvarPedidoController extends HttpServlet {
 			throws ServletException, IOException {
 		Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
 		List<ItemPedido> itensPedido = pedido.getItemPedido();
-		RepositorioItem rep = RepositorioItem.getInstance();
+		RepositorioPedido rep = RepositorioPedido.getInstance();
+		RepositorioItem repItem = RepositorioItem.getInstance();
 
 		Integer idPedido = rep.inserirPedido(pedido);
 		for (ItemPedido ip : itensPedido) {
 			if (ip.getItem() instanceof Computador) {
-				ItemPedido itemComputador = new ItemPedido(rep.inserirComputador((Computador) ip.getItem()),
+				ItemPedido itemComputador = new ItemPedido(repItem.inserirComputador((Computador) ip.getItem()),
 						ip.getQtd());
 				rep.inserirItemPedido(itemComputador, idPedido);
 			} else {
