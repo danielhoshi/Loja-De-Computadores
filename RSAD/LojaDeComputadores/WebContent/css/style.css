@@ -66,10 +66,6 @@ ul {
 	border-radius: 10px;
 }
 
-.collapse ul li :hover {
-	background-color: rgb(200, 229, 248);
-}
-
 body {
 	font-family: Arial;
 }

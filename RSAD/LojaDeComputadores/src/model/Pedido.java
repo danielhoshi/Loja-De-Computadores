@@ -30,13 +30,13 @@ public class Pedido {
 	}
 
 	public void removerItemPedido(Integer idItem) {
-		int indexARemover = 0;
+		int indexARemover = -1;
 		for (int i = 0; i < itemPedido.size(); i++) {
 			if (itemPedido.get(i).getItem().getIdItem() == idItem) {
 				indexARemover = i;
 			}
 		}
-		if (indexARemover != 0) {
+		if (indexARemover != -1) {
 			itemPedido.remove(indexARemover);
 			this.precoFinal = calculaPreco();
 		}
